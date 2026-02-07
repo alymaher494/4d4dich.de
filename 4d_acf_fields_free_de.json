@@ -1,0 +1,303 @@
+[
+    {
+        "key": "group_project_details",
+        "title": "Projektdetails (Project Details)",
+        "fields": [
+            {
+                "key": "field_proj_subtitle",
+                "label": "Untertitel / Plattform",
+                "name": "project_subtitle",
+                "type": "text",
+                "instructions": "Beispiel: E-Commerce Rebranding",
+                "required": 0,
+                "wrapper": {
+                    "width": "50"
+                }
+            },
+            {
+                "key": "field_proj_text_color",
+                "label": "Textfarbe",
+                "name": "project_text_color",
+                "type": "select",
+                "choices": {
+                    "white": "Weiß (Hell)",
+                    "black": "Schwarz (Dunkel)"
+                },
+                "default_value": "white",
+                "wrapper": {
+                    "width": "50"
+                }
+            },
+            {
+                "key": "field_proj_desc",
+                "label": "Kurzbeschreibung",
+                "name": "project_short_desc",
+                "type": "textarea",
+                "instructions": "Kurzer Text, der auf der Karte angezeigt wird.",
+                "rows": 3
+            },
+            {
+                "key": "field_proj_grad_start",
+                "label": "Verlauf Startfarbe",
+                "name": "project_gradient_start",
+                "type": "color_picker",
+                "wrapper": {
+                    "width": "50"
+                }
+            },
+            {
+                "key": "field_proj_grad_end",
+                "label": "Verlauf Endfarbe",
+                "name": "project_gradient_end",
+                "type": "color_picker",
+                "wrapper": {
+                    "width": "50"
+                }
+            },
+            {
+                "key": "field_stat_1_num",
+                "label": "Statistik 1 Nummer",
+                "name": "stat_1_number",
+                "type": "text",
+                "instructions": "Beispiel: +200%",
+                "wrapper": {
+                    "width": "50"
+                }
+            },
+            {
+                "key": "field_stat_1_label",
+                "label": "Statistik 1 Label",
+                "name": "stat_1_label",
+                "type": "text",
+                "instructions": "Beispiel: Umsatzsteigerung",
+                "wrapper": {
+                    "width": "50"
+                }
+            },
+            {
+                "key": "field_stat_2_num",
+                "label": "Statistik 2 Nummer",
+                "name": "stat_2_number",
+                "type": "text",
+                "wrapper": {
+                    "width": "50"
+                }
+            },
+            {
+                "key": "field_stat_2_label",
+                "label": "Statistik 2 Label",
+                "name": "stat_2_label",
+                "type": "text",
+                "wrapper": {
+                    "width": "50"
+                }
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "project"
+                }
+            ]
+        ]
+    },
+    {
+        "key": "group_service_details",
+        "title": "Dienstleistungsdetails (Service Details)",
+        "fields": [
+            {
+                "key": "field_serv_icon",
+                "label": "Service Icon",
+                "name": "service_icon",
+                "type": "image",
+                "return_format": "url",
+                "preview_size": "thumbnail"
+            },
+            {
+                "key": "field_serv_desc",
+                "label": "Kurzbeschreibung",
+                "name": "service_short_desc",
+                "type": "textarea",
+                "rows": 3
+            },
+            {
+                "key": "field_serv_link",
+                "label": "Externer Link",
+                "name": "service_link",
+                "type": "url",
+                "instructions": "Link zur Serviceseite (optional)"
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "service"
+                }
+            ]
+        ]
+    },
+    {
+        "key": "group_team_details",
+        "title": "Team Details",
+        "fields": [
+            {
+                "key": "field_member_role",
+                "label": "Position / Rolle",
+                "name": "member_role",
+                "type": "text",
+                "instructions": "Beispiel: Geschäftsführer, Grafikdesigner"
+            },
+            {
+                "key": "field_member_quote",
+                "label": "Zitat",
+                "name": "member_quote",
+                "type": "textarea",
+                "rows": 2
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "team_member"
+                }
+            ]
+        ]
+    },
+    {
+        "key": "group_slide_details",
+        "title": "Slider Einstellungen (Hero Slide)",
+        "fields": [
+            {
+                "key": "field_slide_subtitle",
+                "label": "Badge / Subtitel",
+                "name": "slide_subtitle",
+                "type": "text",
+                "instructions": "Kleiner Text über der Überschrift"
+            },
+            {
+                "key": "field_slide_btn_text",
+                "label": "Button Text",
+                "name": "slide_btn_text",
+                "type": "text",
+                "default_value": "Starten Sie Ihr Projekt"
+            },
+            {
+                "key": "field_slide_btn_link",
+                "label": "Button Link",
+                "name": "slide_btn_link",
+                "type": "url"
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "slide"
+                }
+            ]
+        ]
+    },
+    {
+        "key": "group_home_settings",
+        "title": "Startseite Einstellungen (Home Settings)",
+        "fields": [
+            {
+                "key": "field_about_tab",
+                "label": "Über uns - Statistiken",
+                "name": "",
+                "type": "tab"
+            },
+            {
+                "key": "field_ab_stat_1_num",
+                "label": "Statistik 1 Nummer",
+                "name": "about_stat_1_num",
+                "type": "text",
+                "default_value": "+50",
+                "wrapper": {
+                    "width": "50"
+                }
+            },
+            {
+                "key": "field_ab_stat_1_lbl",
+                "label": "Statistik 1 Label",
+                "name": "about_stat_1_label",
+                "type": "text",
+                "default_value": "Projekte",
+                "wrapper": {
+                    "width": "50"
+                }
+            },
+            {
+                "key": "field_ab_stat_2_num",
+                "label": "Statistik 2 Nummer",
+                "name": "about_stat_2_num",
+                "type": "text",
+                "default_value": "100%",
+                "wrapper": {
+                    "width": "50"
+                }
+            },
+            {
+                "key": "field_ab_stat_2_lbl",
+                "label": "Statistik 2 Label",
+                "name": "about_stat_2_label",
+                "type": "text",
+                "default_value": "Zufriedenheit",
+                "wrapper": {
+                    "width": "50"
+                }
+            },
+            {
+                "key": "field_ab_feats_tab",
+                "label": "Über uns - Features",
+                "name": "",
+                "type": "tab"
+            },
+            {
+                "key": "field_ab_feat_1",
+                "label": "Feature 1",
+                "name": "about_feature_1",
+                "type": "text"
+            },
+            {
+                "key": "field_ab_feat_2",
+                "label": "Feature 2",
+                "name": "about_feature_2",
+                "type": "text"
+            },
+            {
+                "key": "field_ab_feat_3",
+                "label": "Feature 3",
+                "name": "about_feature_3",
+                "type": "text"
+            },
+            {
+                "key": "field_ab_feat_4",
+                "label": "Feature 4",
+                "name": "about_feature_4",
+                "type": "text"
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "page_template",
+                    "operator": "==",
+                    "value": "default"
+                },
+                {
+                    "param": "page_type",
+                    "operator": "==",
+                    "value": "front_page"
+                }
+            ]
+        ]
+    }
+]
