@@ -4,160 +4,138 @@ import { motion } from "framer-motion";
 import { Printer, Palette, Globe, TrendingUp, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
-// Services data with background images
 const services = [
     {
-        id: 1,
+        id: "01",
         title: "Druck",
-        description: "Hochwertiger Druck für Werbematerialien, Broschüren und Visitenkarten in perfekter Qualität.",
+        description: "Hochwertige Printergebnisse auf exklusiven Materialien – von Visitenkarten bis zum Großformat.",
         icon: Printer,
         link: "/druck",
-        bgImage: "https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?w=800&auto=format&fit=crop", // Printing press
-        gradient: "from-primary/90 to-primary-dark/90",
+        bg: "bg-primary/5",
+        accent: "text-primary",
     },
     {
-        id: 2,
+        id: "02",
         title: "Design",
-        description: "Kreative Grafikdesigns, die Ihre Marke einzigartig präsentieren und Kunden begeistern.",
+        description: "Visuelle Konzepte, die begeistern. Wir entwickeln Markenidentitäten mit Charakter و Stil.",
         icon: Palette,
         link: "/grafik-design",
-        bgImage: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&auto=format&fit=crop", // Design tools
-        gradient: "from-secondary/90 to-secondary-dark/90",
+        bg: "bg-secondary/5",
+        accent: "text-secondary",
     },
     {
-        id: 3,
+        id: "03",
         title: "Web & App",
-        description: "Individuelle App-Webseite Entwicklung, mit modernem Design und benutzerfreundlicher Struktur.",
+        description: "Maßgeschneiderte digitale Erlebnisse. Wir bauen Webseiten, die konvertieren و Apps, die funktionieren.",
         icon: Globe,
         link: "/web-app",
-        bgImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop", // Web development
-        gradient: "from-primary/90 to-secondary/90",
+        bg: "bg-primary/10",
+        accent: "text-primary",
     },
     {
-        id: 4,
+        id: "04",
         title: "Marketing",
-        description: "Effektive Online-Kampagnen, SEO, Social Media und Content-Marketing-Strategien.",
+        description: "Erfolg ist kein Zufall. Wir steigern Ihre Sichtbarkeit durch datengetriebene Marketingstrategien.",
         icon: TrendingUp,
         link: "/marketing",
-        bgImage: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=800&auto=format&fit=crop", // Marketing dashboard
-        gradient: "from-secondary/90 to-primary/90",
+        bg: "bg-secondary/10",
+        accent: "text-secondary",
     },
 ];
 
-function ServiceCard({ service, index }: { service: typeof services[0]; index: number }) {
-    const Icon = service.icon;
-
+export default function HomeServices() {
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ delay: index * 0.1, duration: 0.6, ease: "easeOut" }}
-            className="group relative h-[380px] md:h-[420px] rounded-3xl overflow-hidden cursor-pointer"
-        >
-            {/* Default State - Gradient Background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-50 to-slate-100 transition-opacity duration-500 group-hover:opacity-0" />
+        <section id="services" className="py-32 bg-slate-50 relative overflow-hidden">
+            <div className="max-w-7xl mx-auto px-6 md:px-12">
 
-            {/* Hover State - Image Background */}
-            <div
-                className="absolute inset-0 bg-cover bg-center opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{ backgroundImage: `url(${service.bgImage})` }}
-            />
-
-            {/* Dark Overlay on Hover */}
-            <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-            {/* Border Effect */}
-            <div className="absolute inset-0 rounded-3xl border-2 border-slate-200/50 group-hover:border-white/20 transition-colors duration-500" />
-
-            {/* Content */}
-            <div className="relative h-full flex flex-col justify-between p-8 md:p-10 z-10">
-                {/* Top Section */}
-                <div>
-                    {/* Icon */}
-                    <motion.div
-                        className="w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center mb-6 transition-all duration-500 bg-primary/10 group-hover:bg-white/10"
-                        whileHover={{ scale: 1.05 }}
+                {/* Header */}
+                <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-12 mb-24">
+                    <div className="max-w-3xl space-y-6">
+                        <motion.span
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            className="text-primary font-black uppercase tracking-[0.25em] text-sm"
+                        >
+                            Exzellenz als Standard
+                        </motion.span>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="text-4xl md:text-7xl font-black text-slate-900 leading-none"
+                        >
+                            Unsere <br />
+                            <span className="premium-gradient-text">Meisterleistungen.</span>
+                        </motion.h2>
+                    </div>
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.3 }}
+                        className="text-slate-500 max-w-sm text-lg leading-relaxed font-light"
                     >
-                        <Icon className="w-8 h-8 md:w-10 md:h-10 text-primary group-hover:text-white transition-colors duration-500" />
-                    </motion.div>
-
-                    {/* Title */}
-                    <h3 className="text-2xl md:text-3xl font-black text-slate-900 group-hover:text-white transition-colors duration-500 mb-4">
-                        {service.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-slate-600 group-hover:text-white/85 transition-colors duration-500 leading-relaxed line-clamp-3">
-                        {service.description}
-                    </p>
+                        Wir kombinieren traditionelle Qualität mit modernster Technologie für Ihren Erfolg im digitalen Zeitalter.
+                    </motion.p>
                 </div>
 
-                {/* Bottom Section - Link */}
-                <Link
-                    href={service.link}
-                    className="inline-flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-primary group-hover:text-white transition-all duration-500"
-                >
-                    <span>Mehr erfahren</span>
-                    <ArrowRight className="w-5 h-5 transform group-hover:translate-x-2 transition-transform duration-300" />
-                </Link>
-            </div>
-
-            {/* Decorative Corner Accent */}
-            <div className="absolute top-0 right-0 w-24 h-24 overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/20 to-transparent rotate-45 transform translate-x-16 -translate-y-16 group-hover:from-white/10 transition-colors duration-500" />
-            </div>
-        </motion.div>
-    );
-}
-
-export default function ServicesSection() {
-    return (
-        <section id="services" className="py-24 md:py-32 bg-gradient-to-b from-white via-slate-50/30 to-white overflow-hidden">
-            <div className="max-w-7xl mx-auto px-4 md:px-8">
-                {/* Section Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="text-center mb-16 md:mb-20"
-                >
-                    <span className="inline-block text-sm font-semibold text-primary uppercase tracking-[0.2em] mb-4">
-                        Was wir tun
-                    </span>
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 mb-6">
-                        Unsere{" "}
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-                            Leistungen
-                        </span>
-                    </h2>
-                    <p className="text-slate-600 max-w-2xl mx-auto text-lg md:text-xl leading-relaxed">
-                        Wir bieten umfassende Lösungen für Ihr Business – von der ersten Idee bis zum fertigen Produkt.
-                    </p>
-                </motion.div>
-
-                {/* Services Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-12 md:mb-16">
+                {/* Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {services.map((service, index) => (
-                        <ServiceCard key={service.id} service={service} index={index} />
+                        <motion.div
+                            key={service.id}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.1 }}
+                            className="group"
+                        >
+                            <Link href={service.link} className="block relative">
+                                <div className={`p-12 h-full rounded-[2.5rem] bg-white border border-slate-100 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5 group-hover:-translate-y-2 relative overflow-hidden`}>
+                                    {/* Service ID Background */}
+                                    <span className="absolute top-8 right-12 text-8xl font-black text-slate-50 opacity-[0.03] select-none group-hover:text-primary/10 transition-colors">
+                                        {service.id}
+                                    </span>
+
+                                    <div className="space-y-8 relative z-10">
+                                        <div className={`w-16 h-16 rounded-2xl ${service.bg} flex items-center justify-center ${service.accent} transition-transform duration-500 group-hover:scale-110`}>
+                                            <service.icon className="w-8 h-8" />
+                                        </div>
+
+                                        <div className="space-y-4">
+                                            <h3 className="text-3xl font-black text-slate-900 group-hover:text-primary transition-colors">
+                                                {service.title}
+                                            </h3>
+                                            <p className="text-slate-500 text-lg leading-relaxed font-light max-w-md">
+                                                {service.description}
+                                            </p>
+                                        </div>
+
+                                        <div className="flex items-center gap-4 text-primary font-bold tracking-wide pt-4">
+                                            <span className="text-sm uppercase tracking-widest">Detail-Ansicht</span>
+                                            <div className="w-12 h-px bg-slate-200 group-hover:w-20 group-hover:bg-primary transition-all duration-500" />
+                                            <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                                        </div>
+                                    </div>
+
+                                    {/* Hover Indicator */}
+                                    <div className="absolute bottom-0 left-0 w-full h-[6px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />
+                                </div>
+                            </Link>
+                        </motion.div>
                     ))}
                 </div>
 
-                {/* CTA Button with Animated Border */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.4, duration: 0.5 }}
-                    className="text-center"
+                    className="mt-20 text-center"
                 >
-                    <Link
-                        href="/services"
-                        className="btn-animated btn-animated-lg"
-                    >
-                        <span>Alle Leistungen entdecken</span>
-                        <ArrowRight className="w-5 h-5" />
+                    <Link href="/dienstleistungen" className="inline-flex items-center gap-4 px-10 py-5 rounded-full border-2 border-slate-900 text-slate-900 font-bold hover:bg-slate-900 hover:text-white transition-all group">
+                        Alle Leistungen ansehen
+                        <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                     </Link>
                 </motion.div>
             </div>

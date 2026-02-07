@@ -1,82 +1,100 @@
+"use client";
+
 import Link from "next/link";
-import { Instagram, Mail, Phone, MapPin } from "lucide-react";
+import { Instagram, Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
 import { siteInfo } from "@/data/website-text";
+import { motion } from "framer-motion";
 
 export default function Footer() {
     return (
-        <footer className="bg-slate-900 border-t border-slate-800 pt-20 pb-10 px-4 md:px-8">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16 mb-16">
-                {/* Company Info */}
-                <div className="space-y-6">
-                    <Link href="/" className="flex items-center">
-                        <img
-                            src="https://4d4dich.de/wp-content/uploads/2025/01/cropped-cropped-cropped-logo-png-1-e1761347164694.png"
-                            alt="4D Für Dich"
-                            className="h-12 w-auto object-contain brightness-0 invert opacity-90"
-                        />
-                    </Link>
-                    <p className="text-slate-400 text-sm leading-relaxed font-medium">
-                        Ihre Full-Service Agentur für Design, Druck und Digital Marketing in Rodgau und Frankfurt.
-                    </p>
-                    <div className="flex gap-4">
-                        <Link href={siteInfo.social.instagram} className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-white hover:bg-primary hover:scale-110 transition-all border border-white/10 shadow-sm">
-                            <Instagram className="w-6 h-6" />
+        <footer className="bg-slate-950 text-white pt-32 pb-12 overflow-hidden relative">
+            {/* Background Accent */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+            <div className="max-w-7xl mx-auto px-6 md:px-12">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 mb-24">
+
+                    {/* Brand Section */}
+                    <div className="lg:col-span-5 space-y-10">
+                        <Link href="/" className="inline-block transform transition-transform hover:scale-105 active:scale-95">
+                            <img
+                                src="https://4d4dich.de/wp-content/uploads/2025/01/cropped-cropped-cropped-logo-png-1-e1761347164694.png"
+                                alt="4D Für Dich"
+                                className="h-14 w-auto brightness-0 invert"
+                            />
                         </Link>
+                        <p className="text-xl text-slate-400 font-light leading-relaxed max-w-md">
+                            Wir transformieren Visionen in digitale Realität. Kreativ, datengetrieben und immer einen Schritt voraus.
+                        </p>
+                        <div className="flex gap-4">
+                            {[Instagram, Mail, Phone].map((Icon, i) => (
+                                <motion.a
+                                    key={i}
+                                    href="#"
+                                    whileHover={{ y: -5 }}
+                                    className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:text-primary hover:border-primary transition-all bg-white/5"
+                                >
+                                    <Icon className="w-5 h-5" />
+                                </motion.a>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Links Grid */}
+                    <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-12">
+                        <div className="space-y-8">
+                            <h4 className="text-xs font-black uppercase tracking-[0.3em] text-white/40">Leistungen</h4>
+                            <ul className="space-y-4">
+                                {["Druck", "Design", "Web & App", "Marketing"].map((item, i) => (
+                                    <li key={i}>
+                                        <Link href={`/${item.toLowerCase().replace(/ & /g, "-").replace(/ /g, "-")}`} className="text-slate-400 hover:text-white flex items-center gap-2 group transition-colors">
+                                            {item}
+                                            <ArrowUpRight className="w-3 h-3 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all" />
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        <div className="space-y-8">
+                            <h4 className="text-xs font-black uppercase tracking-[0.3em] text-white/40">Agentur</h4>
+                            <ul className="space-y-4">
+                                {["Über uns", "Portfolio", "Team", "Blog"].map((item, i) => (
+                                    <li key={i}>
+                                        <Link href={`/${item.toLowerCase().replace(/ /g, "-")}`} className="text-slate-400 hover:text-white flex items-center gap-2 group transition-colors">
+                                            {item}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        <div className="space-y-8 col-span-2 md:col-span-1">
+                            <h4 className="text-xs font-black uppercase tracking-[0.3em] text-white/40">Kontakt</h4>
+                            <div className="space-y-6 text-slate-400">
+                                <p className="leading-relaxed hover:text-white transition-colors cursor-pointer">
+                                    {siteInfo.address}<br />
+                                    {siteInfo.location}
+                                </p>
+                                <p className="hover:text-primary transition-colors cursor-pointer text-white font-bold">
+                                    {siteInfo.phone}
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                {/* Services */}
-                <div className="space-y-8">
-                    <h4 className="text-lg font-bold text-white">Leistungen</h4>
-                    <ul className="space-y-4 text-slate-400 text-sm font-medium">
-                        <li><Link href="/druck" className="hover:text-primary transition-colors">Druckservice</Link></li>
-                        <li><Link href="/grafik-design" className="hover:text-primary transition-colors">Grafik Design</Link></li>
-                        <li><Link href="/web-app" className="hover:text-primary transition-colors">Web & App Design</Link></li>
-                        <li><Link href="/marketing" className="hover:text-primary transition-colors">Digital Marketing</Link></li>
-                    </ul>
+                {/* Bottom Bar */}
+                <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+                    <p className="text-xs font-bold uppercase tracking-widest text-slate-600">
+                        © {new Date().getFullYear()} 4D FÜR DICH. <span className="text-slate-800">CRAFTED IN GERMANY.</span>
+                    </p>
+                    <div className="flex gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600">
+                        <Link href="/impressum" className="hover:text-white transition-colors">Impressum</Link>
+                        <Link href="/datenschutz" className="hover:text-white transition-colors">Datenschutz</Link>
+                        <Link href="/agb" className="hover:text-white transition-colors">AGB</Link>
+                    </div>
                 </div>
-
-                {/* Links */}
-                <div className="space-y-8">
-                    <h4 className="text-lg font-bold text-white">Unternehmen</h4>
-                    <ul className="space-y-4 text-slate-400 text-sm font-medium">
-                        <li><Link href="/ueber-uns" className="hover:text-primary transition-colors">Über uns</Link></li>
-                        <li><Link href="/ueber-uns#team" className="hover:text-primary transition-colors">Unser Team</Link></li>
-                        <li><Link href="/kontakt" className="hover:text-primary transition-colors">Kontakt</Link></li>
-                        <li><Link href="/impressum" className="hover:text-primary transition-colors">Impressum</Link></li>
-                        <li><Link href="/datenschutz" className="hover:text-primary transition-colors">Datenschutz</Link></li>
-                        <li><Link href="/agb" className="hover:text-primary transition-colors">AGB</Link></li>
-                    </ul>
-                </div>
-
-                {/* Contact */}
-                <div className="space-y-8">
-                    <h4 className="text-lg font-bold text-white">Kontakt</h4>
-                    <ul className="space-y-5 text-slate-400 text-sm font-medium">
-                        <li className="flex items-start gap-4">
-                            <div className="p-2 rounded-lg bg-white/5 text-primary">
-                                <MapPin className="w-5 h-5" />
-                            </div>
-                            <span>{siteInfo.address},<br />{siteInfo.location}</span>
-                        </li>
-                        <li className="flex items-center gap-4">
-                            <div className="p-2 rounded-lg bg-white/5 text-primary">
-                                <Phone className="w-5 h-5" />
-                            </div>
-                            <span>{siteInfo.phone}</span>
-                        </li>
-                        <li className="flex items-center gap-4">
-                            <div className="p-2 rounded-lg bg-white/5 text-primary">
-                                <Mail className="w-5 h-5" />
-                            </div>
-                            <span>{siteInfo.email}</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div className="max-w-7xl mx-auto pt-10 border-t border-slate-800 text-center text-slate-500 text-xs font-bold uppercase tracking-widest">
-                <p>© {new Date().getFullYear()} 4D FÜR DICH. DESIGNED WITH PRECISION.</p>
             </div>
         </footer>
     );

@@ -11,6 +11,8 @@
     color: rgb(var(--foreground-rgb));
     background: #ffffff;
     min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
@@ -33,15 +35,35 @@
 
 @layer components {
   .glass-card {
-    @apply bg-white border border-slate-200 rounded-2xl shadow-sm;
+    @apply bg-white/70 backdrop-blur-xl border border-white/20 rounded-[2.5rem] shadow-[0_8px_32px_0_rgba(31, 38, 135, 0.07)];
   }
 
   .btn-primary {
-    @apply bg-primary hover:bg-primary-dark transition-colors px-6 py-3 rounded-full font-bold text-white shadow-md;
+    @apply bg-primary hover:bg-primary-dark transition-all duration-300 px-8 py-4 rounded-full font-bold text-white shadow-[0_10px_20px_-5px_rgba(118, 188, 67, 0.4)] hover:shadow-[0_15px_30px_-5px_rgba(118, 188, 67, 0.6)] hover:-translate-y-1 active:translate-y-0.5;
   }
 
   .section-padding {
-    @apply py-20 px-4 md:px-8 max-w-7xl mx-auto;
+    @apply py-24 px-4 md:px-8 max-w-7xl mx-auto;
+  }
+}
+
+@layer utilities {
+  .premium-gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary-light to-secondary;
+  }
+
+  .animate-marquee {
+    animation: marquee 40s linear infinite;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
   }
 }
 

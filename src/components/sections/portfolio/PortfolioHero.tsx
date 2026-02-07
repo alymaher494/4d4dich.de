@@ -1,35 +1,67 @@
 "use client";
 
 import { motion } from "framer-motion";
-import AmbientBackground from "@/components/ui/AmbientBackground";
 import { portfolioContent } from "@/data/website-text";
-import { fadeInUp } from "@/lib/animations";
 
 export default function PortfolioHero() {
     return (
-        <section className="pt-40 pb-20 px-4 md:px-8 relative overflow-hidden bg-slate-900">
-            <AmbientBackground />
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800/50 to-black/80 -z-10" />
+        <section className="relative pt-48 pb-32 overflow-hidden bg-slate-950">
+            {/* Background Texture/Accent */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(118,188,67,0.15),transparent_50%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(214,13,126,0.1),transparent_50%)]" />
 
-            <div className="max-w-7xl mx-auto text-center relative z-10">
-                <motion.div
-                    {...fadeInUp}
-                    className="space-y-6"
-                >
-                    <span className="inline-block px-4 py-2 rounded-full bg-white/10 text-white border border-white/20 text-sm font-bold uppercase tracking-widest backdrop-blur-md">
-                        {portfolioContent.title}
-                    </span>
-                    <h1 className="text-5xl md:text-7xl font-black text-white leading-tight">
-                        Unsere <br />
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-                            Meisterwerke.
+            <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 text-center">
+                <div className="space-y-8">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 text-xs font-black uppercase tracking-[0.3em] text-primary-light"
+                    >
+                        <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                        Explore Art
+                    </motion.div>
+
+                    <motion.h1
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-6xl md:text-9xl font-black text-white leading-none tracking-tight"
+                    >
+                        {portfolioContent.title.split(' ')[0]} <br />
+                        <span className="premium-gradient-text tracking-tighter">
+                            Portfolio.
                         </span>
-                    </h1>
-                    <p className="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed font-light">
+                    </motion.h1>
+
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 }}
+                        className="text-xl md:text-2xl text-slate-400 max-w-2xl mx-auto font-light leading-relaxed"
+                    >
                         {portfolioContent.subtitle}
-                    </p>
-                </motion.div>
+                    </motion.p>
+                </div>
+            </div>
+
+            {/* Scrolling Decorative Text */}
+            <div className="absolute bottom-0 left-0 w-full overflow-hidden opacity-5 pointer-events-none select-none">
+                <div className="text-[15rem] font-black text-white whitespace-nowrap animate-marquee flex gap-12">
+                    <span>DIGITAL EXPERIENCES</span>
+                    <span>CREATIVE DESIGN</span>
+                    <span>PRINT MANAGEMENT</span>
+                </div>
             </div>
         </section>
     );
 }
+
+// Add marquee animation in your globals.css if not present:
+/*
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+*/
