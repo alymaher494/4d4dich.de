@@ -53,7 +53,7 @@ export default function PlatformsSection() {
                         </span>
                         <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-6 leading-tight">
                             Wir arbeiten auf allen Plattformen{" "}
-                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+                            <span className="text-secondary">
                                 für ein Ziel: Ihren Erfolg
                             </span>
                         </h2>
@@ -68,7 +68,7 @@ export default function PlatformsSection() {
                                     transition={{ delay: index * 0.1, duration: 0.5 }}
                                     className="flex items-center gap-4"
                                 >
-                                    <span className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink-0">
+                                    <span className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
                                         <Check className="w-4 h-4 text-white" />
                                     </span>
                                     <span className="text-slate-300 text-lg">{benefit}</span>

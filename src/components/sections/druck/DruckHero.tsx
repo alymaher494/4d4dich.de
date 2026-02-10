@@ -17,12 +17,12 @@ export default function DruckHero() {
                     {...fadeInUp}
                     className="space-y-6"
                 >
-                    <span className="inline-block px-4 py-2 rounded-full bg-white/10 text-white border border-white/20 text-sm font-bold uppercase tracking-widest backdrop-blur-md">
+                    <span className="inline-block px-4 py-2 rounded-full bg-white/10 text-primary border border-primary text-sm font-bold uppercase tracking-widest backdrop-blur-md">
                         Premium Print
                     </span>
                     <h1 className="text-5xl md:text-7xl font-black text-white leading-tight">
                         Druck, der <br />
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-secondary to-primary">
+                        <span className="bg-clip-text text-secondary">
                             beeindruckt.
                         </span>
                     </h1>

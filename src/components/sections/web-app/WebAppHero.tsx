@@ -23,7 +23,7 @@ export default function WebAppHero() {
                     </span>
                     <h1 className="text-5xl md:text-7xl font-black text-white leading-tight">
                         Digital, das <br />
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+                        <span className="text-secondary">
                             verbindet.
                         </span>
                     </h1>

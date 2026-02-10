@@ -1,6 +1,6 @@
-import HomeHero from "@/components/sections/home/HomeHero";
+﻿import HomeHero from "@/components/sections/home/HomeHero";
 import HomeAbout from "@/components/sections/home/HomeAbout";
-import ServicesGrid from "@/components/sections/ServicesGrid";
+import HomeServices from "@/components/sections/home/HomeServices";
 import HomePlatforms from "@/components/sections/home/HomePlatforms";
 import HomePortfolio from "@/components/sections/home/HomePortfolio";
 import HomeSectors from "@/components/sections/home/HomeSectors";
@@ -15,7 +15,7 @@ export default function Home() {
     <>
       <HomeHero />
       <HomeAbout />
-      <ServicesGrid />
+      <HomeServices />
       <HomePlatforms />
       <HomePortfolio />
       <ClientsMarquee />

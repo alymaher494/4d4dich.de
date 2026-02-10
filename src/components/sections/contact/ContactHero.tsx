@@ -25,7 +25,7 @@ export default function ContactHero() {
                         className="text-6xl md:text-9xl font-black text-white leading-tight tracking-tight"
                     >
                         Sprechen wir <br />
-                        <span className="premium-gradient-text tracking-tighter">
+                        <span className="text-secondary tracking-tighter">
                             über Erfolg.
                         </span>
                     </motion.h1>

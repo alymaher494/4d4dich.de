@@ -37,7 +37,7 @@ export default function AboutDifference() {
                     <div className="bg-white p-10 rounded-3xl shadow-xl border border-primary/10 relative overflow-hidden group">
                         <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-bl-full -mr-16 -mt-16 transition-transform group-hover:scale-150" />
 
-                        <h3 className="text-2xl font-bold text-slate-900 mb-8 flex items-center gap-3 text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
+                        <h3 className="text-2xl font-bold text-slate-900 mb-8 flex items-center gap-3 text-primary">
                             <Check className="w-6 h-6 text-primary" /> 4D Für Dich
                         </h3>
                         <ul className="space-y-6">

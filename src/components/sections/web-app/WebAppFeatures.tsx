@@ -11,7 +11,7 @@ export default function WebAppFeatures() {
         <section className="py-24 px-4 md:px-8 bg-slate-50">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-4xl font-black text-slate-900 mb-6">Technologie Stack</h2>
+                    <h2 className="text-4xl  text-primary  text-slate-900 mb-6">Technologie Stack</h2>
                     <p className="text-xl text-slate-600 max-w-2xl mx-auto">
                         Wir nutzen modernste Technologien für skalierbare und sichere Anwendungen.
                     </p>

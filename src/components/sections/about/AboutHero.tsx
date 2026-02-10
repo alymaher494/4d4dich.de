@@ -7,7 +7,7 @@ import { fadeInUp, fadeInRight } from "@/lib/animations";
 
 export default function AboutHero() {
     return (
-        <section className="pt-40 pb-20 px-4 md:px-8 relative overflow-hidden">
+        <section className="pt-40 pb-20 px-4 md:px-8 relative overflow-hidden bg-slate-50">
             <AmbientBackground />
 
             <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -20,7 +20,7 @@ export default function AboutHero() {
                     </span>
                     <h1 className="text-5xl md:text-7xl font-black text-slate-900 leading-tight">
                         4D Für Dich ist <br />
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+                        <span className="text-secondary">
                             mehr als eine Agentur.
                         </span>
                     </h1>

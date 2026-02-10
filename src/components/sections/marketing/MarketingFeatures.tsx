@@ -20,8 +20,8 @@ export default function MarketingFeatures() {
                             whileHover={{ y: -10 }}
                             className="p-10 rounded-[3rem] bg-white border border-slate-100 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:shadow-primary/5 transition-all space-y-6 group"
                         >
-                            <div className={`w-20 h-20 rounded-[2rem] ${f.bg} flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300`}>
-                                <f.Icon className={`w-10 h-10 ${f.color}`} />
+                            <div className={`w-20 h-20 rounded-[2rem] bt-secoundry flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300`}>
+                                <f.Icon className={`w-10 h-10  text-primary`} />
                             </div>
                             <h3 className="text-2xl font-black text-slate-900">{f.title}</h3>
                             <p className="text-slate-600 leading-relaxed font-medium">{f.description}</p>

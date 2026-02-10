@@ -56,16 +56,16 @@ export default function HomePortfolio() {
                             viewport={{ once: true }}
                             className="text-primary font-black uppercase tracking-[0.25em] text-sm"
                         >
-                            Ausgewählte Arbeiten
+                            UNSERE REFERENZEN
                         </motion.span>
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-4xl md:text-7xl font-black text-slate-900 leading-none"
+                            className="text-4xl md:text-5xl font-black text-slate-900 leading-none"
                         >
-                            Impact durch <br />
-                            <span className="premium-gradient-text">Kreativität.</span>
+                            Ausgewählte <br />
+                            <span className="text-secondary">Erfolgsgeschichten.</span>
                         </motion.h2>
                     </div>
                     <motion.div

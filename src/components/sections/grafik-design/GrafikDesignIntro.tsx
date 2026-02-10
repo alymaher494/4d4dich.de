@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { grafikDesignContent } from "@/data/website-text";
-import { CheckCircle2, PenTool, Layers, Image as ImageIcon, MousePointer2 } from "lucide-react";
+import { CheckCircle2, PenTool, Layers, Image as ImageIcon, MousePointer2, Smartphone, Palette, Megaphone, Video } from "lucide-react";
 
 export default function GrafikDesignIntro() {
     return (
@@ -11,22 +11,25 @@ export default function GrafikDesignIntro() {
                 <div className="space-y-8 order-2 lg:order-1">
                     <h2 className="text-4xl font-black text-slate-900">
                         Wir bringen Ihre Vision <br />
-                        <span className="text-slate-400">auf den Punkt.</span>
+                        <span className="text-slate-400 text-secondary">auf den Punkt.</span>
                     </h2>
                     <p className="text-lg text-slate-600 leading-relaxed">
                         {grafikDesignContent.intro}
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        {grafikDesignContent.services.map((service, idx) => (
-                            <motion.div
-                                key={idx}
-                                whileHover={{ scale: 1.02 }}
-                                className="p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-lg transition-all cursor-default flex items-center gap-3"
-                            >
-                                <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-                                <span className="text-slate-800 font-medium">{service}</span>
-                            </motion.div>
-                        ))}
+                        {grafikDesignContent.services.map((service, idx) => {
+                            const Icon = [PenTool, Smartphone, Palette, Megaphone, Video][idx] || CheckCircle2;
+                            return (
+                                <motion.div
+                                    key={idx}
+                                    whileHover={{ scale: 1.02 }}
+                                    className="p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-lg transition-all cursor-default flex items-center gap-3"
+                                >
+                                    <Icon className="w-5 h-5 text-primary shrink-0" />
+                                    <span className="text-slate-800 font-medium">{service}</span>
+                                </motion.div>
+                            );
+                        })}
                     </div>
                 </div>
                 <div className="order-1 lg:order-2 grid grid-cols-2 gap-6">

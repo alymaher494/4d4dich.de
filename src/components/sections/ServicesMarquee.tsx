@@ -28,10 +28,15 @@ export default function ServicesMarquee() {
             <div className="relative w-full py-10 flex flex-col items-center justify-center gap-0">
                 {/* Row 1 - Green, Tilted + */}
                 <div className="w-[120%] -rotate-3 bg-primary py-4 md:py-6 shadow-lg relative z-10 scale-110 transform origin-center">
-                    <div className="flex gap-8 md:gap-12 animate-marquee-left whitespace-nowrap">
+                    <div className="flex gap-8 md:gap-12 animate-marquee-left whitespace-nowrap items-center">
                         {duplicatedServices.map((service, index) => (
                             <span key={`row1-${index}`} className="text-white font-black text-2xl md:text-4xl uppercase tracking-widest flex items-center gap-8 md:gap-12">
-                                {service} <span className="text-white/40">•</span>
+                                {service}
+                                <img
+                                    src="https://4d4dich.de/wp-content/uploads/2025/01/cropped-cropped-cropped-logo-png-1-e1761347164694.png"
+                                    alt="4D Logo"
+                                    className="h-8 md:h-12 w-auto brightness-0 invert opacity-60"
+                                />
                             </span>
                         ))}
                     </div>
@@ -39,10 +44,15 @@ export default function ServicesMarquee() {
 
                 {/* Row 2 - Pink/Secondary, Tilted - (Crosses the first one) */}
                 <div className="w-[120%] rotate-3 bg-secondary py-4 md:py-6 shadow-xl relative z-20 -mt-6 md:-mt-8 scale-110 transform origin-center border-t-4 border-white/20">
-                    <div className="flex gap-8 md:gap-12 animate-marquee-right whitespace-nowrap">
+                    <div className="flex gap-8 md:gap-12 animate-marquee-right whitespace-nowrap items-center">
                         {duplicatedServices.map((service, index) => (
                             <span key={`row2-${index}`} className="text-white font-black text-2xl md:text-4xl uppercase tracking-widest flex items-center gap-8 md:gap-12">
-                                {service} <span className="text-white/40">•</span>
+                                {service}
+                                <img
+                                    src="https://4d4dich.de/wp-content/uploads/2025/01/cropped-cropped-cropped-logo-png-1-e1761347164694.png"
+                                    alt="4D Logo"
+                                    className="h-8 md:h-12 w-auto brightness-0 invert opacity-60"
+                                />
                             </span>
                         ))}
                     </div>

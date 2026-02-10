@@ -20,14 +20,11 @@ export default function SectorsGrid() {
 
             <div className="max-w-7xl mx-auto relative z-10">
                 <div className="text-center mb-16 md:mb-20 space-y-4">
-                    <span className="inline-block text-sm font-semibold text-primary uppercase tracking-[0.2em] mb-4">
-                        Unsere Einsatzgebiete
+                    <span className="inline-block text-sm font-black text-primary uppercase tracking-[0.2em] mb-4">
+                        UNSERE EINSATZGEBIETE
                     </span>
                     <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white">
-                        Branchen &{" "}
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-                            Lösungen
-                        </span>
+                        Branchen & Lösungen
                     </h2>
                     <p className="text-slate-400 max-w-2xl mx-auto text-lg">
                         Maßgeschneiderte Marketinglösungen für verschiedene Geschäftsbereiche.
@@ -55,11 +52,11 @@ export default function SectorsGrid() {
 
                                 {/* Gradient Overlay */}
                                 <div className="absolute inset-0 bg-gradient-to-b from-slate-900/30 via-slate-900/60 to-slate-900/90 transition-opacity group-hover:opacity-90" />
-                                <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay" />
+                                <div className="absolute inset-0 bg-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay" />
 
                                 {/* Content */}
                                 <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                                    <div className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center text-white mb-6 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+                                    <div className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center text-white mb-6 group-hover:bg-secondary group-hover:scale-110 transition-all duration-300">
                                         <Icon className="w-7 h-7" />
                                     </div>
 
@@ -71,7 +68,7 @@ export default function SectorsGrid() {
                                         {sector.description}
                                     </p>
 
-                                    <div className="h-1 w-12 bg-primary mt-6 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 delay-200" />
+                                    <div className="h-1 w-12 bg-secondary mt-6 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 delay-200" />
                                 </div>
                             </motion.div>
                         );

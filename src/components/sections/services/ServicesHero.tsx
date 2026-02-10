@@ -20,7 +20,7 @@ export default function ServicesHero() {
                     </span>
                     <h1 className="text-5xl md:text-7xl font-black text-white leading-tight">
                         Alles aus <br />
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+                        <span className="text-secondary">
                             einer Hand.
                         </span>
                     </h1>

@@ -11,8 +11,8 @@ const services = [
         description: "Hochwertige Printergebnisse auf exklusiven Materialien – von Visitenkarten bis zum Großformat.",
         icon: Printer,
         link: "/druck",
-        bg: "bg-primary/5",
-        accent: "text-primary",
+        bg: "bg-secondary/5",
+        accent: "text-secondary",
     },
     {
         id: "02",
@@ -55,7 +55,7 @@ export default function HomeServices() {
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="text-primary font-black uppercase tracking-[0.25em] text-sm"
+                            className="text-secondary font-black uppercase tracking-[0.25em] text-sm"
                         >
                             Exzellenz als Standard
                         </motion.span>
@@ -66,7 +66,7 @@ export default function HomeServices() {
                             className="text-4xl md:text-7xl font-black text-slate-900 leading-none"
                         >
                             Unsere <br />
-                            <span className="premium-gradient-text">Meisterleistungen.</span>
+                            <span className="text-secondary">Meisterleistungen.</span>
                         </motion.h2>
                     </div>
                     <motion.p
@@ -92,9 +92,9 @@ export default function HomeServices() {
                             className="group"
                         >
                             <Link href={service.link} className="block relative">
-                                <div className={`p-12 h-full rounded-[2.5rem] bg-white border border-slate-100 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5 group-hover:-translate-y-2 relative overflow-hidden`}>
+                                <div className={`p-12 h-full rounded-[2.5rem] bg-white border border-slate-100 transition-all duration-500 hover:shadow-2xl hover:shadow-secondary/5 group-hover:-translate-y-2 relative overflow-hidden`}>
                                     {/* Service ID Background */}
-                                    <span className="absolute top-8 right-12 text-8xl font-black text-slate-50 opacity-[0.03] select-none group-hover:text-primary/10 transition-colors">
+                                    <span className="absolute top-8 right-12 text-8xl font-black text-slate-50 opacity-[0.03] select-none group-hover:text-secondary/10 transition-colors">
                                         {service.id}
                                     </span>
 
@@ -104,7 +104,7 @@ export default function HomeServices() {
                                         </div>
 
                                         <div className="space-y-4">
-                                            <h3 className="text-3xl font-black text-slate-900 group-hover:text-primary transition-colors">
+                                            <h3 className="text-3xl font-black text-slate-900 group-hover:text-secondary transition-colors">
                                                 {service.title}
                                             </h3>
                                             <p className="text-slate-500 text-lg leading-relaxed font-light max-w-md">
@@ -112,15 +112,15 @@ export default function HomeServices() {
                                             </p>
                                         </div>
 
-                                        <div className="flex items-center gap-4 text-primary font-bold tracking-wide pt-4">
+                                        <div className="flex items-center gap-4 text-secondary font-bold tracking-wide pt-4">
                                             <span className="text-sm uppercase tracking-widest">Detail-Ansicht</span>
-                                            <div className="w-12 h-px bg-slate-200 group-hover:w-20 group-hover:bg-primary transition-all duration-500" />
+                                            <div className="w-12 h-px bg-slate-200 group-hover:w-20 group-hover:bg-secondary transition-all duration-500" />
                                             <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                                         </div>
                                     </div>
 
                                     {/* Hover Indicator */}
-                                    <div className="absolute bottom-0 left-0 w-full h-[6px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />
+                                    <div className="absolute bottom-0 left-0 w-full h-[6px] bg-secondary scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />
                                 </div>
                             </Link>
                         </motion.div>

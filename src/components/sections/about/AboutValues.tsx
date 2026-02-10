@@ -9,8 +9,8 @@ const values = [
         title: "Transparenz",
         desc: "Keine versteckten Kosten. Offene Kommunikation ist unser Fundament.",
         icon: ShieldCheck,
-        color: "text-blue-500",
-        bg: "bg-blue-50"
+        color: "text-primary",
+        bg: "bg-primary/10"
     },
     {
         title: "Qualität",

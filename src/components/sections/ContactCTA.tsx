@@ -19,10 +19,10 @@ export default function ContactCTA() {
                 className="max-w-3xl mx-auto space-y-10"
             >
                 <div className="space-y-4">
-                    <h2 className="text-sm font-bold tracking-[0.3em] text-primary uppercase">{cta.title}</h2>
-                    <h3 className="text-4xl md:text-6xl font-bold text-slate-900 leading-tight">
+                    <span className="inline-block text-sm font-black text-primary uppercase tracking-[0.3em] mb-2">WE ARE HERE</span>
+                    <h2 className="text-4xl md:text-6xl font-black text-slate-900 leading-tight">
                         Bereit für den nächsten Schritt?
-                    </h3>
+                    </h2>
                 </div>
 
                 <p className="text-xl text-slate-600 leading-relaxed">

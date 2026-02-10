@@ -27,7 +27,7 @@ export default function PortfolioHero() {
                         className="text-6xl md:text-9xl font-black text-white leading-none tracking-tight"
                     >
                         {portfolioContent.title.split(' ')[0]} <br />
-                        <span className="premium-gradient-text tracking-tighter">
+                        <span className="text-secondary tracking-tighter">
                             Portfolio.
                         </span>
                     </motion.h1>

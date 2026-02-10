@@ -46,14 +46,11 @@ export default function ClientsMarquee() {
         <section className="clients-section w-full py-20 md:py-28 bg-gradient-to-b from-white to-slate-50 overflow-hidden" id="clients">
             {/* Header */}
             <div className="text-center mb-14 md:mb-20">
-                <span className="inline-block text-sm font-semibold text-primary uppercase tracking-[0.2em] mb-3">
-                    Unsere Partner
+                <span className="inline-block text-sm font-black text-primary uppercase tracking-[0.2em] mb-3">
+                    UNSERE PARTNER
                 </span>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900">
-                    Vertrauen von{" "}
-                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-                        Top-Marken
-                    </span>
+                    Vertrauen von Top-Marken
                 </h2>
                 <p className="text-slate-500 mt-4 max-w-xl mx-auto px-4">
                     Wir arbeiten mit führenden Unternehmen zusammen, um außergewöhnliche Ergebnisse zu erzielen

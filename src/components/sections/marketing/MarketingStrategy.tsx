@@ -21,7 +21,7 @@ export default function MarketingStrategy() {
                             { text: "ROI Maximierung", icon: Smartphone }
                         ].map((item, idx) => (
                             <li key={idx} className="flex items-center gap-6 text-white p-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors backdrop-blur-sm">
-                                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center shrink-0">
+                                <div className="w-12 h-12 rounded-2xl bg-secondary flex items-center justify-center shrink-0">
                                     <item.icon className="w-6 h-6 text-white" />
                                 </div>
                                 <span className="text-xl font-bold">{item.text}</span>

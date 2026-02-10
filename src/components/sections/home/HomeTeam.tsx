@@ -10,12 +10,12 @@ export default function TeamSection() {
     return (
         <section id="team" className="section-padding bg-white">
             <div className="text-center mb-16 space-y-4">
-                <h2 className="text-sm font-bold tracking-[0.2em] text-primary uppercase">
-                    {team.title}
-                </h2>
-                <h3 className="text-3xl md:text-5xl font-bold text-slate-900">
+                <span className="inline-block text-sm font-black text-primary uppercase tracking-[0.2em] mb-2">
+                    DAS EXPERTENTEAM
+                </span>
+                <h2 className="text-3xl md:text-5xl font-black text-slate-900">
                     Lernen Sie unsere Experten kennen
-                </h3>
+                </h2>
                 <p className="text-slate-600 italic max-w-2xl mx-auto text-lg">
                     "{team.quote}"
                 </p>
