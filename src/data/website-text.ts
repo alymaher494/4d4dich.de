@@ -9,7 +9,7 @@ export const siteInfo = {
         instagram: "https://www.instagram.com/4d4dich",
         whatsapp: "+4915141374672"
     },
-    logo: "/logo.svg"
+    logo: "https://4d4dich.de/wp-content/uploads/2025/01/cropped-cropped-cropped-logo-png-1-e1761347164694.png"
 };
 
 export const homeContent = {
