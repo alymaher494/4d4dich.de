@@ -18,8 +18,8 @@ export default function Footer() {
                     <div className="lg:col-span-5 space-y-10">
                         <Link href="/" className="inline-block transform transition-transform hover:scale-105 active:scale-95">
                             <img
-                                src="https://4d4dich.de/wp-content/uploads/2025/01/cropped-cropped-cropped-logo-png-1-e1761347164694.png"
-                                alt="4D Für Dich"
+                                src={siteInfo.logo}
+                                alt={siteInfo.name}
                                 className="h-14 w-auto brightness-0 invert"
                             />
                         </Link>
@@ -27,16 +27,29 @@ export default function Footer() {
                             Wir transformieren Visionen in digitale Realität. Kreativ, datengetrieben und immer einen Schritt voraus.
                         </p>
                         <div className="flex gap-4">
-                            {[Instagram, Mail, Phone].map((Icon, i) => (
-                                <motion.a
-                                    key={i}
-                                    href="#"
-                                    whileHover={{ y: -5 }}
-                                    className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:text-primary hover:border-primary transition-all bg-white/5"
-                                >
-                                    <Icon className="w-5 h-5" />
-                                </motion.a>
-                            ))}
+                            <motion.a
+                                href={siteInfo.social.instagram}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                whileHover={{ y: -5 }}
+                                className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:text-primary hover:border-primary transition-all bg-white/5"
+                            >
+                                <Instagram className="w-5 h-5" />
+                            </motion.a>
+                            <motion.a
+                                href={`mailto:${siteInfo.email}`}
+                                whileHover={{ y: -5 }}
+                                className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:text-primary hover:border-primary transition-all bg-white/5"
+                            >
+                                <Mail className="w-5 h-5" />
+                            </motion.a>
+                            <motion.a
+                                href={`tel:${siteInfo.phone.replace(/\s/g, '')}`}
+                                whileHover={{ y: -5 }}
+                                className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:text-primary hover:border-primary transition-all bg-white/5"
+                            >
+                                <Phone className="w-5 h-5" />
+                            </motion.a>
                         </div>
                     </div>
 
@@ -45,10 +58,15 @@ export default function Footer() {
                         <div className="space-y-8">
                             <h4 className="text-xs font-black uppercase tracking-[0.3em] text-white/40">Leistungen</h4>
                             <ul className="space-y-4">
-                                {["Druck", "Design", "Web & App", "Marketing"].map((item, i) => (
+                                {[
+                                    { label: "Druck", href: "/druck" },
+                                    { label: "Grafik & Design", href: "/grafik-design" },
+                                    { label: "Web & App", href: "/web-app" },
+                                    { label: "Marketing", href: "/marketing" }
+                                ].map((item, i) => (
                                     <li key={i}>
-                                        <Link href={`/${item.toLowerCase().replace(/ & /g, "-").replace(/ /g, "-")}`} className="text-slate-400 hover:text-white flex items-center gap-2 group transition-colors">
-                                            {item}
+                                        <Link href={item.href} className="text-slate-400 hover:text-white flex items-center gap-2 group transition-colors">
+                                            {item.label}
                                             <ArrowUpRight className="w-3 h-3 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all" />
                                         </Link>
                                     </li>
@@ -59,10 +77,16 @@ export default function Footer() {
                         <div className="space-y-8">
                             <h4 className="text-xs font-black uppercase tracking-[0.3em] text-white/40">Agentur</h4>
                             <ul className="space-y-4">
-                                {["Über uns", "Portfolio", "Team", "Blog"].map((item, i) => (
+                                {[
+                                    { label: "Über uns", href: "/ueber-uns" },
+                                    { label: "Portfolio", href: "/portfolio" },
+                                    { label: "Kontakt", href: "/kontakt" },
+                                    { label: "Blog", href: "/blog" }
+                                ].map((item, i) => (
                                     <li key={i}>
-                                        <Link href={`/${item.toLowerCase().replace(/ /g, "-")}`} className="text-slate-400 hover:text-white flex items-center gap-2 group transition-colors">
-                                            {item}
+                                        <Link href={item.href} className="text-slate-400 hover:text-white flex items-center gap-2 group transition-colors">
+                                            {item.label}
+                                            <ArrowUpRight className="w-3 h-3 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all" />
                                         </Link>
                                     </li>
                                 ))}
@@ -96,6 +120,6 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
-        </footer>
+        </footer >
     );
 }

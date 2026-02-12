@@ -14,7 +14,7 @@ export default function PortfolioGrid() {
         : projects.filter(p => p.category === activeCategory);
 
     return (
-        <section className="py-24 px-4 md:px-8 bg-slate-50">
+        <section className="py-24 px-6 md:px-12 bg-slate-50">
             <div className="max-w-7xl mx-auto">
                 {/* Filter Tabs */}
                 <div className="flex flex-wrap justify-center gap-4 mb-16">

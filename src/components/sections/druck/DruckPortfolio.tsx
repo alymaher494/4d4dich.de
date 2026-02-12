@@ -6,7 +6,7 @@ import { CheckCircle2, Printer, Briefcase, Megaphone, GalleryVertical, Shirt, Gi
 
 export default function DruckPortfolio() {
     return (
-        <section className="py-24 px-4 md:px-8 bg-slate-900 text-white relative overflow-hidden">
+        <section className="py-24 px-6 md:px-12 bg-slate-900 text-white relative overflow-hidden">
             <div className="absolute -left-20 top-20 w-96 h-96 bg-secondary/20 rounded-full blur-[100px]" />
 
             <div className="max-w-7xl mx-auto relative z-10">

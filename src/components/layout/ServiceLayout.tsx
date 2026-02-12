@@ -12,7 +12,7 @@ export default function ServiceLayout({ title, subtitle, description, children }
     return (
         <div className="pt-24">
             {/* Service Header */}
-            <section className="px-4 md:px-8 py-20 text-center relative overflow-hidden">
+            <section className="px-6 md:px-12 py-20 text-center relative overflow-hidden">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-primary/5 blur-[120px] -z-10" />
                 <div className="max-w-4xl mx-auto space-y-6">
                     <h1 className="text-4xl md:text-6xl font-bold text-white">{title}</h1>

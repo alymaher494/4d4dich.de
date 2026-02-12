@@ -45,14 +45,14 @@ export default function ClientsMarquee() {
     return (
         <section className="clients-section w-full py-20 md:py-28 bg-gradient-to-b from-white to-slate-50 overflow-hidden" id="clients">
             {/* Header */}
-            <div className="text-center mb-14 md:mb-20">
+            <div className="max-w-7xl mx-auto px-6 md:px-12 text-center mb-14 md:mb-20">
                 <span className="inline-block text-sm font-black text-primary uppercase tracking-[0.2em] mb-3">
                     UNSERE PARTNER
                 </span>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900">
                     Vertrauen von Top-Marken
                 </h2>
-                <p className="text-slate-500 mt-4 max-w-xl mx-auto px-4">
+                <p className="text-slate-500 mt-4 max-w-xl mx-auto px-4 text-center">
                     Wir arbeiten mit führenden Unternehmen zusammen, um außergewöhnliche Ergebnisse zu erzielen
                 </p>
             </div>
@@ -67,7 +67,7 @@ export default function ClientsMarquee() {
                 {/* Track 1 - Scrolls Left */}
                 <div
                     className="flex items-center animate-marquee-left group-hover/marquee:[animation-play-state:paused]"
-                    style={{ width: `${180 * duplicatedRow1.length}px` }}
+                    style={{ width: `${(180 + 32) * duplicatedRow1.length}px` }}
                 >
                     {duplicatedRow1.map((client, index) => (
                         <ClientLogo
@@ -81,7 +81,7 @@ export default function ClientsMarquee() {
                 {/* Track 2 - Scrolls Right */}
                 <div
                     className="flex items-center animate-marquee-right mt-6 group-hover/marquee:[animation-play-state:paused]"
-                    style={{ width: `${180 * duplicatedRow2.length}px` }}
+                    style={{ width: `${(180 + 32) * duplicatedRow2.length}px` }}
                 >
                     {duplicatedRow2.map((client, index) => (
                         <ClientLogo

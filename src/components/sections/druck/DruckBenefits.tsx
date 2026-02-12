@@ -5,7 +5,7 @@ import { MessageCircle } from "lucide-react";
 
 export default function DruckBenefits() {
     return (
-        <section className="py-24 px-4 md:px-8 bg-white">
+        <section className="py-24 px-6 md:px-12 bg-white">
             <div className="max-w-7xl mx-auto">
                 <div className="bg-green-50 rounded-[3rem] p-12 md:p-24 border border-green-100 relative overflow-hidden text-center">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-green-200/50 rounded-full blur-3xl -z-10" />

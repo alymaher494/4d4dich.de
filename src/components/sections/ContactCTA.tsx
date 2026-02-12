@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { homeContent, siteInfo } from "@/data/website-text";
-import { MessageCircle, ArrowRight } from "lucide-react";
+import { MessageCircle, ArrowRight, Rocket } from "lucide-react";
 import Link from "next/link";
 
 export default function ContactCTA() {
@@ -38,13 +38,13 @@ export default function ContactCTA() {
                         {cta.button}
                     </Link>
 
-                    <Link
-                        href="/kontakt"
+                    <button
+                        onClick={() => window.dispatchEvent(new CustomEvent('open-briefing'))}
                         className="btn-animated-outline btn-animated-lg"
                     >
-                        E-Mail senden
-                        <ArrowRight className="w-5 h-5" />
-                    </Link>
+                        Briefing starten
+                        <Rocket className="w-5 h-5" />
+                    </button>
                 </div>
             </motion.div>
         </section>

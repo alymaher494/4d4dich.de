@@ -16,7 +16,7 @@ const techStack = [
 
 export default function TechStack() {
     return (
-        <section className="py-24 px-4 md:px-8 bg-white overflow-hidden">
+        <section className="py-24 px-6 md:px-12 bg-white overflow-hidden">
             <div className="max-w-7xl mx-auto text-center">
                 <div className="mb-16">
                     <span className="text-primary font-bold uppercase tracking-wider text-sm">Technologie</span>

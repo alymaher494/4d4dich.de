@@ -4,7 +4,7 @@ import { Check, X } from "lucide-react";
 
 export default function AboutDifference() {
     return (
-        <section className="py-24 px-4 md:px-8 relative overflow-hidden">
+        <section className="py-24 px-6 md:px-12 relative overflow-hidden">
             <div className="max-w-7xl mx-auto relative z-10">
                 <div className="text-center mb-16">
                     <span className="text-primary font-bold uppercase tracking-wider text-sm">Warum 4D?</span>

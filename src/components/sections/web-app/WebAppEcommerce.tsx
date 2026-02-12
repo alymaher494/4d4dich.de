@@ -5,7 +5,7 @@ import { ShoppingCart, LayoutGrid, Server } from "lucide-react";
 
 export default function WebAppEcommerce() {
     return (
-        <section className="py-24 px-4 md:px-8 bg-slate-900 text-white relative overflow-hidden">
+        <section className="py-24 px-6 md:px-12 bg-slate-900 text-white relative overflow-hidden">
             <div className="absolute top-0 left-0 w-2/3 h-full bg-gradient-to-r from-primary/10 to-transparent pointer-events-none" />
 
             <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center relative z-10">

@@ -18,7 +18,7 @@ interface ProcessSectionProps {
 
 export default function ProcessSection({ steps, title = "Unser Prozess", subtitle = "So arbeiten wir gemeinsam an Ihrem Erfolg.", className }: ProcessSectionProps) {
     return (
-        <section className={cn("py-24 px-4 md:px-8 bg-white overflow-hidden", className)}>
+        <section className={cn("py-24 px-6 md:px-12 bg-white overflow-hidden", className)}>
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-16 md:mb-24">
                     <span className="inline-block text-sm font-semibold text-primary uppercase tracking-[0.2em] mb-4">

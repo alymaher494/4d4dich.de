@@ -9,6 +9,7 @@ import ServicesMarquee from "@/components/sections/ServicesMarquee";
 
 import ClientsMarquee from "@/components/sections/ClientsMarquee";
 import ContactCTA from "@/components/sections/ContactCTA";
+import Testimonials from "@/components/sections/Testimonials";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
       <ClientsMarquee />
       <HomeSectors />
       <HomeTeam />
+      <Testimonials />
       <ServicesMarquee />
       <ContactCTA />
     </>

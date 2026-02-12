@@ -6,12 +6,12 @@ import { CheckCircle2, PenTool, Layers, Image as ImageIcon, MousePointer2, Smart
 
 export default function GrafikDesignIntro() {
     return (
-        <section className="py-24 px-4 md:px-8">
+        <section className="py-24 px-6 md:px-12">
             <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                 <div className="space-y-8 order-2 lg:order-1">
                     <h2 className="text-4xl font-black text-slate-900">
                         Wir bringen Ihre Vision <br />
-                        <span className="text-slate-400 text-secondary">auf den Punkt.</span>
+                        <span className="text-secondary">auf den Punkt.</span>
                     </h2>
                     <p className="text-lg text-slate-600 leading-relaxed">
                         {grafikDesignContent.intro}

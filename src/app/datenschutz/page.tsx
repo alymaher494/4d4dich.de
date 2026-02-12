@@ -5,7 +5,7 @@ import AmbientBackground from "@/components/ui/AmbientBackground";
 export default function DatenschutzPage() {
     return (
         <main className="min-h-screen bg-white">
-            <section className="pt-40 pb-20 px-4 md:px-8 relative overflow-hidden bg-slate-900 text-white">
+            <section className="pt-40 pb-20 px-6 md:px-12 relative overflow-hidden bg-slate-900 text-white">
                 <AmbientBackground />
                 <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800/50 to-black/80 -z-10" />
                 <div className="max-w-4xl mx-auto text-center relative z-10">
@@ -18,7 +18,7 @@ export default function DatenschutzPage() {
                 </div>
             </section>
 
-            <section className="py-24 px-4 md:px-8">
+            <section className="py-24 px-6 md:px-12">
                 <div className="max-w-3xl mx-auto text-slate-600 leading-relaxed">
                     <h2 className="text-2xl font-black mb-6 mt-12 text-slate-900 border-b pb-4">1. Datenschutz auf einen Blick</h2>
                     <h3 className="text-xl font-bold mb-4 mt-8 text-slate-900">Allgemeine Hinweise</h3>

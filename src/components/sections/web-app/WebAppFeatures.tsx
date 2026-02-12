@@ -8,10 +8,10 @@ const featureIcons = [MonitorSmartphone, Code2, Globe, Phone, Mail, MapPin];
 
 export default function WebAppFeatures() {
     return (
-        <section className="py-24 px-4 md:px-8 bg-slate-50">
+        <section className="py-24 px-6 md:px-12 bg-slate-50">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-16">
-                    <h2 className="text-4xl  text-primary  text-slate-900 mb-6">Technologie Stack</h2>
+                    <h2 className="text-4xl font-black text-slate-900 mb-6">Technologie Stack</h2>
                     <p className="text-xl text-slate-600 max-w-2xl mx-auto">
                         Wir nutzen modernste Technologien für skalierbare und sichere Anwendungen.
                     </p>
@@ -30,7 +30,7 @@ export default function WebAppFeatures() {
                                     <Icon className="w-7 h-7 text-slate-900 group-hover:text-white transition-colors" />
                                 </div>
                                 <h3 className="text-xl font-bold text-slate-900 mb-3">{feature}</h3>
-                                <p className="text-slate-500 font-medium">State-of-the-art solution</p>
+                                <p className="text-slate-500 font-medium">Moderne, skalierbare Lösung</p>
                             </motion.div>
                         );
                     })}

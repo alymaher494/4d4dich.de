@@ -36,11 +36,11 @@ export default function FAQSection() {
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
     return (
-        <section className="py-24 px-4 md:px-8 bg-white" id="faq">
+        <section className="py-24 px-6 md:px-12 bg-white" id="faq">
             <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-16">
                     <span className="text-primary font-bold uppercase tracking-wider text-sm">Häufig gestellte Fragen</span>
-                    <h2 className="text-3xl md:text-5xl font-black text-slate-900 mt-4">Wissenswertes</h2>
+                    <h2 className="text-3xl md:text-5xl font-black text-slate-900 mt-4 leading-tight">Wichtige <span className="text-secondary">Antworten.</span></h2>
                 </div>
 
                 <div className="space-y-4">

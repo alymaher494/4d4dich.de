@@ -5,7 +5,7 @@ import { Sparkles, Layers, MousePointer2 } from "lucide-react";
 
 export default function GrafikDesignWhyUs() {
     return (
-        <section className="py-20 px-4 md:px-8">
+        <section className="py-20 px-6 md:px-12">
             <div className="max-w-7xl mx-auto bg-slate-900 rounded-[3rem] p-12 md:p-24 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/20 to-transparent" />
 

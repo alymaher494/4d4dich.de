@@ -15,7 +15,7 @@ export default function DruckPage() {
             <DruckBenefits />
 
             {/* Contact Form Section */}
-            <section className="py-24 px-4 md:px-8 bg-slate-50">
+            <section className="py-24 px-6 md:px-12 bg-slate-50">
                 <div className="max-w-4xl mx-auto">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4">Jetzt unverbindlich anfragen</h2>

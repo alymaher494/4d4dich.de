@@ -103,11 +103,7 @@ export default function HomeAbout() {
                                     className="flex items-center gap-5 group"
                                 >
                                     <div className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center shrink-0 shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
-                                        <img
-                                            src="https://4d4dich.de/wp-content/uploads/2025/01/cropped-cropped-cropped-logo-png-1-e1761347164694.png"
-                                            alt="Checked"
-                                            className="w-6 h-auto brightness-0 invert"
-                                        />
+                                        <CheckCircle2 className="w-6 h-6 text-white" />
                                     </div>
                                     <span className="text-base md:text-lg font-bold text-slate-800 leading-tight">
                                         {feature}

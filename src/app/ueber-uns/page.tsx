@@ -6,6 +6,7 @@ import AboutDifference from "@/components/sections/about/AboutDifference";
 import ClientsMarquee from "@/components/sections/ClientsMarquee";
 import TechStack from "@/components/sections/TechStack";
 import ContactCTA from "@/components/sections/ContactCTA";
+import Testimonials from "@/components/sections/Testimonials";
 
 export default function AboutPage() {
     return (
@@ -15,6 +16,7 @@ export default function AboutPage() {
             <ClientsMarquee />
             <AboutDifference />
             <TechStack />
+            <Testimonials />
             <ContactCTA />
         </main>
     );

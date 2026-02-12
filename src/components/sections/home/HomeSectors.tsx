@@ -15,10 +15,10 @@ const icons = [Stethoscope, Utensils, Users, Building2];
 
 export default function SectorsGrid() {
     return (
-        <section className="section-padding bg-slate-900 py-24 md:py-32 relative overflow-hidden my-12 mx-4 md:mx-8 rounded-[3rem]">
+        <section className="bg-slate-900 py-24 md:py-32 relative overflow-hidden my-12 mx-6 md:mx-auto max-w-7xl rounded-[3rem]">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(118,188,67,0.15),transparent_50%)]" />
 
-            <div className="max-w-7xl mx-auto relative z-10">
+            <div className="px-6 md:px-12 relative z-10">
                 <div className="text-center mb-16 md:mb-20 space-y-4">
                     <span className="inline-block text-sm font-black text-primary uppercase tracking-[0.2em] mb-4">
                         UNSERE EINSATZGEBIETE
@@ -31,7 +31,7 @@ export default function SectorsGrid() {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {homeContent.sectors.map((sector, index) => {
                         const Icon = icons[index % icons.length];
                         return (

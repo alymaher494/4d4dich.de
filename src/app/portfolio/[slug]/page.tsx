@@ -16,7 +16,7 @@ export default function ProjectPage() {
     return (
         <div className="bg-white min-h-screen">
             {/* Hero Section */}
-            <section className="pt-40 pb-20 px-4 md:px-8 bg-slate-50 border-b border-slate-100">
+            <section className="pt-40 pb-20 px-6 md:px-12 bg-slate-50 border-b border-slate-100">
                 <div className="max-w-7xl mx-auto">
                     <Link href="/portfolio" className="inline-flex items-center gap-2 text-slate-500 hover:text-primary transition-colors mb-8 font-medium">
                         <ArrowLeft className="w-4 h-4" /> Zurück zum Portfolio
@@ -68,7 +68,7 @@ export default function ProjectPage() {
             </section>
 
             {/* Main Content */}
-            <section className="py-24 px-4 md:px-8">
+            <section className="py-24 px-6 md:px-12">
                 <div className="max-w-7xl mx-auto space-y-24">
 
                     {/* Main Image */}

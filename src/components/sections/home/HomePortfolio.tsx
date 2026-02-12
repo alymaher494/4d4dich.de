@@ -82,21 +82,20 @@ export default function HomePortfolio() {
                 </div>
             </div>
 
-            <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-24">
+            <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-24">
                 {projects.map((project, index) => (
                     <motion.article
                         key={project.id}
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
-                        className="group sticky top-32"
-                    >
-                        <div className="relative h-[500px] md:h-[600px] rounded-[3rem] overflow-hidden shadow-2xl transition-transform duration-700 group-hover:-translate-y-2">
+                        className="group sticky top-32">
+                        <div className="relative h-auto lg:h-[600px] rounded-[3rem] overflow-hidden shadow-2xl transition-transform duration-700 group-hover:-translate-y-2">
                             {/* Background Surface */}
                             <div className="absolute inset-0 bg-slate-900" />
 
                             {/* Content Grid */}
-                            <div className="grid grid-cols-1 lg:grid-cols-2 h-full">
+                            <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 h-full">
                                 {/* Text Content */}
                                 <div
                                     className="relative z-10 p-12 md:p-20 flex flex-col justify-between text-white"
@@ -128,7 +127,7 @@ export default function HomePortfolio() {
                                 </div>
 
                                 {/* Image Section */}
-                                <div className="relative overflow-hidden hidden lg:block">
+                                <div className="relative overflow-hidden h-[300px] lg:h-auto">
                                     <img
                                         src={project.image}
                                         alt={project.title}

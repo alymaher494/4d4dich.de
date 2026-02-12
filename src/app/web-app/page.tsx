@@ -4,7 +4,7 @@ import WebAppHero from "@/components/sections/web-app/WebAppHero";
 import WebAppFeatures from "@/components/sections/web-app/WebAppFeatures";
 import WebAppEcommerce from "@/components/sections/web-app/WebAppEcommerce";
 import ProcessSection from "@/components/sections/ProcessSection";
-import ServiceContactForm from "@/components/forms/ServiceContactForm";
+import BriefingForm from "@/components/forms/BriefingForm";
 
 export default function WebAppPage() {
     const processSteps = [
@@ -33,14 +33,14 @@ export default function WebAppPage() {
 
             <ProcessSection steps={processSteps} title="Der Weg zur App" subtitle="Vom Konzept zum fertigen Produkt in 3 Schritten." />
 
-            {/* Contact Form Section */}
-            <section className="py-24 px-4 md:px-8 bg-slate-50">
-                <div className="max-w-4xl mx-auto">
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4">Ihr digitales Projekt</h2>
-                        <p className="text-lg text-slate-600">Webseite, App oder E-Commerce – wir beraten Sie gerne.</p>
+            {/* Briefing Form Section */}
+            <section className="py-24 px-6 md:px-12 bg-slate-50">
+                <div className="max-w-7xl mx-auto">
+                    <div className="text-center mb-16">
+                        <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-6">Starten wir Ihr Projekt</h2>
+                        <p className="text-xl text-slate-600 max-w-2xl mx-auto">Beantworten Sie uns ein paar Fragen, damit wir Ihnen ein perfektes Angebot erstellen können.</p>
                     </div>
-                    <ServiceContactForm serviceName="Web & App Entwicklung" />
+                    <BriefingForm />
                 </div>
             </section>
         </main>

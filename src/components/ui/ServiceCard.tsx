@@ -20,39 +20,52 @@ export default function ServiceCard({ title, description, Icon, link, index, ima
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.1, duration: 0.5 }}
-            whileHover={{ y: -10 }}
-            className="bg-white p-8 group relative overflow-hidden h-full flex flex-col rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-secondary/20 transition-all"
+            className="group relative h-full bg-white rounded-2xl p-8 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.1)] hover:shadow-[0_20px_40px_-15px_rgba(214,13,126,0.3)] transition-all duration-300 hover:-translate-y-2 border border-slate-100 overflow-hidden"
         >
-            {/* Hover Image Background */}
+            {/* Background Image on Hover */}
             {image && (
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <img src={image} alt={title} className="w-full h-full object-cover" />
-                    <div className="absolute inset-0 bg-secondary/90 mix-blend-multiply" />
+                <div className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out">
+                    <img src={image} alt="" className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-[#D60D7E]/90 mix-blend-multiply" />
                 </div>
             )}
 
-            {/* Default Pink Overlay (fallback or additional tint) */}
-            <div className={`absolute inset-0 bg-secondary/5 opacity-0 ${!image ? 'group-hover:opacity-100' : ''} transition-opacity`} />
+            {/* Fallback solid pink background if no image, or as base transition */}
+            <div className={`absolute inset-0 z-0 bg-[#D60D7E] opacity-0 ${!image ? 'group-hover:opacity-100' : ''} transition-opacity duration-300`} />
 
-            <div className="mb-6 inline-block p-4 rounded-2xl bg-secondary/10 text-primary group-hover:bg-white group-hover:text-secondary transition-colors relative z-10 w-fit">
-                <Icon className="w-8 h-8" />
+            <div className="flex flex-col h-full relative z-10 w-full">
+                <div className="mb-6 text-primary group-hover:text-white group-hover:scale-110 transition-all duration-300 origin-left">
+                    <Icon strokeWidth={1.5} className="w-12 h-12" />
+                </div>
+
+                <h3 className="text-xl font-bold mb-4 text-slate-900 group-hover:text-white transition-colors duration-300">
+                    {title}
+                </h3>
+
+                <p className="text-slate-600 mb-8 leading-relaxed text-base flex-grow group-hover:text-white/90 transition-colors duration-300">
+                    {description}
+                </p>
+
+                <Link
+                    href={link}
+                    className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-slate-50 text-slate-400 group-hover:bg-white group-hover:text-[#D60D7E] transition-all duration-300 ml-auto"
+                >
+                    <span className="sr-only">Mehr erfahren</span>
+                    <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                    >
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                    </svg>
+                </Link>
             </div>
-
-            <h3 className="text-2xl font-bold mb-4 text-slate-900 group-hover:text-white transition-colors relative z-10">
-                {title}
-            </h3>
-
-            <p className="text-slate-600 mb-8 leading-relaxed flex-grow relative z-10 group-hover:text-white/90 transition-colors">
-                {description}
-            </p>
-
-            <Link
-                href={link}
-                className="text-sm font-bold uppercase tracking-widest text-primary flex items-center gap-2 group-hover:gap-3 group-hover:text-white transition-all relative z-10"
-            >
-                Mehr erfahren
-                <span className="text-lg">→</span>
-            </Link>
         </motion.div>
     );
 }

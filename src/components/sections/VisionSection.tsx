@@ -7,7 +7,7 @@ export default function VisionSection() {
     const { vision_section } = homeContent;
 
     return (
-        <section className="section-padding bg-slate-900 text-white relative overflow-hidden py-24 px-4 md:px-8">
+        <section className="section-padding bg-slate-900 text-white relative overflow-hidden">
             {/* Background Accent */}
             <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/10 blur-[120px] rounded-full -z-0" />
 

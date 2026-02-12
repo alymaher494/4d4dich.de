@@ -8,7 +8,8 @@ export const siteInfo = {
     social: {
         instagram: "https://www.instagram.com/4d4dich",
         whatsapp: "+4915141374672"
-    }
+    },
+    logo: "/logo.svg"
 };
 
 export const homeContent = {
@@ -102,25 +103,25 @@ export const homeContent = {
                 role: "Geschäftsführer",
                 name: "Mohammed Toubajy",
                 translation_ar: "المدير التنفيذي",
-                image: "https://4d4dich.de/wp-content/uploads/2025/05/1a837603-39e0-4f03-9388-a3eaa8418802-211x300.jpg"
+                image: "https://ui-avatars.com/api/?name=Mohammed+Toubajy&background=0D8ABC&color=fff&size=256"
             },
             {
                 role: "Projekt & kundenmanager",
                 name: "Atershan Taleb",
                 translation_ar: "مدير المشروعات والعملاء",
-                image: "https://4d4dich.de/wp-content/uploads/2025/05/998889ff-00ec-47c7-8641-4dcd0ec11924-211x300.jpg"
+                image: "https://ui-avatars.com/api/?name=Atershan+Taleb&background=random&size=256"
             },
             {
                 role: "Grafik Designer",
                 name: "Dima Ghourra",
                 translation_ar: "مصممة جرافيك",
-                image: "https://4d4dich.de/wp-content/uploads/2025/04/IMG_20250326_053336_375-e1747777778757-273x300.png"
+                image: "https://ui-avatars.com/api/?name=Dima+Ghourra&background=random&size=256"
             },
             {
                 role: "Grafik Designer",
                 name: "Hamed Marouf",
                 translation_ar: "مصمم جرافيك",
-                image: "https://4d4dich.de/wp-content/uploads/2025/06/a82a20dc-a113-48b7-a19e-fb9f8dd91759-217x300.jpg"
+                image: "https://ui-avatars.com/api/?name=Hamed+Marouf&background=random&size=256"
             }
         ]
     },

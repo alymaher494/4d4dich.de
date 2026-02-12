@@ -13,8 +13,8 @@ export default function TeamSection() {
                 <span className="inline-block text-sm font-black text-primary uppercase tracking-[0.2em] mb-2">
                     DAS EXPERTENTEAM
                 </span>
-                <h2 className="text-3xl md:text-5xl font-black text-slate-900">
-                    Lernen Sie unsere Experten kennen
+                <h2 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight">
+                    Lernen Sie unsere <span className="text-secondary">Experten kennen.</span>
                 </h2>
                 <p className="text-slate-600 italic max-w-2xl mx-auto text-lg">
                     "{team.quote}"
@@ -46,7 +46,7 @@ export default function TeamSection() {
                                 <h4 className="text-xl font-bold">{member.name}</h4>
                             </div>
                         </div>
-                        <div className="text-center group-hover:hidden transition-all duration-300">
+                        <div className="text-center opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                             <h4 className="text-lg font-bold text-slate-900">{member.name}</h4>
                             <p className="text-slate-500 text-sm">{member.role}</p>
                         </div>

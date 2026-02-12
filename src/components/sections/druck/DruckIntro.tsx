@@ -5,7 +5,7 @@ import { CheckCircle2, ShoppingBag } from "lucide-react";
 
 export default function DruckIntro() {
     return (
-        <section className="py-24 px-4 md:px-8">
+        <section className="py-24 px-6 md:px-12">
             <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                 <div className="bg-slate-50 p-12 rounded-[3rem] border border-slate-100 relative group overflow-hidden">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-colors" />
@@ -19,10 +19,10 @@ export default function DruckIntro() {
                 <div className="space-y-8">
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary font-bold text-xs uppercase tracking-wider">
                         <CheckCircle2 className="w-4 h-4" />
-                        Quality Check
+                        Qualitäts-Check
                     </div>
-                    <h2 className="text-4xl font-black text-slate-900">
-                        Nicht nur Tinte <br /> auf Papier.
+                    <h2 className="text-4xl font-black text-slate-900 leading-tight">
+                        Nicht nur Tinte <br /> <span className="text-secondary">auf Papier.</span>
                     </h2>
                     <p className="text-lg text-slate-600 leading-relaxed">
                         {druckContent.what_modern_print.description}

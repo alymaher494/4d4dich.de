@@ -8,7 +8,8 @@ import { ArrowRight } from "lucide-react";
 const slides = [
     {
         id: 1,
-        title: "Marketing, das wirkt.",
+        title: "Marketing,",
+        highlight: "das wirkt.",
         subtitle: "Strategien für messbaren Erfolg.",
         description: "Wir entwickeln datengestützte Marketingkampagnen, die Ihre Zielgruppe erreichen und überzeugen.",
         color: "bg-primary", // fallback
@@ -16,7 +17,8 @@ const slides = [
     },
     {
         id: 2,
-        title: "Design, das begeistert.",
+        title: "Design,",
+        highlight: "das begeistert.",
         subtitle: "Ihr Markenauftritt in Perfektion.",
         description: "Vom Logo bis zur Corporate Identity – wir gestalten Marken, die im Gedächtnis bleiben.",
         color: "bg-secondary",
@@ -24,7 +26,8 @@ const slides = [
     },
     {
         id: 3,
-        title: "Druck, der beeindruckt.",
+        title: "Druck,",
+        highlight: "der beeindruckt.",
         subtitle: "Haptische Erlebnisse für Ihre Kunden.",
         description: "Hochwertige Printprodukte, die Qualität und Professionalität ausstrahlen.",
         color: "bg-accent",
@@ -34,16 +37,24 @@ const slides = [
 
 export default function HomeHero() {
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
+        setIsMobile(window.innerWidth < 768);
+        const handleResize = () => setIsMobile(window.innerWidth < 768);
+        window.addEventListener('resize', handleResize);
+
         const timer = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % slides.length);
         }, 5000);
-        return () => clearInterval(timer);
+        return () => {
+            clearInterval(timer);
+            window.removeEventListener('resize', handleResize);
+        };
     }, []);
 
     return (
-        <section className="relative h-[85vh] w-full overflow-hidden bg-white">
+        <section className="relative h-screen min-h-[100dvh] w-full overflow-hidden bg-white">
             <div className="absolute inset-0 w-full h-full">
                 <AnimatePresence mode="wait">
                     <motion.div
@@ -64,7 +75,7 @@ export default function HomeHero() {
 
                         {/* Content */}
                         <div className="absolute inset-0 z-20 flex items-center justify-center">
-                            <div className="max-w-7xl mx-auto px-4 md:px-8 w-full text-center text-white">
+                            <div className="max-w-7xl mx-auto px-6 md:px-12 w-full text-center text-white">
                                 <motion.span
                                     initial={{ y: 20, opacity: 0 }}
                                     animate={{ y: 0, opacity: 1 }}
@@ -80,7 +91,8 @@ export default function HomeHero() {
                                     transition={{ delay: 0.4 }}
                                     className="text-5xl md:text-7xl font-black mb-6 leading-tight"
                                 >
-                                    {slides[currentSlide].title}
+                                    {slides[currentSlide].title} <br className="md:hidden" />
+                                    <span className="text-secondary">{slides[currentSlide].highlight}</span>
                                 </motion.h1>
 
                                 <motion.p
