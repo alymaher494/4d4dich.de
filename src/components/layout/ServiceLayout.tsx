@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import Hero from "@/components/sections/Hero";
+
 
 interface ServiceLayoutProps {
     title: string;
