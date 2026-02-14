@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import { homeContent, siteInfo } from "@/data/website-text";
-import { CheckCircle2, Users, Trophy, MessageCircle } from "lucide-react";
+import { Users, Trophy, MessageCircle } from "lucide-react";
+import LogoIcon from "@/components/ui/LogoIcon";
 import Link from "next/link";
 
 export default function HomeAbout() {
@@ -102,8 +103,8 @@ export default function HomeAbout() {
                                     transition={{ delay: 0.3 + index * 0.1 }}
                                     className="flex items-center gap-5 group"
                                 >
-                                    <div className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center shrink-0 shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
-                                        <CheckCircle2 className="w-6 h-6 text-white" />
+                                    <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center shrink-0 shadow-lg shadow-slate-200/50 group-hover:scale-110 transition-transform p-3">
+                                        <LogoIcon />
                                     </div>
                                     <span className="text-base md:text-lg font-bold text-slate-800 leading-tight">
                                         {feature}

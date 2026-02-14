@@ -168,7 +168,8 @@ export const druckContent = {
             "Vielfältige Materialien und Formate",
             "Kurze Produktionszeiten",
             "Einfache Online Bestellung",
-            "Persönliche Beratung bei Bedarf"
+            "Persönliche Beratung bei Bedarf",
+            "Sofortdruck"
         ]
     },
 
@@ -237,7 +238,8 @@ export const grafikDesignContent = {
         "Social Media Designs – ansprechende Posts, Stories & Banner",
         "Druckdesign – Flyer, Broschüren, Visitenkarten & mehr",
         "Werbeanzeigen & Banner für Online- und Printkampagnen",
-        "Motion Graphics & Animationen für beeindruckende Video-Content"
+        "Motion Graphics & Animationen für beeindruckende Video-Content",
+        "Gestaltung personalisierter Geschenke mit KI-Technologie"
     ],
 
     why_us: {

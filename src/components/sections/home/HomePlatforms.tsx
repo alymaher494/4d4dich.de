@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import LogoIcon from "@/components/ui/LogoIcon";
 import Link from "next/link";
 
 // Slider images - Portfolio/Use cases
@@ -68,8 +69,8 @@ export default function PlatformsSection() {
                                     transition={{ delay: index * 0.1, duration: 0.5 }}
                                     className="flex items-center gap-4"
                                 >
-                                    <span className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
-                                        <Check className="w-4 h-4 text-white" />
+                                    <span className="w-8 h-8 rounded-full bg-white flex items-center justify-center flex-shrink-0 p-1.5 shadow-lg shadow-white/10">
+                                        <LogoIcon />
                                     </span>
                                     <span className="text-slate-300 text-lg">{benefit}</span>
                                 </motion.li>

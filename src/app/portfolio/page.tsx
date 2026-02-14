@@ -1,13 +1,13 @@
 
-import PortfolioHero from "@/components/sections/portfolio/PortfolioHero";
-import PortfolioGrid from "@/components/sections/portfolio/PortfolioGrid";
+import Hero from "./_components/Hero";
+import Grid from "./_components/Grid";
 import ContactCTA from "@/components/sections/ContactCTA";
 
 export default function PortfolioPage() {
     return (
         <main className="min-h-screen bg-white">
-            <PortfolioHero />
-            <PortfolioGrid />
+            <Hero />
+            <Grid />
             <ContactCTA />
         </main>
     );

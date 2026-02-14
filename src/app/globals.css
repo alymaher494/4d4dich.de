@@ -124,11 +124,11 @@
 }
 
 .animate-marquee-left {
-    animation: marquee-left 10s linear infinite;
+    animation: marquee-left 30s linear infinite;
 }
 
 .animate-marquee-right {
-    animation: marquee-right 10s linear infinite;
+    animation: marquee-right 30s linear infinite;
 }
 
 /* Vertical Slider Animations */

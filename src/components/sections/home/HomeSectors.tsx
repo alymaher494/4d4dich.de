@@ -41,34 +41,32 @@ export default function SectorsGrid() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1 }}
-                                className="group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer"
+                                className="group relative h-[400px] rounded-[2.5rem] overflow-hidden cursor-pointer bg-white border border-slate-100 shadow-xl transition-all hover:shadow-2xl hover:scale-[1.02]"
                             >
-                                {/* Background Image */}
-                                <img
-                                    src={sectorImages[index % sectorImages.length]}
-                                    alt={sector.name}
-                                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                />
-
-                                {/* Gradient Overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-b from-slate-900/30 via-slate-900/60 to-slate-900/90 transition-opacity group-hover:opacity-90" />
-                                <div className="absolute inset-0 bg-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-overlay" />
+                                {/* Background Image - VISIBLE ONLY ON HOVER */}
+                                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0">
+                                    <img
+                                        src={sectorImages[index % sectorImages.length]}
+                                        alt={sector.name}
+                                        className="h-full w-full object-cover"
+                                    />
+                                    {/* Pink Overlay */}
+                                    <div className="absolute inset-0 bg-secondary/80 mix-blend-multiply" />
+                                </div>
 
                                 {/* Content */}
-                                <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                                    <div className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center text-white mb-6 group-hover:bg-secondary group-hover:scale-110 transition-all duration-300">
-                                        <Icon className="w-7 h-7" />
+                                <div className="absolute inset-0 p-8 flex flex-col justify-end z-10">
+                                    <div className="w-16 h-16 rounded-2xl  flex items-center justify-center text-secondary mb-6 transition-all duration-300 group-hover:bg-white group-hover:text-secondary group-hover:scale-110 shadow-sm">
+                                        <Icon className="w-8 h-8" />
                                     </div>
 
-                                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:translate-x-2 transition-transform duration-300">
+                                    <h3 className="text-2xl font-black text-primary mb-3 transition-colors duration-300 group-hover:text-white">
                                         {sector.name}
                                     </h3>
 
-                                    <p className="text-slate-300 text-sm leading-relaxed opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-100">
+                                    <p className="text-slate-900 text-lg leading-relaxed font-medium transition-colors duration-300 group-hover:text-white">
                                         {sector.description}
                                     </p>
-
-                                    <div className="h-1 w-12 bg-secondary mt-6 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 delay-200" />
                                 </div>
                             </motion.div>
                         );

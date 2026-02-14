@@ -1,10 +1,12 @@
 "use client";
 
-import WebAppHero from "@/components/sections/web-app/WebAppHero";
-import WebAppFeatures from "@/components/sections/web-app/WebAppFeatures";
-import WebAppEcommerce from "@/components/sections/web-app/WebAppEcommerce";
-import ProcessSection from "@/components/sections/ProcessSection";
+import Hero from "./_components/Hero";
+import Features from "./_components/Features";
+import Ecommerce from "./_components/Ecommerce";
+import Process from "./_components/Process";
 import BriefingForm from "@/components/forms/BriefingForm";
+import { Section } from "@/components/layout/Section";
+import { Container } from "@/components/layout/Container";
 
 export default function WebAppPage() {
     const processSteps = [
@@ -27,22 +29,24 @@ export default function WebAppPage() {
 
     return (
         <main className="min-h-screen bg-white">
-            <WebAppHero />
-            <WebAppFeatures />
-            <WebAppEcommerce />
+            <Hero />
+            <Features />
+            <Ecommerce />
 
-            <ProcessSection steps={processSteps} title="Der Weg zur App" subtitle="Vom Konzept zum fertigen Produkt in 3 Schritten." />
+            <Process steps={processSteps} title="Der Weg zur App" subtitle="Vom Konzept zum fertigen Produkt in 3 Schritten." />
 
             {/* Briefing Form Section */}
-            <section className="py-24 px-6 md:px-12 bg-slate-50">
-                <div className="max-w-7xl mx-auto">
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-6">Starten wir Ihr Projekt</h2>
-                        <p className="text-xl text-slate-600 max-w-2xl mx-auto">Beantworten Sie uns ein paar Fragen, damit wir Ihnen ein perfektes Angebot erstellen können.</p>
+            <Section background="slate">
+                <Container>
+                    <div className="text-center mb-16 space-y-4">
+                        <span className="text-primary font-bold uppercase tracking-wider">BRIEFING</span>
+                        <h2 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight">Starten wir Ihr Projekt</h2>
+                        <div className="w-24 h-2 bg-secondary rounded-full mx-auto" />
+                        <p className="text-xl text-slate-600 max-w-2xl mx-auto pt-4">Beantworten Sie uns ein paar Fragen, damit wir Ihnen ein perfektes Angebot erstellen können.</p>
                     </div>
                     <BriefingForm />
-                </div>
-            </section>
+                </Container>
+            </Section>
         </main>
     );
 }

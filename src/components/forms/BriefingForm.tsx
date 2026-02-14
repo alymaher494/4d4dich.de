@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronRight, ChevronLeft, Check, Send, Sparkles, Rocket, Globe, Palette, Cog, Calendar } from "lucide-react";
+import { ChevronRight, ChevronLeft, Send, Sparkles, Rocket, Globe, Palette, Cog, Calendar } from "lucide-react";
+import LogoIcon from "@/components/ui/LogoIcon";
 import { cn } from "@/lib/utils";
 
 const steps = [
@@ -219,7 +220,7 @@ export default function BriefingForm() {
                                                     "w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all",
                                                     formData[q.id] === opt ? "bg-white border-white text-primary" : "border-slate-200"
                                                 )}>
-                                                    {formData[q.id] === opt && <Check className="w-4 h-4" />}
+                                                    {formData[q.id] === opt && <div className="w-3 h-3"><LogoIcon /></div>}
                                                 </div>
                                             </button>
                                         ))}
@@ -242,7 +243,7 @@ export default function BriefingForm() {
                                                     "w-5 h-5 rounded-md border-2 flex items-center justify-center transition-all",
                                                     (formData[q.id] || []).includes(opt) ? "bg-white border-white text-secondary" : "border-slate-200"
                                                 )}>
-                                                    {(formData[q.id] || []).includes(opt) && <Check className="w-3 h-3" />}
+                                                    {(formData[q.id] || []).includes(opt) && <div className="w-3 h-3"><LogoIcon /></div>}
                                                 </div>
                                             </button>
                                         ))}

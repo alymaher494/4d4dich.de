@@ -54,7 +54,7 @@ export default function HomeHero() {
     }, []);
 
     return (
-        <section className="relative h-screen min-h-[100dvh] w-full overflow-hidden bg-white">
+        <section className="relative h-screen min-h-[100dvh] w-full overflow-hidden bg-[#020617]">
             <div className="absolute inset-0 w-full h-full">
                 <AnimatePresence mode="wait">
                     <motion.div
