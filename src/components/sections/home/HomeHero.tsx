@@ -13,7 +13,7 @@ const slides = [
         subtitle: "Strategien für messbaren Erfolg.",
         description: "Wir entwickeln datengestützte Marketingkampagnen, die Ihre Zielgruppe erreichen und überzeugen.",
         color: "bg-primary", // fallback
-        image: "https://images.unsplash.com/photo-1557838923-2985c318be48?q=80&w=2000&auto=format&fit=crop",
+        image: "/images/assets/8a91e6a6866fef96cd87ebc74dee8414.jpg",
     },
     {
         id: 2,
@@ -22,7 +22,7 @@ const slides = [
         subtitle: "Ihr Markenauftritt in Perfektion.",
         description: "Vom Logo bis zur Corporate Identity – wir gestalten Marken, die im Gedächtnis bleiben.",
         color: "bg-secondary",
-        image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=2000&auto=format&fit=crop",
+        image: "/images/assets/7ed7b576f21033c3b19d53f2354863b2.jpg",
     },
     {
         id: 3,
@@ -31,7 +31,7 @@ const slides = [
         subtitle: "Haptische Erlebnisse für Ihre Kunden.",
         description: "Hochwertige Printprodukte, die Qualität und Professionalität ausstrahlen.",
         color: "bg-accent",
-        image: "https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?q=80&w=2000&auto=format&fit=crop",
+        image: "/images/assets/ba5906c1b1ee56a5d77873eb008cef4c.jpg",
     },
 ];
 

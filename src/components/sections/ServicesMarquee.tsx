@@ -33,7 +33,7 @@ export default function ServicesMarquee() {
                             <span key={`row1-${index}`} className="text-white font-black text-2xl md:text-4xl uppercase tracking-widest flex items-center gap-8 md:gap-12">
                                 {service}
                                 <img
-                                    src="https://4d4dich.de/wp-content/uploads/2025/01/cropped-cropped-cropped-logo-png-1-e1761347164694.png"
+                                    src="/images/assets/4bf9d1cd2d37202c1683c052a2acce3e.png"
                                     alt="4D Logo"
                                     className="h-8 md:h-12 w-auto brightness-0 invert opacity-60"
                                 />
@@ -49,7 +49,7 @@ export default function ServicesMarquee() {
                             <span key={`row2-${index}`} className="text-white font-black text-2xl md:text-4xl uppercase tracking-widest flex items-center gap-8 md:gap-12">
                                 {service}
                                 <img
-                                    src="https://4d4dich.de/wp-content/uploads/2025/01/cropped-cropped-cropped-logo-png-1-e1761347164694.png"
+                                    src="/images/assets/4bf9d1cd2d37202c1683c052a2acce3e.png"
                                     alt="4D Logo"
                                     className="h-8 md:h-12 w-auto brightness-0 invert opacity-60"
                                 />

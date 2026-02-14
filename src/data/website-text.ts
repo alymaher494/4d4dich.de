@@ -9,7 +9,7 @@ export const siteInfo = {
         instagram: "https://www.instagram.com/4d4dich",
         whatsapp: "+4915141374672"
     },
-    logo: "https://4d4dich.de/wp-content/uploads/2025/01/cropped-cropped-cropped-logo-png-1-e1761347164694.png"
+    logo: "/images/assets/4bf9d1cd2d37202c1683c052a2acce3e.png"
 };
 
 export const homeContent = {
@@ -103,25 +103,25 @@ export const homeContent = {
                 role: "Geschäftsführer",
                 name: "Mohammed Toubajy",
                 translation_ar: "المدير التنفيذي",
-                image: "https://4d4dich.de/wp-content/uploads/2025/05/1a837603-39e0-4f03-9388-a3eaa8418802-211x300.jpg"
+                image: "/images/assets/f893466888734702a81c37cd5db12716.jpg"
             },
             {
                 role: "Projekt & kundenmanager",
                 name: "Atershan Taleb",
                 translation_ar: "مدير المشروعات والعملاء",
-                image: "https://4d4dich.de/wp-content/uploads/2025/05/998889ff-00ec-47c7-8641-4dcd0ec11924-211x300.jpg"
+                image: "/images/assets/90401440f5ab72bc7ebeaad3dfcbaca3.jpg"
             },
             {
                 role: "Grafik Designer",
                 name: "Dima Ghourra",
                 translation_ar: "مصممة جرافيك",
-                image: "https://4d4dich.de/wp-content/uploads/2025/04/IMG_20250326_053336_375-e1747777778757-273x300.png"
+                image: "/images/assets/04ae98422e3080f04b3f79ce91f99084.png"
             },
             {
                 role: "Grafik Designer",
                 name: "Hamed Marouf",
                 translation_ar: "مصمم جرافيك",
-                image: "https://4d4dich.de/wp-content/uploads/2025/06/a82a20dc-a113-48b7-a19e-fb9f8dd91759-217x300.jpg"
+                image: "/images/assets/0b111045ad4efb85125feef5e1d3e17f.jpg"
             }
         ]
     },
@@ -291,7 +291,7 @@ export const portfolioContent = {
             category: "web",
             client: "ModernShop Inc.",
             year: "2025",
-            image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
+            image: "/images/assets/3af880f446fb18896cb7aba519276f73.jpg",
             services: ["UI/UX Design", "Shopify Development", "Brand Identity"],
             description: "Eine komplette Neugestaltung der Marke und des Online-Shops, um die Conversion-Rate zu steigern und das Nutzererlebnis zu modernisieren. Das Ergebnis ist ein frischer, schneller Shop, der Kunden begeistert.",
             challenge: "Die alte Webseite war langsam, nicht mobil-optimiert und spiegelte nicht die Premium-Qualität der Produkte wider. Die Conversion-Rate lag unter dem Branchendurchschnitt.",
@@ -302,9 +302,9 @@ export const portfolioContent = {
                 { value: "0.8s", label: "Ladezeit" }
             ],
             images: [
-                "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=2564&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1523474253046-8cd2748b5fd2?q=80&w=2340&auto=format&fit=crop"
+                "/images/assets/3af880f446fb18896cb7aba519276f73.jpg",
+                "/images/assets/b07614e788826a10b0245e82a747c08c.jpg",
+                "/images/assets/36ffad18637b75f247ef45e8471bc48a.jpg"
             ]
         },
         {
@@ -326,7 +326,7 @@ export const portfolioContent = {
             ],
             images: [
                 "https://images.unsplash.com/photo-1596522354195-e8448eb16061?q=80&w=2340&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=2340&auto=format&fit=crop"
+                "/images/assets/bffb46a851bb97a1db5d70ac600e28c2.jpg"
             ]
         },
         {
@@ -336,7 +336,7 @@ export const portfolioContent = {
             category: "web",
             client: "Rechtsanwald Mohamed Toubajy",
             year: "2024",
-            image: "https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=2340&auto=format&fit=crop", // Placeholder
+            image: "/images/assets/ad2092c5397b242d0ad9275a78497864.jpg", // Placeholder
             services: ["Web Design", "SEO", "Logo"],
             description: "Entwicklung einer modernen Kanzlei-Webseite und eines professionellen Logos.",
             challenge: "Eine vertrauenswürdige Online-Präsenz für einen Rechtsanwalt zu schaffen.",
@@ -347,8 +347,8 @@ export const portfolioContent = {
                 { value: "Modern", label: "Look" }
             ],
             images: [
-                "https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=2340&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=2340&auto=format&fit=crop"
+                "/images/assets/ad2092c5397b242d0ad9275a78497864.jpg",
+                "/images/assets/bffb46a851bb97a1db5d70ac600e28c2.jpg"
             ]
         }
     ]
@@ -364,7 +364,7 @@ export const blogContent = {
             category: "Marketing",
             date: "12. Okt 2025",
             author: "Team 4D",
-            image: "https://images.unsplash.com/photo-1571721795195-a2ca2d3370a9?q=80&w=1000&auto=format&fit=crop"
+            image: "/images/assets/881a630725995a7d4027bccb97be90e7.jpg"
         },
         {
             title: "Print ist nicht tot: Haptik im digitalen Zeitalter",
@@ -372,7 +372,7 @@ export const blogContent = {
             category: "Druck",
             date: "28. Sep 2025",
             author: "Sarah Meyer",
-            image: "https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?q=80&w=1000&auto=format&fit=crop"
+            image: "/images/assets/0c30c820873c54fcb8ee7c18d71feacf.jpg"
         },
         {
             title: "Webdesign Trends: Minimalismus trifft auf 3D",
@@ -380,7 +380,7 @@ export const blogContent = {
             category: "Web & App",
             date: "15. Sep 2025",
             author: "Jonas Weber",
-            image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=1000&auto=format&fit=crop"
+            image: "/images/assets/5f58d85c70995e06bbbb4cb72b8b03a3.jpg"
         }
     ]
 };

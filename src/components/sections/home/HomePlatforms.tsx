@@ -7,15 +7,15 @@ import Link from "next/link";
 
 // Slider images - Portfolio/Use cases
 const sliderImages1 = [
-    { id: 1, src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop", alt: "Web Design" },
-    { id: 2, src: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop", alt: "Graphic Design" },
-    { id: 3, src: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=400&h=300&fit=crop", alt: "Marketing" },
+    { id: 1, src: "/images/assets/9c6dc45f67e802a56536eae1cce455f0.jpg", alt: "Web Design" },
+    { id: 2, src: "/images/assets/adc5870e47b9321f52239f14e9bce7f4.jpg", alt: "Graphic Design" },
+    { id: 3, src: "/images/assets/912dab1100f78dc19338a88d76138e51.jpg", alt: "Marketing" },
 ];
 
 const sliderImages2 = [
-    { id: 1, src: "https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?w=400&h=300&fit=crop", alt: "Print" },
-    { id: 2, src: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=300&fit=crop", alt: "App Design" },
-    { id: 3, src: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=300&fit=crop", alt: "Branding" },
+    { id: 1, src: "/images/assets/7ee84d25e6b992c4a98bc056a8cc1f26.jpg", alt: "Print" },
+    { id: 2, src: "/images/assets/bf47d10acf098bf9d872f522859d2f5d.jpg", alt: "App Design" },
+    { id: 3, src: "/images/assets/357213b9488262f66fa0ba3e1b5a2d4b.jpg", alt: "Branding" },
 ];
 
 const benefits = [

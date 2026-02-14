@@ -9,21 +9,21 @@ const testimonials = [
         name: "Julia Müller",
         role: "Marketing Director, Luxus",
         content: "Die Zusammenarbeit mit 4D war ein Gamechanger. Unsere Brand Awareness ist um 300% gestiegen.",
-        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop"
+        image: "/images/assets/c988083a8c13aa35110542ee2ef912fd.jpg"
     },
     {
         id: 2,
         name: "Markus Weber",
         role: "CEO, TechStart",
         content: "Unglaubliche Qualität und Geschwindigkeit. Das neue Design hat unsere Kunden sofort überzeugt.",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop"
+        image: "/images/assets/905f72558c86991e5d8bebc8c2865d02.jpg"
     },
     {
         id: 3,
         name: "Sarah Klein",
         role: "Inhaberin, Cafe Velo",
         content: "Von der Beratung bis zum Druck – alles aus einer Hand. Einfach, professionell und wunderschön.",
-        image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop"
+        image: "/images/assets/0669cd1a95abf8b46d8b3455b41f42b1.jpg"
     }
 ];
 

@@ -5,19 +5,19 @@ import Image from "next/image";
 // Placeholder clients (will be replaced with WordPress data later)
 // Real client logos from 4d4dich.de
 const clientsRow1 = [
-    { id: 1, name: "MT24 Sicherheit", logo: "https://4d4dich.de/wp-content/uploads/2025/04/mt-24-1-e1759267829227-300x180.png" },
-    { id: 2, name: "Hausarzt Schwerte", logo: "https://4d4dich.de/wp-content/uploads/2025/05/IMG_20250512_144937_962-1.png" },
-    { id: 3, name: "Sauberbienen", logo: "https://4d4dich.de/wp-content/uploads/2025/05/tempFileForShare_20250415-105033-2-300x104.png" },
-    { id: 4, name: "Altahan Baureinigung", logo: "https://4d4dich.de/wp-content/uploads/2025/05/LOGO-1-e1759268024680-300x288.png" },
-    { id: 5, name: "Toirov Pflege", logo: "https://4d4dich.de/wp-content/uploads/2025/11/toirov-logo-300x297.png" },
+    { id: 1, name: "MT24 Sicherheit", logo: "/images/assets/fd9f905da9482a90e74011b3d138f0aa.png" },
+    { id: 2, name: "Hausarzt Schwerte", logo: "/images/assets/3207de4b43cb61a8c4841ea471959dec.png" },
+    { id: 3, name: "Sauberbienen", logo: "/images/assets/ba251e3c999727a212612fbe3521d09f.png" },
+    { id: 4, name: "Altahan Baureinigung", logo: "/images/assets/5b8be49aa064b0ffd9afd90169066532.png" },
+    { id: 5, name: "Toirov Pflege", logo: "/images/assets/87c1916c29327ffb94f15bfd959b8b65.png" },
 ];
 
 const clientsRow2 = [
-    { id: 6, name: "Toirov Pflege", logo: "https://4d4dich.de/wp-content/uploads/2025/11/toirov-logo-300x297.png" },
-    { id: 7, name: "Altahan Baureinigung", logo: "https://4d4dich.de/wp-content/uploads/2025/05/LOGO-1-e1759268024680-300x288.png" },
-    { id: 8, name: "Sauberbienen", logo: "https://4d4dich.de/wp-content/uploads/2025/05/tempFileForShare_20250415-105033-2-300x104.png" },
-    { id: 9, name: "MT24 Sicherheit", logo: "https://4d4dich.de/wp-content/uploads/2025/04/mt-24-1-e1759267829227-300x180.png" },
-    { id: 10, name: "Hausarzt Schwerte", logo: "https://4d4dich.de/wp-content/uploads/2025/05/IMG_20250512_144937_962-1.png" },
+    { id: 6, name: "Toirov Pflege", logo: "/images/assets/87c1916c29327ffb94f15bfd959b8b65.png" },
+    { id: 7, name: "Altahan Baureinigung", logo: "/images/assets/5b8be49aa064b0ffd9afd90169066532.png" },
+    { id: 8, name: "Sauberbienen", logo: "/images/assets/ba251e3c999727a212612fbe3521d09f.png" },
+    { id: 9, name: "MT24 Sicherheit", logo: "/images/assets/fd9f905da9482a90e74011b3d138f0aa.png" },
+    { id: 10, name: "Hausarzt Schwerte", logo: "/images/assets/3207de4b43cb61a8c4841ea471959dec.png" },
 ];
 
 function ClientLogo({ name, logo }: { name: string; logo: string }) {

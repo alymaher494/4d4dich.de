@@ -5,10 +5,10 @@ import { homeContent } from "@/data/website-text";
 import { Stethoscope, Utensils, Users, Building2 } from "lucide-react";
 
 const sectorImages = [
-    "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=500&h=600&fit=crop", // Healthcare
-    "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=500&h=600&fit=crop", // Gastronomy
-    "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=500&h=600&fit=crop", // B2C
-    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=500&h=600&fit=crop"  // B2B
+    "/images/assets/04d53efb2d3f40b341d63811e53ad5e6.jpg", // Healthcare
+    "/images/assets/4d617745dceb80139e8112df81b1d35e.jpg", // Gastronomy
+    "/images/assets/465d7cf6c7f3b99f8a40e2b39384ec43.jpg", // B2C
+    "/images/assets/bf68e0f06ed1ed5db037a34b49df756b.jpg"  // B2B
 ];
 
 const icons = [Stethoscope, Utensils, Users, Building2];

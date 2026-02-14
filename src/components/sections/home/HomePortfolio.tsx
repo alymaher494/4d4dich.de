@@ -10,7 +10,7 @@ const projects = [
         id: 1,
         title: "E-Commerce Rebranding",
         platform: "Digital Strategy",
-        image: "https://images.unsplash.com/photo-1661956602116-aa6865609028?w=1200&h=800&fit=crop",
+        image: "/images/assets/0ee62ce93318b45f1c87cece286a857d.jpg",
         description: "Komplettes Rebranding und Webshop-Entwicklung für einen führenden Online-Händler.",
         gradient: "linear-gradient(135deg, #76BC43 0%, #5A9432 100%)",
         stats: [
@@ -22,7 +22,7 @@ const projects = [
         id: 2,
         title: "Social Media Kampagne",
         platform: "Marketing",
-        image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1200&h=800&fit=crop",
+        image: "/images/assets/37412e810fcc78c8ecfe8fa8323bdda2.jpg",
         description: "Virale Kampagne mit über 200% ROI und signifikantem Community-Wachstum.",
         gradient: "linear-gradient(135deg, #D60D7E 0%, #A10A5F 100%)",
         stats: [
@@ -34,7 +34,7 @@ const projects = [
         id: 3,
         title: "Corporate Identity",
         platform: "Visual Design",
-        image: "https://images.unsplash.com/photo-1600607686527-6fb886090705?w=1200&h=800&fit=crop",
+        image: "/images/assets/9b2ecc57675024bdc20fb2935cf68ffd.jpg",
         description: "Neues, modernes Erscheinungsbild inklusive Logo و Geschäftsausstattung.",
         gradient: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
         stats: [

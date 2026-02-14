@@ -172,7 +172,7 @@ export default function Header() {
                                 isScrolled ? "py-4" : "py-8"
                             )}>
                                 <img
-                                    src="https://4d4dich.de/wp-content/uploads/2025/01/cropped-cropped-cropped-logo-png-1-e1761347164694.png"
+                                    src="/images/assets/4bf9d1cd2d37202c1683c052a2acce3e.png"
                                     alt="4D"
                                     className={cn(
                                         "w-auto object-contain transition-all",

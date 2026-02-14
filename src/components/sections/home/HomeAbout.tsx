@@ -27,7 +27,7 @@ export default function HomeAbout() {
                         {/* Image 1: Top-Left */}
                         <div className="aspect-[4/5] rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-xl">
                             <img
-                                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=1000&fit=crop"
+                                src="/images/assets/5299fcd9db7aa5acc5c9774aaadf35bc.jpg"
                                 alt="Strategy Session"
                                 className="w-full h-full object-cover"
                             />
@@ -50,7 +50,7 @@ export default function HomeAbout() {
                         {/* Image 2: Bottom-Right */}
                         <div className="aspect-[4/5] rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-xl">
                             <img
-                                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=1000&fit=crop"
+                                src="/images/assets/46ef2f5401a6c30e91690df50ceb841e.jpg"
                                 alt="Team Work"
                                 className="w-full h-full object-cover"
                             />

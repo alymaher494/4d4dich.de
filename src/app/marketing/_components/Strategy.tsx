@@ -47,7 +47,7 @@ export default function MarketingStrategy() {
                         {/* Center Logo */}
                         <div className="absolute z-20 bg-transparent   rounded-full p-4 w-28 h-28 md:w-36 md:h-36 flex items-center justify-center shadow-2xl shadow-primary/20">
                             <img
-                                src="https://4d4dich.de/wp-content/uploads/2025/01/cropped-cropped-cropped-logo-png-1-e1761347164694.png"
+                                src="/images/assets/4bf9d1cd2d37202c1683c052a2acce3e.png"
                                 alt="4D Logo"
                                 className="w-20 md:w-24 h-auto object-contain"
                             />
