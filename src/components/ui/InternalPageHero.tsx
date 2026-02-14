@@ -31,7 +31,7 @@ export default function InternalPageHero({
                     <img
                         src={backgroundImage}
                         alt={title}
-                        className="w-full h-full object-cover opacity-40"
+                        className="w-full h-[100vh] object-cover opacity-40"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/80 via-[#020617]/40 to-[#020617]" />
                 </div>

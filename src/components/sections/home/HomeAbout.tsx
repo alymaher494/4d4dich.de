@@ -104,7 +104,7 @@ export default function HomeAbout() {
                                     className="flex items-center gap-5 group"
                                 >
                                     <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center shrink-0 shadow-lg shadow-slate-200/50 group-hover:scale-110 transition-transform p-3">
-                                        <LogoIcon />
+                                        <img src="/00.png" alt="Icon" className="w-full h-full object-contain" />
                                     </div>
                                     <span className="text-base md:text-lg font-bold text-slate-800 leading-tight">
                                         {feature}

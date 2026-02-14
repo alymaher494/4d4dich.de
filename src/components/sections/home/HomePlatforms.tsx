@@ -70,7 +70,7 @@ export default function PlatformsSection() {
                                     className="flex items-center gap-4"
                                 >
                                     <span className="w-8 h-8 rounded-full bg-white flex items-center justify-center flex-shrink-0 p-1.5 shadow-lg shadow-white/10">
-                                        <LogoIcon />
+                                        <img src="/0L.png" alt="Icon" className="w-full h-full object-contain" />
                                     </span>
                                     <span className="text-slate-300 text-lg">{benefit}</span>
                                 </motion.li>
