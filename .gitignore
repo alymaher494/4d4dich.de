@@ -39,3 +39,17 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# zip files (WordPress theme packages)
+*.zip
+
+# test/temp directories
+/test_zip_extract/
+/test_zip_extract_fixed/
+/verify_zip/
+
+# WordPress theme (managed separately)
+/4d4dish-wp-theme/
+
+# WP config reference
+WP_CONFIG_CONSTANTS.js

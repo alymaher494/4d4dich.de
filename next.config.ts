@@ -15,8 +15,13 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "4d4dich.de",
       },
+      {
+        protocol: "https",
+        hostname: "cms.4d4dich.de", // WordPress subdomain
+      },
     ],
   },
 };
 
 export default nextConfig;
+
