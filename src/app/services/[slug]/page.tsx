@@ -8,8 +8,9 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import BriefingForm from "@/components/forms/BriefingForm";
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-    const pageData = await getPageBySlug(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const slug = (await params).slug;
+    const pageData = await getPageBySlug(slug);
     if (!pageData) return { title: "Service Not Found" };
 
     return {
@@ -18,8 +19,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     };
 }
 
-export default async function DynamicServicePage({ params }: { params: { slug: string } }) {
-    const pageData = await getPageBySlug(params.slug);
+export default async function DynamicServicePage({ params }: { params: Promise<{ slug: string }> }) {
+    const slug = (await params).slug;
+    const pageData = await getPageBySlug(slug);
 
     if (!pageData) {
         notFound();

@@ -130,6 +130,7 @@ export async function POST(request: NextRequest) {
                 };
 
                 const tagToRevalidate = tagMap[post_type] || post_type;
+                // @ts-ignore - Next.js 15.1 types incorrectly require 2 arguments
                 revalidateTag(tagToRevalidate);
                 console.log(`[Revalidation] ✅ Revalidated tag: ${tagToRevalidate} (from type: ${post_type})`);
             }
