@@ -42,7 +42,7 @@ export default function InternalPageHero({
                 </>
             )}
 
-            <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 text-center pb-24 md:pb-32">
+            <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 text-center">
                 <div className="space-y-10">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}

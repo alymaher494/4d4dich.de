@@ -19,7 +19,7 @@ export default function KontaktPage() {
                 marqueeText={["CONTACT", "SUPPORT", "START", "NOW"]}
             />
 
-            <Section className="-mt-32 relative z-20" padding="none">
+            <Section className="relative z-20" padding="none">
                 <Container>
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         {/* Contact Info Column (1/3 width) */}
