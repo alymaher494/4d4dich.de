@@ -7,7 +7,8 @@ export const siteInfo = {
     address: "Ludwigstraße 2A, 63110 Rodgau",
     social: {
         instagram: "https://www.instagram.com/4d4dich",
-        whatsapp: "+4915141374672"
+        whatsapp: "+4915141374672",
+        facebook: "https://www.facebook.com/share/18VLYAeXW8/"
     },
     logo: "/images/assets/4bf9d1cd2d37202c1683c052a2acce3e.png"
 };

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Instagram, Mail, Phone, ArrowUpRight } from "lucide-react";
+import { Instagram, Mail, Phone, ArrowUpRight, Facebook } from "lucide-react";
 import { siteInfo } from "@/data/website-text";
 
 interface FooterProps {
@@ -13,6 +13,7 @@ export default function Footer({ dynamicSettings }: FooterProps) {
     const address = dynamicSettings?.address || siteInfo.address;
     const location = dynamicSettings?.location || siteInfo.location;
     const instagram = dynamicSettings?.instagram || siteInfo.social.instagram;
+    const facebook = dynamicSettings?.facebook || siteInfo.social.facebook || "https://www.facebook.com/share/18VLYAeXW8/";
     const description = dynamicSettings?.footer_description || "Wir transformieren Visionen in digitale Realität. Kreativ, datengetrieben und immer einen Schritt voraus.";
 
     return (
@@ -43,6 +44,14 @@ export default function Footer({ dynamicSettings }: FooterProps) {
                                 className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:text-primary hover:border-primary transition-all bg-white/5"
                             >
                                 <Instagram className="w-5 h-5" />
+                            </a>
+                            <a
+                                href={facebook}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:text-primary hover:border-primary transition-all bg-white/5"
+                            >
+                                <Facebook className="w-5 h-5" />
                             </a>
                             <a
                                 href={`mailto:${email}`}

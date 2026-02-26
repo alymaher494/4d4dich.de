@@ -13,7 +13,7 @@ const slides = [
         subtitle: "Haptische Erlebnisse für Ihre Kunden.",
         description: "Hochwertige Printprodukte, die Qualität und Professionalität ausstrahlen.",
         color: "bg-accent",
-        image: "/images/assets/modern_printer.png",
+        image: "/images/assets/print_machine.jpeg",
     },
     {
         id: 2,
@@ -80,7 +80,7 @@ export default function HomeHero() {
                                     initial={{ y: 20, opacity: 0 }}
                                     animate={{ y: 0, opacity: 1 }}
                                     transition={{ delay: 0.2 }}
-                                    className="inline-block py-1 px-4 rounded-full bg-blur-lg text-secondary shadow backdrop-blur-lg border border-white border-opacity-20 text-sm font-bold uppercase tracking-wider mb-6"
+                                    className="inline-block py-1 px-4 rounded-full bg-white/10 text-white backdrop-blur-md border border-white border-opacity-20 text-sm font-bold uppercase tracking-wider mb-6"
                                 >
                                     {slides[currentSlide].subtitle}
                                 </motion.span>
