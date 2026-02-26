@@ -2,24 +2,29 @@
 
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
+import { WPTestimonial, getFeaturedImageUrl, stripHtml } from "@/lib/wordpress";
 
-const testimonials = [
+interface TestimonialsProps {
+    initialTestimonials?: WPTestimonial[];
+}
+
+const staticTestimonials = [
     {
-        id: 1,
+        id: "1",
         name: "Julia Müller",
         role: "Marketing Director, Luxus",
         content: "Die Zusammenarbeit mit 4D war ein Gamechanger. Unsere Brand Awareness ist um 300% gestiegen.",
         image: "/images/assets/c988083a8c13aa35110542ee2ef912fd.jpg"
     },
     {
-        id: 2,
+        id: "2",
         name: "Markus Weber",
         role: "CEO, TechStart",
         content: "Unglaubliche Qualität und Geschwindigkeit. Das neue Design hat unsere Kunden sofort überzeugt.",
         image: "/images/assets/905f72558c86991e5d8bebc8c2865d02.jpg"
     },
     {
-        id: 3,
+        id: "3",
         name: "Sarah Klein",
         role: "Inhaberin, Cafe Velo",
         content: "Von der Beratung bis zum Druck – alles aus einer Hand. Einfach, professionell und wunderschön.",
@@ -27,7 +32,18 @@ const testimonials = [
     }
 ];
 
-export default function Testimonials() {
+export default function Testimonials({ initialTestimonials = [] }: TestimonialsProps) {
+    // Map WordPress testimonials to our component format
+    const wpTestimonials = initialTestimonials.map(item => ({
+        id: item.id.toString(),
+        name: item.title.rendered,
+        role: (item.acf?.role as string) || "Kunde",
+        content: stripHtml(item.content.rendered),
+        image: getFeaturedImageUrl(item) || "/images/assets/0669cd1a95abf8b46d8b3455b41f42b1.jpg"
+    }));
+
+    const data = wpTestimonials.length > 0 ? wpTestimonials : staticTestimonials;
+
     return (
         <section className="py-24 bg-slate-50 relative overflow-hidden">
             {/* Decorative Background */}
@@ -44,7 +60,7 @@ export default function Testimonials() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {testimonials.map((item, index) => (
+                    {data.map((item, index) => (
                         <motion.div
                             key={item.id}
                             initial={{ opacity: 0, y: 30 }}

@@ -8,12 +8,33 @@ import { blogContent } from "@/data/website-text";
 import { Section } from "@/components/layout/Section";
 import { Container } from "@/components/layout/Container";
 
-export default function BlogGrid() {
+import { WPPost, getFeaturedImageUrl, stripHtml, formatDate } from "@/lib/wordpress";
+
+interface BlogGridProps {
+    initialPosts?: WPPost[];
+}
+
+export default function BlogGrid({ initialPosts = [] }: BlogGridProps) {
+    const { posts: staticPosts } = blogContent;
+
+    // Map WP posts to our grid format
+    const wpMappedPosts = initialPosts.map(post => ({
+        title: post.title.rendered,
+        excerpt: stripHtml(post.excerpt.rendered).substring(0, 120) + "...",
+        date: formatDate(post.date),
+        author: post._embedded?.author?.[0]?.name || "4D Marketing",
+        category: post._embedded?.["wp:term"]?.[0]?.[0]?.name || "Business",
+        image: getFeaturedImageUrl(post) || "/images/assets/0ee62ce93318b45f1c87cece286a857d.jpg",
+        slug: post.slug
+    }));
+
+    const posts = initialPosts.length > 0 ? wpMappedPosts : staticPosts;
+
     return (
         <Section background="slate">
             <Container>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {blogContent.posts.map((post, idx) => (
+                    {posts.map((post: any, idx) => (
                         <motion.article
                             key={idx}
                             initial={{ opacity: 0, y: 20 }}
@@ -45,7 +66,7 @@ export default function BlogGrid() {
                                 <p className="text-slate-600 leading-relaxed mb-6 flex-grow">
                                     {post.excerpt}
                                 </p>
-                                <Link href="#" className="inline-flex items-center gap-2 text-primary font-bold group/link">
+                                <Link href={`/blog/${post.slug || '#'}`} className="inline-flex items-center gap-2 text-primary font-bold group/link">
                                     Weiterlesen <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
                                 </Link>
                             </div>

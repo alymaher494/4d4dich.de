@@ -8,12 +8,12 @@ import { ArrowRight } from "lucide-react";
 const slides = [
     {
         id: 1,
-        title: "Marketing,",
-        highlight: "das wirkt.",
-        subtitle: "Strategien für messbaren Erfolg.",
-        description: "Wir entwickeln datengestützte Marketingkampagnen, die Ihre Zielgruppe erreichen und überzeugen.",
-        color: "bg-primary", // fallback
-        image: "/images/assets/8a91e6a6866fef96cd87ebc74dee8414.jpg",
+        title: "Druck,",
+        highlight: "der beeindruckt.",
+        subtitle: "Haptische Erlebnisse für Ihre Kunden.",
+        description: "Hochwertige Printprodukte, die Qualität und Professionalität ausstrahlen.",
+        color: "bg-accent",
+        image: "/images/assets/modern_printer.png",
     },
     {
         id: 2,
@@ -26,12 +26,12 @@ const slides = [
     },
     {
         id: 3,
-        title: "Druck,",
-        highlight: "der beeindruckt.",
-        subtitle: "Haptische Erlebnisse für Ihre Kunden.",
-        description: "Hochwertige Printprodukte, die Qualität und Professionalität ausstrahlen.",
-        color: "bg-accent",
-        image: "/images/assets/ba5906c1b1ee56a5d77873eb008cef4c.jpg",
+        title: "Marketing,",
+        highlight: "das wirkt.",
+        subtitle: "Strategien für messbaren Erfolg.",
+        description: "Wir entwickeln datengestützte Marketingkampagnen, die Ihre Zielgruppe erreichen und überzeugen.",
+        color: "bg-primary", // fallback
+        image: "/images/assets/8a91e6a6866fef96cd87ebc74dee8414.jpg",
     },
 ];
 
@@ -75,12 +75,12 @@ export default function HomeHero() {
 
                         {/* Content */}
                         <div className="absolute inset-0 z-20 flex items-center justify-center">
-                            <div className="max-w-7xl mx-auto px-6 md:px-12 w-full text-center text-white">
+                            <div className="max-w-7xl mx-auto px-6 md:px-12 w-full text-center text-white mt-24 md:mt-0">
                                 <motion.span
                                     initial={{ y: 20, opacity: 0 }}
                                     animate={{ y: 0, opacity: 1 }}
                                     transition={{ delay: 0.2 }}
-                                    className="inline-block py-1 px-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-sm font-bold uppercase tracking-wider mb-6"
+                                    className="inline-block py-1 px-4 rounded-full bg-white text-secondary shadow backdrop-blur-md border border-white text-sm font-bold uppercase tracking-wider mb-6"
                                 >
                                     {slides[currentSlide].subtitle}
                                 </motion.span>
@@ -92,7 +92,7 @@ export default function HomeHero() {
                                     className="text-5xl md:text-7xl font-black mb-6 leading-tight"
                                 >
                                     {slides[currentSlide].title} <br className="md:hidden" />
-                                    <span className="text-secondary">{slides[currentSlide].highlight}</span>
+                                    <span className="text-white">{slides[currentSlide].highlight}</span>
                                 </motion.h1>
 
                                 <motion.p

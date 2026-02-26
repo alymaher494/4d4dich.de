@@ -4,9 +4,18 @@ import { motion } from "framer-motion";
 import { ArrowRight, TrendingUp, BarChart3, Users, Globe, Target } from "lucide-react";
 import Link from "next/link";
 
-export default function MarketingHero() {
+import { WPPage } from "@/lib/wordpress";
+
+interface HeroProps {
+    initialData?: WPPage | null;
+}
+
+export default function MarketingHero({ initialData }: HeroProps) {
+    const title = initialData?.acf?.hero_title || (initialData?.title?.rendered ? `${initialData.title.rendered}.` : "wachsen.");
+    const description = initialData?.acf?.hero_description || "Datengetriebenes Marketing, das Ihre Zielgruppe erreicht und Umsätze steigert. Von SEO bis Social Media.";
+
     return (
-        <section className="relative min-h-[100vh] flex flex-col justify-center pt-32 overflow-hidden bg-[#020617]">
+        <section className="relative min-h-screen flex flex-col justify-center pt-32 pb-24 lg:pb-0 overflow-visible lg:overflow-hidden bg-[#020617]">
             {/* Background Effects */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
@@ -33,8 +42,8 @@ export default function MarketingHero() {
                         transition={{ delay: 0.1 }}
                         className="text-5xl md:text-7xl font-black text-white leading-[1.1]"
                     >
-                        Marken, die <br />
-                        <span className="text-secondary">wachsen.</span>
+                        {initialData?.acf?.hero_title_prefix || "Marken, die"} <br />
+                        <span className="text-secondary">{title}</span>
                     </motion.h1>
 
                     <motion.p
@@ -43,7 +52,7 @@ export default function MarketingHero() {
                         transition={{ delay: 0.2 }}
                         className="text-lg text-slate-400 max-w-lg leading-relaxed"
                     >
-                        Datengetriebenes Marketing, das Ihre Zielgruppe erreicht und Umsätze steigert. Von SEO bis Social Media.
+                        {description}
                     </motion.p>
 
                     <motion.div
@@ -82,7 +91,7 @@ export default function MarketingHero() {
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.2, duration: 0.5 }}
-                    className="relative hidden lg:block"
+                    className="relative mt-12 lg:mt-0"
                 >
                     <div className="relative z-10 bg-slate-900 rounded-2xl border border-slate-800 shadow-2xl p-6 md:p-8 transform -rotate-1 hover:rotate-0 transition-transform duration-500">
                         {/* Header */}

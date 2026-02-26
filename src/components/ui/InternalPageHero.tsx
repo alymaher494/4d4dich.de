@@ -42,7 +42,7 @@ export default function InternalPageHero({
                 </>
             )}
 
-            <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 text-center">
+            <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 text-center pb-24 md:pb-32">
                 <div className="space-y-10">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
@@ -90,7 +90,7 @@ export default function InternalPageHero({
             </div>
 
             {/* Scrolling Decorative Text */}
-            <div className="absolute bottom-0 left-0 w-full overflow-hidden opacity-10 pointer-events-none select-none z-10">
+            <div className="absolute bottom-0 left-0 w-full overflow-hidden opacity-10 pointer-events-none select-none z-0">
                 <div className="text-[8rem] md:text-[12rem] font-black text-white whitespace-nowrap animate-marquee flex gap-12">
                     {[...Array(4)].map((_, i) => (
                         <div key={i} className="flex gap-12">

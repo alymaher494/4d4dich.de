@@ -4,9 +4,18 @@ import { motion } from "framer-motion";
 import { ArrowRight, Printer, Layers, Palette, ScanLine, FileCheck } from "lucide-react";
 import Link from "next/link";
 
-export default function DruckHero() {
+import { WPPage } from "@/lib/wordpress";
+
+interface HeroProps {
+    initialData?: WPPage | null;
+}
+
+export default function DruckHero({ initialData }: HeroProps) {
+    const title = initialData?.acf?.hero_title || (initialData?.title?.rendered ? `${initialData.title.rendered}.` : "beeindruckt.");
+    const description = initialData?.acf?.hero_description || "Von der Visitenkarte bis zur XL-Außenwerbung. Wir bringen Ihre Marke mit höchster Präzision aufs Papier (und darüber hinaus).";
+
     return (
-        <section className="relative min-h-[100vh] flex flex-col justify-center pt-32 overflow-hidden bg-[#020617]">
+        <section className="relative min-h-screen flex flex-col justify-center pt-32 pb-24 lg:pb-0 overflow-visible lg:overflow-hidden bg-[#020617]">
             {/* Background Effects */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-cyan-500/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
@@ -33,8 +42,8 @@ export default function DruckHero() {
                         transition={{ delay: 0.1 }}
                         className="text-5xl md:text-7xl font-black text-white leading-[1.1]"
                     >
-                        Druck, der <br />
-                        <span className="text-transparent bg-primary bg-clip-text">beeindruckt.</span>
+                        {initialData?.acf?.hero_title_prefix || "Druck, der"} <br />
+                        <span className="text-transparent bg-primary bg-clip-text">{title}</span>
                     </motion.h1>
 
                     <motion.p
@@ -43,7 +52,7 @@ export default function DruckHero() {
                         transition={{ delay: 0.2 }}
                         className="text-lg text-slate-400 max-w-lg leading-relaxed"
                     >
-                        Von der Visitenkarte bis zur XL-Außenwerbung. Wir bringen Ihre Marke mit höchster Präzision aufs Papier (und darüber hinaus).
+                        {description}
                     </motion.p>
 
                     <motion.div
@@ -70,12 +79,11 @@ export default function DruckHero() {
                     >
                         <div className="flex items-center gap-6">
                             <div className="flex gap-2">
-                                <span className="block w-3 h-3 rounded-full bg-cyan-500" />
-                                <span className="block w-3 h-3 rounded-full bg-magenta-500" />
-                                <span className="block w-3 h-3 rounded-full bg-yellow-400" />
-                                <span className="block w-3 h-3 rounded-full bg-black border border-white/20" />
+                                <span className="flex items-center justify-center w-6 h-6 rounded-full bg-cyan-500 text-[10px] font-bold text-white text-center" title="Cyan">C</span>
+                                <span className="flex items-center justify-center w-6 h-6 rounded-full bg-magenta-500 text-[10px] font-bold text-white text-center" title="Magenta">M</span>
+                                <span className="flex items-center justify-center w-6 h-6 rounded-full bg-yellow-400 text-[10px] font-bold text-slate-900 text-center" title="Yellow">Y</span>
+                                <span className="flex items-center justify-center w-6 h-6 rounded-full bg-black border border-white/20 text-[10px] font-bold text-white text-center" title="Schwarz">K</span>
                             </div>
-                            <span className="text-slate-500 text-sm font-mono">CMYK Process Calibrated</span>
                         </div>
                     </motion.div>
                 </div>
@@ -85,7 +93,7 @@ export default function DruckHero() {
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.2, duration: 0.5 }}
-                    className="relative hidden lg:block"
+                    className="relative mt-12 lg:mt-0"
                 >
                     {/* Main Print Card */}
                     <div className="relative z-10 bg-white rounded-2xl shadow-2xl p-2 transform rotate-2 hover:rotate-1 transition-transform duration-500">
@@ -114,7 +122,7 @@ export default function DruckHero() {
                     <div className="absolute top-8 left-8 w-full h-full bg-white/5 rounded-2xl border border-white/5 -z-20 rotate-12" />
 
                     {/* Floating Badge */}
-                    <div className="absolute bottom-12 -left-12 bg-slate-900 text-white p-4 rounded-2xl shadow-2xl flex items-center gap-3 animate-bounce-slow border border-white/10">
+                    <div className="absolute bottom-12 -left-12 z-20 bg-slate-900 text-white p-4 rounded-2xl shadow-2xl flex items-center gap-3 animate-bounce-slow border border-white/10">
                         <div className="bg-green-500/20 p-2 rounded-lg text-green-400">
                             <FileCheck className="w-6 h-6" />
                         </div>

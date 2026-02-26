@@ -5,11 +5,11 @@ import { Target, BarChart3, LineChart, Smartphone } from "lucide-react";
 const socialIcons = [
     "https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg",
     "https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg",
-    "https://upload.wikimedia.org/wikipedia/commons/5/5a/X_icon_2.svg",
+    "https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Ads_logo.svg",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png",
     "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/TikTok_logo.svg/2560px-TikTok_logo.svg.png",
     "https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg",
-    "https://upload.wikimedia.org/wikipedia/commons/0/0f/Google_Classroom_Logo.svg"
+    "https://upload.wikimedia.org/wikipedia/commons/a/a9/Google_Maps_icon.svg"
 ];
 
 export default function MarketingStrategy() {

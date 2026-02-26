@@ -1,11 +1,20 @@
-"use client";
-
 import Link from "next/link";
-import { Instagram, Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
+import { Instagram, Mail, Phone, ArrowUpRight } from "lucide-react";
 import { siteInfo } from "@/data/website-text";
-import { motion } from "framer-motion";
 
-export default function Footer() {
+interface FooterProps {
+    dynamicSettings?: any;
+}
+
+export default function Footer({ dynamicSettings }: FooterProps) {
+    // Merge static siteInfo with dynamic settings if available
+    const email = dynamicSettings?.email || siteInfo.email;
+    const phone = dynamicSettings?.phone || siteInfo.phone;
+    const address = dynamicSettings?.address || siteInfo.address;
+    const location = dynamicSettings?.location || siteInfo.location;
+    const instagram = dynamicSettings?.instagram || siteInfo.social.instagram;
+    const description = dynamicSettings?.footer_description || "Wir transformieren Visionen in digitale Realität. Kreativ, datengetrieben und immer einen Schritt voraus.";
+
     return (
         <footer className="bg-slate-950 text-white pt-32 pb-12 overflow-hidden relative">
             {/* Background Accent */}
@@ -24,32 +33,29 @@ export default function Footer() {
                             />
                         </Link>
                         <p className="text-xl text-slate-400 font-light leading-relaxed max-w-md">
-                            Wir transformieren Visionen in digitale Realität. Kreativ, datengetrieben und immer einen Schritt voraus.
+                            {description}
                         </p>
                         <div className="flex gap-4">
-                            <motion.a
-                                href={siteInfo.social.instagram}
+                            <a
+                                href={instagram}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                whileHover={{ y: -5 }}
                                 className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:text-primary hover:border-primary transition-all bg-white/5"
                             >
                                 <Instagram className="w-5 h-5" />
-                            </motion.a>
-                            <motion.a
-                                href={`mailto:${siteInfo.email}`}
-                                whileHover={{ y: -5 }}
+                            </a>
+                            <a
+                                href={`mailto:${email}`}
                                 className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:text-primary hover:border-primary transition-all bg-white/5"
                             >
                                 <Mail className="w-5 h-5" />
-                            </motion.a>
-                            <motion.a
-                                href={`tel:${siteInfo.phone.replace(/\s/g, '')}`}
-                                whileHover={{ y: -5 }}
+                            </a>
+                            <a
+                                href={`tel:${phone.replace(/\s/g, '')}`}
                                 className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:text-primary hover:border-primary transition-all bg-white/5"
                             >
                                 <Phone className="w-5 h-5" />
-                            </motion.a>
+                            </a>
                         </div>
                     </div>
 
@@ -97,11 +103,11 @@ export default function Footer() {
                             <h4 className="text-xs font-black uppercase tracking-[0.3em] text-white/40">Kontakt</h4>
                             <div className="space-y-6 text-slate-400">
                                 <p className="leading-relaxed hover:text-white transition-colors cursor-pointer">
-                                    {siteInfo.address}<br />
-                                    {siteInfo.location}
+                                    {address}<br />
+                                    {location}
                                 </p>
                                 <p className="hover:text-primary transition-colors cursor-pointer text-white font-bold">
-                                    {siteInfo.phone}
+                                    {phone}
                                 </p>
                             </div>
                         </div>
@@ -120,6 +126,6 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
-        </footer >
+        </footer>
     );
 }

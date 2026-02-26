@@ -1,5 +1,4 @@
-"use client";
-
+import { getPageBySlug } from "@/lib/wordpress";
 import Hero from "./_components/Hero";
 import Features from "./_components/Features";
 import Ecommerce from "./_components/Ecommerce";
@@ -7,8 +6,19 @@ import Process from "./_components/Process";
 import BriefingForm from "@/components/forms/BriefingForm";
 import { Section } from "@/components/layout/Section";
 import { Container } from "@/components/layout/Container";
+import { Metadata } from "next";
 
-export default function WebAppPage() {
+export async function generateMetadata(): Promise<Metadata> {
+    const pageData = await getPageBySlug('service-web-app');
+    return {
+        title: pageData?.acf?.seo_title || pageData?.title?.rendered || "Web-App Entwicklung",
+        description: pageData?.acf?.seo_description || "Individuelle Web-Apps und Softwarelösungen für Ihr Business.",
+    };
+}
+
+export default async function WebAppPage() {
+    const pageData = await getPageBySlug('service-web-app');
+
     const processSteps = [
         {
             number: "01",
@@ -29,7 +39,7 @@ export default function WebAppPage() {
 
     return (
         <main className="min-h-screen bg-white">
-            <Hero />
+            <Hero initialData={pageData} />
             <Features />
             <Ecommerce />
 
@@ -40,9 +50,13 @@ export default function WebAppPage() {
                 <Container>
                     <div className="text-center mb-16 space-y-4">
                         <span className="text-primary font-bold uppercase tracking-wider">BRIEFING</span>
-                        <h2 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight">Starten wir Ihr Projekt</h2>
+                        <h2 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight">
+                            {pageData?.acf?.cta_title || "Starten wir Ihr Projekt"}
+                        </h2>
                         <div className="w-24 h-2 bg-secondary rounded-full mx-auto" />
-                        <p className="text-xl text-slate-600 max-w-2xl mx-auto pt-4">Beantworten Sie uns ein paar Fragen, damit wir Ihnen ein perfektes Angebot erstellen können.</p>
+                        <p className="text-xl text-slate-600 max-w-2xl mx-auto pt-4">
+                            {pageData?.acf?.cta_text || "Beantworten Sie uns ein paar Fragen, damit wir Ihnen ein perfektes Angebot erstellen können."}
+                        </p>
                     </div>
                     <BriefingForm />
                 </Container>

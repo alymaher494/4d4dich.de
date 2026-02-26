@@ -33,7 +33,9 @@ export async function POST(request: NextRequest) {
 
         // 2. Parse the request body
         const body = await request.json();
-        const { post_type, post_slug, action } = body;
+        const post_type = body.post_type as string;
+        const post_slug = body.post_slug as string;
+        const action = body.action as string;
 
         console.log(`[Revalidation] Received: type=${post_type}, slug=${post_slug}, action=${action}`);
 
@@ -118,11 +120,21 @@ export async function POST(request: NextRequest) {
         // 5. Also revalidate by tag if applicable
         try {
             if (post_type) {
-                revalidateTag(post_type, { expire: 0 });
-                console.log(`[Revalidation] ✅ Revalidated tag: ${post_type}`);
+                // Map singular post types to plural tags used in fetch logic
+                const tagMap: Record<string, string> = {
+                    'post': 'posts',
+                    'testimonial': 'testimonials',
+                    'client': 'clients',
+                    'portfolio': 'portfolio',
+                    'team': 'team',
+                };
+
+                const tagToRevalidate = tagMap[post_type] || post_type;
+                revalidateTag(tagToRevalidate);
+                console.log(`[Revalidation] ✅ Revalidated tag: ${tagToRevalidate} (from type: ${post_type})`);
             }
-        } catch {
-            // Tag revalidation is optional
+        } catch (err) {
+            console.error('[Revalidation] ❌ Tag revalidation failed:', err);
         }
 
         return NextResponse.json({
@@ -132,9 +144,9 @@ export async function POST(request: NextRequest) {
         });
 
     } catch (error) {
-        console.error('[Revalidation] Error:', error);
+        console.error('[Revalidation] ❌ Global Error:', error);
         return NextResponse.json(
-            { message: 'Error revalidating', revalidated: false },
+            { message: 'Error revalidating', revalidated: false, error: String(error) },
             { status: 500 }
         );
     }

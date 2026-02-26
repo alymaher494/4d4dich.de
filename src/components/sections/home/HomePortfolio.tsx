@@ -5,9 +5,15 @@ import { ArrowRight, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import "@/components/sections/Gallery.css";
 
-const projects = [
+import { WPPortfolio, getFeaturedImageUrl, stripHtml } from "@/lib/wordpress";
+
+interface HomePortfolioProps {
+    initialProjects?: WPPortfolio[];
+}
+
+const staticProjects = [
     {
-        id: 1,
+        id: "1",
         title: "E-Commerce Rebranding",
         platform: "Digital Strategy",
         image: "/images/assets/0ee62ce93318b45f1c87cece286a857d.jpg",
@@ -19,7 +25,7 @@ const projects = [
         ]
     },
     {
-        id: 2,
+        id: "2",
         title: "Social Media Kampagne",
         platform: "Marketing",
         image: "/images/assets/37412e810fcc78c8ecfe8fa8323bdda2.jpg",
@@ -31,7 +37,7 @@ const projects = [
         ]
     },
     {
-        id: 3,
+        id: "3",
         title: "Corporate Identity",
         platform: "Visual Design",
         image: "/images/assets/9b2ecc57675024bdc20fb2935cf68ffd.jpg",
@@ -44,7 +50,32 @@ const projects = [
     },
 ];
 
-export default function HomePortfolio() {
+export default function HomePortfolio({ initialProjects = [] }: HomePortfolioProps) {
+    // Map WordPress projects to our component format
+    const wpMappedProjects = initialProjects.map((project, idx) => {
+        // Generate nice gradients for items without them
+        const defaultGradients = [
+            "linear-gradient(135deg, #76BC43 0%, #5A9432 100%)",
+            "linear-gradient(135deg, #D60D7E 0%, #A10A5F 100%)",
+            "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)"
+        ];
+
+        return {
+            id: project.slug,
+            title: project.title.rendered,
+            platform: (project.acf?.category as string) || "Digital Strategy",
+            image: getFeaturedImageUrl(project) || "/images/portfolio/fallback.jpg",
+            description: stripHtml(project.excerpt.rendered),
+            gradient: (project.acf?.gradient as string) || defaultGradients[idx % defaultGradients.length],
+            stats: (project.acf?.stats as any[]) || [
+                { number: "100%", label: "Erfolg" },
+                { number: "Case", label: "Study" }
+            ]
+        };
+    });
+
+    const projects = initialProjects.length > 0 ? wpMappedProjects : staticProjects;
+
     return (
         <section id="portfolio" className="py-32 bg-white overflow-visible">
             <div className="max-w-7xl mx-auto px-6 md:px-12 mb-24">
@@ -62,7 +93,7 @@ export default function HomePortfolio() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="text-4xl md:text-5xl font-black text-slate-900 leading-none"
+                            className="text-3xl md:text-5xl lg:text-6xl font-black text-slate-900 leading-tight"
                         >
                             Ausgewählte <br />
                             <span className="text-secondary">Erfolgsgeschichten.</span>
@@ -119,8 +150,8 @@ export default function HomePortfolio() {
                                     <div className="grid grid-cols-2 gap-12 pt-12 border-t border-white/10">
                                         {project.stats.map((stat, i) => (
                                             <div key={i}>
-                                                <span className="block text-4xl font-black mb-1">{stat.number}</span>
-                                                <span className="text-xs font-bold uppercase tracking-widest text-white/60">{stat.label}</span>
+                                                <span className="block text-3xl md:text-4xl font-black mb-1">{stat.number}</span>
+                                                <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-white/60">{stat.label}</span>
                                             </div>
                                         ))}
                                     </div>
@@ -137,9 +168,11 @@ export default function HomePortfolio() {
 
                                     {/* Project Link Float */}
                                     <div className="absolute top-10 right-10">
-                                        <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-slate-950 transition-all cursor-pointer">
-                                            <ExternalLink className="w-6 h-6" />
-                                        </div>
+                                        <Link href={`/portfolio/${project.id}`}>
+                                            <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-slate-950 transition-all cursor-pointer">
+                                                <ExternalLink className="w-6 h-6" />
+                                            </div>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>

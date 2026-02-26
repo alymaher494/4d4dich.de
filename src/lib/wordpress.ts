@@ -47,8 +47,15 @@ export interface WPPage {
     slug: string;
     title: { rendered: string };
     content: { rendered: string };
-    acf?: Record<string, unknown>;
-    template: string;
+    excerpt?: { rendered: string };
+    acf?: {
+        hero_title?: string;
+        hero_description?: string;
+        seo_title?: string;
+        seo_description?: string;
+        og_image?: string;
+        [key: string]: any;
+    };
     _embedded?: {
         'wp:featuredmedia'?: Array<{
             source_url: string;
@@ -138,14 +145,24 @@ async function wpFetch<T>(
         url.searchParams.set(key, String(value));
     });
 
+    // Generate tags based on the endpoint for revalidation
+    const tag = endpoint.split('/').filter(Boolean).pop() || 'general';
+
     const res = await fetch(url.toString(), {
-        next: { revalidate }, // ISR: revalidate every X seconds
+        next: {
+            revalidate,
+            tags: [tag]
+        },
         headers: {
             'Content-Type': 'application/json',
         },
     });
 
     if (!res.ok) {
+        if (res.status === 404) {
+            console.warn(`[WordPress] ⚠️ Endpoint not found (404): ${url.toString()}. Falling back to static data.`);
+            return [] as unknown as T;
+        }
         console.error(`WordPress API Error: ${res.status} ${res.statusText} for ${url.toString()}`);
         throw new Error(`WordPress API Error: ${res.status} ${res.statusText}`);
     }
@@ -382,4 +399,16 @@ export function formatDate(dateString: string, locale: string = 'de-DE'): string
         month: 'long',
         year: 'numeric',
     });
+}
+// Team Members
+export async function getTeamMembers(limit = 10): Promise<WPPost[]> {
+    return wpFetch<WPPost[]>(`/wp/v2/team`, { per_page: limit });
+}
+// Global Options (requires ACF Options Page or similar)
+export async function getGlobalOptions(): Promise<any> {
+    try {
+        return await wpFetch<any>(`/acf/v3/options/options`);
+    } catch {
+        return null;
+    }
 }

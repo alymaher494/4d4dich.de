@@ -4,9 +4,18 @@ import { motion } from "framer-motion";
 import { ArrowRight, Palette, PenTool, Layout, Layers, Wand2 } from "lucide-react";
 import Link from "next/link";
 
-export default function GrafikDesignHero() {
+import { WPPage } from "@/lib/wordpress";
+
+interface HeroProps {
+    initialData?: WPPage | null;
+}
+
+export default function GrafikDesignHero({ initialData }: HeroProps) {
+    const title = initialData?.acf?.hero_title || (initialData?.title?.rendered ? `${initialData.title.rendered}.` : "begeistert.");
+    const description = initialData?.acf?.hero_description || "Wir gestalten Markenidentitäten, die im Gedächtnis bleiben. Vom Logo bis zum kompletten Corporate Design.";
+
     return (
-        <section className="relative min-h-[100vh] flex flex-col justify-center pt-32 overflow-hidden bg-[#020617]">
+        <section className="relative min-h-screen flex flex-col justify-center pt-32 pb-24 lg:pb-0 overflow-visible lg:overflow-hidden bg-[#020617]">
             {/* Background Effects */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-purple-500/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
@@ -33,8 +42,8 @@ export default function GrafikDesignHero() {
                         transition={{ delay: 0.1 }}
                         className="text-5xl md:text-7xl font-black text-white leading-[1.1]"
                     >
-                        Design, das <br />
-                        <span className="text-secondary bg-clip-text bg-gradient-to-r from-purple-400 to-orange-400">begeistert.</span>
+                        {initialData?.acf?.hero_title_prefix || "Design, das"} <br />
+                        <span className="text-secondary bg-clip-text bg-gradient-to-r from-purple-400 to-orange-400">{title}</span>
                     </motion.h1>
 
                     <motion.p
@@ -43,7 +52,7 @@ export default function GrafikDesignHero() {
                         transition={{ delay: 0.2 }}
                         className="text-lg text-slate-400 max-w-lg leading-relaxed"
                     >
-                        Wir gestalten Markenidentitäten, die im Gedächtnis bleiben. Vom Logo bis zum kompletten Corporate Design.
+                        {description}
                     </motion.p>
 
                     <motion.div
@@ -83,7 +92,7 @@ export default function GrafikDesignHero() {
                     initial={{ opacity: 0, rotate: 5 }}
                     animate={{ opacity: 1, rotate: 0 }}
                     transition={{ delay: 0.2, duration: 0.5 }}
-                    className="relative hidden lg:block"
+                    className="relative mt-12 lg:mt-0"
                 >
                     {/* Artboard Stack */}
                     <div className="relative z-10 w-full aspect-square max-w-md mx-auto">

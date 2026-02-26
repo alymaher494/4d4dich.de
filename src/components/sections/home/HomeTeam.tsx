@@ -4,8 +4,23 @@ import { motion } from "framer-motion";
 import { homeContent } from "@/data/website-text";
 import { User2 } from "lucide-react";
 
-export default function TeamSection() {
-    const { team } = homeContent;
+import { WPPost, getFeaturedImageUrl } from "@/lib/wordpress";
+
+interface HomeTeamProps {
+    initialTeam?: WPPost[];
+}
+
+export default function TeamSection({ initialTeam = [] }: HomeTeamProps) {
+    const { team: staticTeam } = homeContent;
+
+    // Map WP team to our format
+    const wpMembers = initialTeam.map(member => ({
+        name: member.title.rendered,
+        role: (member.acf?.role as string) || "Teammitglied",
+        image: getFeaturedImageUrl(member) || "/images/assets/ba251e3c999727a212612fbe3521d09f.png"
+    }));
+
+    const members = initialTeam.length > 0 ? wpMembers : staticTeam.members;
 
     return (
         <section id="team" className="section-padding bg-white">
@@ -17,12 +32,12 @@ export default function TeamSection() {
                     Lernen Sie unsere <span className="text-secondary">Experten kennen.</span>
                 </h2>
                 <p className="text-slate-600 italic max-w-2xl mx-auto text-lg">
-                    "{team.quote}"
+                    "{staticTeam.quote}"
                 </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                {team.members.map((member, index) => (
+                {members.map((member, index) => (
                     <motion.div
                         key={member.name}
                         initial={{ opacity: 0, scale: 0.9 }}
@@ -32,7 +47,6 @@ export default function TeamSection() {
                         className="group"
                     >
                         <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-slate-100 mb-6 border border-slate-100 shadow-sm transition-all duration-500 group-hover:shadow-xl group-hover:shadow-primary/10">
-                            {/* Actual Team Image */}
                             <img
                                 src={member.image}
                                 alt={member.name}
@@ -40,7 +54,6 @@ export default function TeamSection() {
                                 loading="lazy"
                             />
 
-                            {/* Brand Overlay */}
                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6 text-white">
                                 <span className="text-sm font-medium uppercase tracking-wider">{member.role}</span>
                                 <h4 className="text-xl font-bold">{member.name}</h4>
