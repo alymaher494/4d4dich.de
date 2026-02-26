@@ -80,7 +80,7 @@ export default function HomeHero() {
                                     initial={{ y: 20, opacity: 0 }}
                                     animate={{ y: 0, opacity: 1 }}
                                     transition={{ delay: 0.2 }}
-                                    className="inline-block py-1 px-4 rounded-full bg-white text-secondary shadow backdrop-blur-md border border-white text-sm font-bold uppercase tracking-wider mb-6"
+                                    className="inline-block py-1 px-4 rounded-full bg-blur-lg text-secondary shadow backdrop-blur-lg border border-white border-opacity-20 text-sm font-bold uppercase tracking-wider mb-6"
                                 >
                                     {slides[currentSlide].subtitle}
                                 </motion.span>

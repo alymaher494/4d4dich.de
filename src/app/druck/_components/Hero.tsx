@@ -79,9 +79,9 @@ export default function DruckHero({ initialData }: HeroProps) {
                     >
                         <div className="flex items-center gap-6">
                             <div className="flex gap-2">
-                                <span className="flex items-center justify-center w-6 h-6 rounded-full bg-cyan-500 text-[10px] font-bold text-white text-center" title="Cyan">C</span>
-                                <span className="flex items-center justify-center w-6 h-6 rounded-full bg-magenta-500 text-[10px] font-bold text-white text-center" title="Magenta">M</span>
-                                <span className="flex items-center justify-center w-6 h-6 rounded-full bg-yellow-400 text-[10px] font-bold text-slate-900 text-center" title="Yellow">Y</span>
+                                <span className="flex items-center justify-center w-6 h-6 rounded-full bg-[#00A3E0] text-[10px] font-bold text-white text-center" title="Cyan">C</span>
+                                <span className="flex items-center justify-center w-6 h-6 rounded-full bg-[#E1007A] text-[10px] font-bold text-white text-center" title="Magenta">M</span>
+                                <span className="flex items-center justify-center w-6 h-6 rounded-full bg-[#FFF200] text-[10px] font-bold text-slate-900 text-center" title="Yellow">Y</span>
                                 <span className="flex items-center justify-center w-6 h-6 rounded-full bg-black border border-white/20 text-[10px] font-bold text-white text-center" title="Schwarz">K</span>
                             </div>
                         </div>

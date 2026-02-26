@@ -20,7 +20,7 @@ export default async function MarketingPage() {
     const pageData = await getPageBySlug('service-marketing');
 
     return (
-        <main className="bg-white min-h-screen">
+        <main className="bg-white min-h-screen overflow-x-hidden">
             <Hero initialData={pageData} />
             <Features />
             <Strategy />

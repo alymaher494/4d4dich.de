@@ -6,10 +6,10 @@ const socialIcons = [
     "https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg",
     "https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg",
     "https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Ads_logo.svg",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png",
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/TikTok_logo.svg/2560px-TikTok_logo.svg.png",
+    "https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg",
+    "https://upload.wikimedia.org/wikipedia/en/a/a9/TikTok_logo.svg",
     "https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg",
-    "https://upload.wikimedia.org/wikipedia/commons/a/a9/Google_Maps_icon.svg"
+    "https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg"
 ];
 
 export default function MarketingStrategy() {

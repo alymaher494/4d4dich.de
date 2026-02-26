@@ -20,7 +20,7 @@ export default async function GrafikDesignPage() {
     const pageData = await getPageBySlug('service-grafik-design');
 
     return (
-        <main className="bg-white min-h-screen">
+        <main className="bg-white min-h-screen overflow-x-hidden">
             <Hero initialData={pageData} />
             <Intro />
             <WhyUs />

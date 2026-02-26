@@ -20,7 +20,7 @@ export default async function DruckPage() {
     const pageData = await getPageBySlug('service-druck');
 
     return (
-        <main className="bg-white min-h-screen">
+        <main className="bg-white min-h-screen overflow-x-hidden">
             <Hero initialData={pageData} />
             <Intro />
             <Portfolio />
