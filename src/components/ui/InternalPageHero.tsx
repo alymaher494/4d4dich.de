@@ -91,11 +91,18 @@ export default function InternalPageHero({
 
             {/* Scrolling Decorative Text */}
             <div className="absolute bottom-0 left-0 w-full overflow-hidden opacity-10 pointer-events-none select-none z-0">
-                <div className="text-[8rem] md:text-[12rem] font-black text-white whitespace-nowrap animate-marquee flex gap-12">
+                <div className="text-[8rem] md:text-[12rem] font-black text-white whitespace-nowrap animate-marquee-left flex gap-12 items-center">
                     {[...Array(4)].map((_, i) => (
-                        <div key={i} className="flex gap-12">
+                        <div key={i} className="flex gap-12 items-center">
                             {marqueeText.map((text, idx) => (
-                                <span key={idx} className="opacity-50">{text}</span>
+                                <span key={idx} className="flex items-center gap-12">
+                                    <span className="opacity-50">{text}</span>
+                                    <img
+                                        src="/images/assets/4bf9d1cd2d37202c1683c052a2acce3e-white.png"
+                                        alt="Logo"
+                                        className="h-20 md:h-32 w-auto opacity-20"
+                                    />
+                                </span>
                             ))}
                         </div>
                     ))}

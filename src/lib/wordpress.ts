@@ -2,16 +2,18 @@
  * WordPress REST API Client
  * 
  * This module handles all communication with the WordPress backend
- * running on the subdomain (e.g., cms.4d4dish.de).
+ * running on the subdomain (e.g., cms.4d4dich.de).
  * 
  * Data is fetched via the WP REST API and cached with ISR.
  */
 
+import { Metadata } from "next";
+
 // WordPress API base URL - set in .env.local
 const WP_API_URL = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || 'https://cms.4d4dich.de/wp-json';
 
-// Revalidation interval in seconds (fallback if on-demand revalidation fails)
-const REVALIDATE_INTERVAL = 60; // 60 seconds
+// Revalidation interval in seconds (60s = 1 minute cache)
+const REVALIDATE_INTERVAL = 60;
 
 // ============================================================
 // Types
@@ -40,6 +42,12 @@ export interface WPPost {
         'wp:term'?: Array<Array<{ id: number; name: string; slug: string }>>;
         author?: Array<{ name: string; avatar_urls: Record<string, string> }>;
     };
+    rank_math?: {
+        title?: string;
+        description?: string;
+        focus_keyword?: string;
+        robots?: string[];
+    };
 }
 
 export interface WPPage {
@@ -61,6 +69,12 @@ export interface WPPage {
             source_url: string;
             alt_text: string;
         }>;
+    };
+    rank_math?: {
+        title?: string;
+        description?: string;
+        focus_keyword?: string;
+        robots?: string[];
     };
 }
 
@@ -86,6 +100,7 @@ export interface WPPortfolio {
     title: { rendered: string };
     content: { rendered: string };
     excerpt: { rendered: string };
+    date: string;
     featured_media: number;
     acf?: Record<string, unknown>;
     _embedded?: {
@@ -93,6 +108,14 @@ export interface WPPortfolio {
             source_url: string;
             alt_text: string;
         }>;
+        'wp:term'?: Array<Array<{ id: number; name: string; slug: string; taxonomy: string }>>;
+    };
+    rank_math?: {
+        title?: string;
+        description?: string;
+        focus_keyword?: string;
+        robots?: string[];
+        canonical?: string;
     };
 }
 
@@ -230,9 +253,38 @@ export async function getAllPostSlugs(): Promise<string[]> {
     return posts.map((post) => post.slug);
 }
 
+/**
+ * Get Global Settings (ACF Options via custom endpoint)
+ */
+export async function getGlobalSettings(): Promise<any> {
+    try {
+        const url = `${WP_API_URL}/custom/v1/global-settings`;
+        const res = await fetch(url, { next: { revalidate: REVALIDATE_INTERVAL } });
+        if (!res.ok) return {};
+        return await res.json();
+    } catch (e) {
+        console.error("Error fetching global settings:", e);
+        return {};
+    }
+}
+
 // ============================================================
 // Pages
 // ============================================================
+
+/**
+ * Get pages by parent ID
+ */
+export async function getChildPages(parentId: number): Promise<WPPage[]> {
+    return wpFetch<WPPage[]>('/wp/v2/pages', { parent: parentId, per_page: 100, orderby: 'menu_order', order: 'asc' });
+}
+
+/**
+ * Get a single page by ID
+ */
+export async function getPageById(id: number): Promise<WPPage | null> {
+    return wpFetch<WPPage>(`/wp/v2/pages/${id}`);
+}
 
 /**
  * Get a page by slug
@@ -270,6 +322,13 @@ export async function getPortfolioProjects(perPage: number = 20): Promise<WPPort
 export async function getPortfolioBySlug(slug: string): Promise<WPPortfolio | null> {
     const projects = await wpFetch<WPPortfolio[]>('/wp/v2/portfolio', { slug, per_page: 1 });
     return projects.length > 0 ? projects[0] : null;
+}
+
+/**
+ * Get all portfolio categories
+ */
+export async function getPortfolioCategories(): Promise<WPCategory[]> {
+    return wpFetch<WPCategory[]>('/wp/v2/portfolio_category', { per_page: 100, hide_empty: 1 });
 }
 
 // ============================================================
@@ -364,30 +423,63 @@ export async function getMenuByLocation(location: string): Promise<WPMenuItem[]>
 // Utility: Extract Featured Image
 // ============================================================
 
+export const FALLBACK_IMAGE = "/images/assets/3af880f446fb18896cb7aba519276f73.webp";
+
+export function normalizeUrl(url: string | null | undefined): string {
+    if (!url) return "";
+    
+    let normalized = url;
+    
+    // If the URL is http but we are on https, upgrade it
+    if (normalized.startsWith('http://')) {
+        normalized = normalized.replace('http://', 'https://');
+    }
+    
+    return normalized;
+}
+
+/**
+ * Robust helper to get a URL from an ACF image field
+ * ACF can return a URL string, an image object, or an ID
+ */
+export function getImageUrl(image: any): string {
+    if (!image) return FALLBACK_IMAGE;
+    if (typeof image === 'string') return normalizeUrl(image);
+    if (typeof image === 'object' && image.url) return normalizeUrl(image.url);
+    if (typeof image === 'number') return FALLBACK_IMAGE; // We would need another call to fetch by ID
+    return FALLBACK_IMAGE;
+}
+
 /**
  * Extract the featured image URL from an embedded post/page
  */
 export function getFeaturedImageUrl(
-    item: { _embedded?: { 'wp:featuredmedia'?: Array<{ source_url: string }> } },
+    item: { _embedded?: { 'wp:featuredmedia'?: Array<{ source_url: string; media_details?: any }> } },
     size?: string
-): string | null {
+): string {
     const media = item._embedded?.['wp:featuredmedia']?.[0];
-    if (!media) return null;
+    if (!media) return FALLBACK_IMAGE;
 
-    if (size) {
-        const mediaWithDetails = media as WPMedia;
-        const sizeData = mediaWithDetails.media_details?.sizes?.[size];
-        if (sizeData) return sizeData.source_url;
+    if (size && media.media_details?.sizes?.[size]) {
+        return normalizeUrl(media.media_details.sizes[size].source_url);
     }
 
-    return media.source_url;
+    return normalizeUrl(media.source_url);
 }
 
 /**
  * Strip HTML tags from rendered content
  */
 export function stripHtml(html: string): string {
-    return html.replace(/<[^>]*>/g, '').trim();
+    return html
+        .replace(/<[^>]*>/g, '')
+        .replace(/&amp;/g, '&')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&quot;/g, '"')
+        .replace(/&#039;/g, "'")
+        .replace(/&nbsp;/g, ' ')
+        .trim();
 }
 
 /**
@@ -400,15 +492,179 @@ export function formatDate(dateString: string, locale: string = 'de-DE'): string
         year: 'numeric',
     });
 }
+
 // Team Members
 export async function getTeamMembers(limit = 10): Promise<WPPost[]> {
     return wpFetch<WPPost[]>(`/wp/v2/team`, { per_page: limit });
 }
+
+export interface GlobalSettings {
+    whatsapp: string;
+    phone: string;
+    landline: string;
+    email: string;
+    google_api_key: string;
+    google_place_id: string;
+    google_review_url: string;
+    footer_description: string;
+}
+
 // Global Options (requires ACF Options Page or similar)
-export async function getGlobalOptions(): Promise<any> {
+export async function getGlobalOptions(): Promise<GlobalSettings | null> {
     try {
-        return await wpFetch<any>(`/acf/v3/options/options`);
+        return await wpFetch<GlobalSettings>(`/custom/v1/global-settings`);
     } catch {
         return null;
     }
+}
+
+// Google Reviews API Integration
+export interface GoogleReview {
+    id: string;
+    name: string;
+    role: string;
+    content: string;
+    rating: number;
+    image: string;
+    date: string;
+}
+
+/**
+ * Fetch real reviews from Google Places API
+ */
+export async function getGoogleReviews(placeId: string, apiKey: string): Promise<GoogleReview[]> {
+    if (!placeId || !apiKey) return [];
+
+    try {
+        const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=reviews&key=${apiKey}&language=de`;
+        const res = await fetch(url, { next: { revalidate: 86400 } }); // Cache for 24 hours
+
+        if (!res.ok) throw new Error('Google API Error');
+
+        const data = await res.json();
+        const reviews = data.result?.reviews || [];
+
+        return reviews.map((r: any, idx: number) => ({
+            id: `google-${idx}`,
+            name: r.author_name,
+            role: "Google Rezension",
+            content: r.text,
+            rating: r.rating,
+            image: r.profile_photo_url,
+            date: r.relative_time_description
+        }));
+    } catch (error) {
+        console.error('Error fetching Google Reviews:', error);
+        return [];
+    }
+}
+
+/**
+ * Send contact form data to WordPress
+ */
+export async function sendContactForm(data: {
+    name: string;
+    email: string;
+    message: string;
+    subject?: string;
+    phone?: string;
+    service?: string;
+    file?: File | null;
+}): Promise<boolean> {
+    try {
+        const url = `${WP_API_URL}/custom/v1/contact`;
+
+        // If there's a file, we MUST use FormData
+        if (data.file) {
+            const formData = new FormData();
+            formData.append('name', data.name);
+            formData.append('email', data.email);
+            formData.append('message', data.message);
+            if (data.subject) formData.append('subject', data.subject);
+            if (data.phone) formData.append('phone', data.phone);
+            if (data.service) formData.append('service', data.service);
+            formData.append('file', data.file);
+
+            const res = await fetch(url, {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (!res.ok) return false;
+            const result = await res.json();
+            return result.success === true;
+        }
+
+        const res = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (!res.ok) return false;
+
+        const result = await res.json();
+        return result.success === true;
+    } catch (error) {
+        console.error('Error sending contact form:', error);
+        return false;
+    }
+}
+
+/**
+ * Metadata Helper for Next.js
+ * Combines Rank Math SEO data with site defaults
+ */
+export function constructMetadata(pageData: any, defaultTitle: string, defaultDesc: string, path: string): Metadata {
+    const rm = pageData?.rank_math;
+    const acf = pageData?.acf || {};
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://4d4dich.de';
+
+    // Better defaults for SEO (longer descriptions)
+    const fallbackTitle = "4D FÜR DICH | Premium Design & Digital Marketing Agentur Frankfurt/Rodgau";
+    const fallbackDesc = "Passionate experts for your brand. We offer premium print, web development, and digital marketing services in Rodgau and Frankfurt. Let's transform your vision today.";
+
+    const title = rm?.title || acf?.seo_title || defaultTitle || fallbackTitle;
+    const description = rm?.description || acf?.seo_description || defaultDesc || fallbackDesc;
+    const canonical = rm?.canonical || `${siteUrl}${path}`;
+
+    return {
+        title: title,
+        description: description,
+        metadataBase: new URL(siteUrl),
+        alternates: {
+            canonical: canonical,
+        },
+        robots: {
+            index: rm?.robots ? !rm.robots.includes('noindex') : true,
+            follow: rm?.robots ? !rm.robots.includes('nofollow') : true,
+            googleBot: {
+                index: true,
+                follow: true,
+                'max-video-preview': -1,
+                'max-image-preview': 'large',
+                'max-snippet': -1,
+            },
+        },
+        openGraph: {
+            title: rm?.og_title || title,
+            description: rm?.og_description || description,
+            url: `${siteUrl}${path}`,
+            siteName: '4D Marketing & Design',
+            images: rm?.og_image ? [{ url: rm.og_image }] : [{ url: '/images/assets/4bf9d1cd2d37202c1683c052a2acce3e.png' }],
+            locale: 'de_DE',
+            type: 'website',
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: title,
+            description: description,
+            images: rm?.og_image ? [rm.og_image] : ['/images/assets/4bf9d1cd2d37202c1683c052a2acce3e.png'],
+        },
+        other: {
+            'format-detection': 'telephone=no',
+        },
+    };
 }

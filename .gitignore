@@ -50,6 +50,7 @@ next-env.d.ts
 
 # WordPress theme (managed separately)
 /4d4dish-wp-theme/
+/4d4dich-wp-theme/
 
 # WP config reference
 WP_CONFIG_CONSTANTS.js

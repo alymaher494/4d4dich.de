@@ -1,8 +1,9 @@
-import { getPageBySlug } from "@/lib/wordpress";
+import { getPageBySlug, constructMetadata } from "@/lib/wordpress";
 import Hero from "./_components/Hero";
 import Intro from "./_components/Intro";
 import WhyUs from "./_components/WhyUs";
 import { grafikDesignContent } from "@/data/website-text";
+import Pricing from "@/components/sections/Pricing";
 import GrafikDesignContactForm from "@/components/forms/GrafikDesignContactForm";
 import { Section } from "@/components/layout/Section";
 import { Container } from "@/components/layout/Container";
@@ -10,10 +11,12 @@ import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
     const pageData = await getPageBySlug('service-grafik-design');
-    return {
-        title: pageData?.acf?.seo_title || pageData?.title?.rendered || "Grafik Design & Branding",
-        description: pageData?.acf?.seo_description || "Brand Identities و Grafik-Design, das begeistert.",
-    };
+    return constructMetadata(
+        pageData,
+        "Grafik Design & Branding Rodgau | 4D FÜR DICH",
+        "Kreative Grafik-Designs, Logo-Entwicklung und Branding-Identitäten, die Ihre Marke zum Strahlen bringen.",
+        "/grafik-design"
+    );
 }
 
 export default async function GrafikDesignPage() {
@@ -23,6 +26,10 @@ export default async function GrafikDesignPage() {
         <main className="bg-white min-h-screen overflow-x-hidden">
             <Hero initialData={pageData} />
             <Intro />
+            <Pricing
+                items={pageData?.acf?.price_list}
+                title={pageData?.acf?.pricing_title}
+            />
             <WhyUs />
 
             {/* Custom CTA Text */}

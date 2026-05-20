@@ -7,6 +7,7 @@ import { Menu, X, MessageCircle, ChevronDown, Layers, Users, Printer, Palette, M
 import { cn } from "@/lib/utils";
 import { siteInfo } from "@/data/website-text";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import BriefingModal from "@/components/modals/BriefingModal";
 
 const navLinks = [
@@ -28,12 +29,18 @@ const navLinks = [
     { name: "Kontakt", href: "/kontakt", icon: Mail },
 ];
 
-export default function Header() {
+export default function Header({ dynamicSettings }: { dynamicSettings?: any }) {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isBriefingOpen, setIsBriefingOpen] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
     const pathname = usePathname();
+
+    const acf = dynamicSettings?.acf || dynamicSettings || {};
+    const whatsappNumber = acf.global_whatsapp || siteInfo.social.whatsapp;
+    const cleanNumber = whatsappNumber.replace(/[\s\+]/g, '');
+
+
 
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -54,9 +61,12 @@ export default function Header() {
                 <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
                     {/* Logo */}
                     <Link href="/" className="flex items-center transition-transform hover:scale-105 active:scale-95 shrink-0">
-                        <img
+                        <Image
                             src={siteInfo.logo}
                             alt={siteInfo.name}
+                            width={120}
+                            height={40}
+                            priority
                             className={cn(
                                 "h-10 w-auto object-contain transition-all",
                                 isScrolled ? "h-10" : "h-12"
@@ -129,7 +139,7 @@ export default function Header() {
                             Projekt starten
                         </button>
                         <Link
-                            href={`https://wa.me/${siteInfo.social.whatsapp}`}
+                            href={`https://wa.me/${cleanNumber}`}
                             className={cn(
                                 "flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-black transition-all",
                                 "bg-primary text-white hover:bg-primary-dark shadow-lg shadow-primary/20"
@@ -171,9 +181,11 @@ export default function Header() {
                                 "flex items-center justify-between px-6 border-b border-slate-50 transition-all",
                                 isScrolled ? "py-4" : "py-8"
                             )}>
-                                <img
-                                    src="/images/assets/4bf9d1cd2d37202c1683c052a2acce3e.png"
+                                <Image
+                                    src={siteInfo.logo}
                                     alt="4D"
+                                    width={120}
+                                    height={48}
                                     className={cn(
                                         "w-auto object-contain transition-all",
                                         isScrolled ? "h-10" : "h-12"
@@ -229,7 +241,7 @@ export default function Header() {
                                         Projekt starten
                                     </button>
                                     <Link
-                                        href={`https://wa.me/${siteInfo.social.whatsapp}`}
+                                        href={`https://wa.me/${cleanNumber}`}
                                         className="w-full bg-[#25D366] text-white py-4 rounded-xl text-center font-black flex items-center justify-center gap-3 shadow-lg shadow-green-500/20"
                                     >
                                         <MessageCircle className="w-5 h-5" />

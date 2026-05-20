@@ -3,34 +3,47 @@
 import { X } from "lucide-react";
 import LogoIcon from "@/components/ui/LogoIcon";
 
-export default function AboutDifference() {
+interface DifferenceProps {
+    acf?: any;
+}
+
+export default function AboutDifference({ acf }: DifferenceProps) {
+    const othersTitle = acf?.diff_others_title || "Andere Agenturen";
+    const oursTitle = acf?.diff_ours_title || "4D Für Dich";
+    const sectionTitle = acf?.diff_title || "Der 4D Unterschied";
+    const othersList = acf?.others_list || [
+        { text: '"Full-Service" durch billiges Outsourcing' },
+        { text: 'Lange Vertragsbindungen ohne Flexibilität' },
+        { text: 'Intransparente Preisgestaltung' }
+    ];
+
+    const oursList = acf?.ours_list || [
+        { text: 'Echtes Experten-Netzwerk & In-House Qualität' },
+        { text: 'Maximale Flexibilität & Skalierbarkeit' },
+        { text: 'Transparente Preise & Persönliche Beratung' }
+    ];
+
     return (
         <section className="py-24 px-6 md:px-12 relative overflow-hidden">
             <div className="max-w-7xl mx-auto relative z-10">
                 <div className="text-center mb-16">
                     <span className="text-primary font-bold uppercase tracking-wider text-sm">Warum 4D?</span>
-                    <h2 className="text-4xl md:text-5xl font-black text-slate-900 mt-4">Der 4D Unterschied</h2>
+                    <h2 className="text-4xl md:text-5xl font-black text-slate-900 mt-4">{sectionTitle}</h2>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-12">
                     {/* Others */}
                     <div className="bg-slate-50 p-10 rounded-3xl opacity-70 hover:opacity-100 transition-opacity">
                         <h3 className="text-2xl font-bold text-slate-400 mb-8 flex items-center gap-3">
-                            <X className="w-6 h-6" /> Andere Agenturen
+                            <X className="w-6 h-6" /> {othersTitle}
                         </h3>
                         <ul className="space-y-6">
-                            <li className="flex gap-4 text-slate-500">
-                                <X className="w-6 h-6 shrink-0 text-red-300" />
-                                <span>"Full-Service" durch billiges Outsourcing</span>
-                            </li>
-                            <li className="flex gap-4 text-slate-500">
-                                <X className="w-6 h-6 shrink-0 text-red-300" />
-                                <span>Lange Vertragsbindungen ohne Flexibilität</span>
-                            </li>
-                            <li className="flex gap-4 text-slate-500">
-                                <X className="w-6 h-6 shrink-0 text-red-300" />
-                                <span>Intransparente Preisgestaltung</span>
-                            </li>
+                            {othersList.map((item: any, i: number) => (
+                                <li key={i} className="flex gap-4 text-slate-500">
+                                    <X className="w-6 h-6 shrink-0 text-red-300" />
+                                    <span>{item.text}</span>
+                                </li>
+                            ))}
                         </ul>
                     </div>
 
@@ -39,27 +52,17 @@ export default function AboutDifference() {
                         <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-bl-full -mr-16 -mt-16 transition-transform group-hover:scale-150" />
 
                         <h3 className="text-2xl font-bold text-slate-900 mb-8 flex items-center gap-3 text-primary">
-                            <div className="w-6 h-6"><LogoIcon /></div> 4D Für Dich
+                            <div className="w-6 h-6"><LogoIcon /></div> {oursTitle}
                         </h3>
                         <ul className="space-y-6">
-                            <li className="flex gap-4 text-slate-700 font-medium">
-                                <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center shrink-0 p-1 shadow-sm">
-                                    <LogoIcon />
-                                </div>
-                                <span>Echtes Experten-Netzwerk & In-House Qualität</span>
-                            </li>
-                            <li className="flex gap-4 text-slate-700 font-medium">
-                                <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center shrink-0 p-1 shadow-sm">
-                                    <LogoIcon />
-                                </div>
-                                <span>Maximale Flexibilität & Skalierbarkeit</span>
-                            </li>
-                            <li className="flex gap-4 text-slate-700 font-medium">
-                                <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center shrink-0 p-1 shadow-sm">
-                                    <LogoIcon />
-                                </div>
-                                <span>Transparente Preise & Persönliche Beratung</span>
-                            </li>
+                            {oursList.map((item: any, i: number) => (
+                                <li key={i} className="flex gap-4 text-slate-700 font-medium">
+                                    <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center shrink-0 p-1 shadow-sm">
+                                        <LogoIcon />
+                                    </div>
+                                    <span>{item.text}</span>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </div>

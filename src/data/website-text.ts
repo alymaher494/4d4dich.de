@@ -10,7 +10,7 @@ export const siteInfo = {
         whatsapp: "+4915141374672",
         facebook: "https://www.facebook.com/share/18VLYAeXW8/"
     },
-    logo: "/images/assets/4bf9d1cd2d37202c1683c052a2acce3e.png"
+    logo: "/images/assets/4bf9d1cd2d37202c1683c052a2acce3e-transparent.png"
 };
 
 export const homeContent = {
@@ -18,22 +18,26 @@ export const homeContent = {
         {
             title: "Effektive Marketinglösungen",
             description: "Maßgeschneiderte digitale Marketingstrategien zur Steigerung der Markenbekanntheit und Online-Präsenz.",
-            translation_ar: "حلول تسويق فعّالة - استراتيجيات تسويق رقمي مُفصَّلة لزيادة الوعي بالعلامة التجارية"
+            translation_ar: "حلول تسويق فعّالة - استراتيجيات تسويق رقمي مُفصَّلة لزيادة الوعي بالعلامة التجارية",
+            image: "/images/assets/3909e693b331f215e498ceea8bc65324.jpg"
         },
         {
             title: "Drucklösungen für Ihr Unternehmen",
             description: "von der Idee bis zum fertigen Produkt- wir gestalten und drucken für Sie . ob unternehmensbrochüren, Visitenkarten, oder Plakate - überzeugen Sie mit Qualität und Still",
-            translation_ar: "حلول طباعة لشركتك - من الفكرة حتى المنتج النهائي"
+            translation_ar: "حلول طباعة لشركتك - من الفكرة حتى المنتج النهائي",
+            image: "/images/assets/8a91e6a6866fef96cd87ebc74dee8414.jpg"
         },
         {
             title: "Umfassende Dienstleistungen",
             description: "Wir bieten alle kreativen Lösungen unter einem Dach von Design über Druck bis hin zum digitalen Marketing.",
-            translation_ar: "خدمات شاملة - جميع الحلول الإبداعية تحت سقف واحد"
+            translation_ar: "خدمات شاملة - جميع الحلول الإبداعية تحت سقف واحد",
+            image: "/images/assets/266d698c07a5ec9ba33fda483d67f939.jpg"
         },
         {
             title: "Einzigartige kreative Designs",
             description: "Unser Team professioneller Designer erstellt einzigartige Designs, die Ihre Marke perfekt widerspiegeln.",
-            translation_ar: "تصاميم إبداعية فريدة - فريقنا يقدّم تصاميم تعكس هويّة علامتك"
+            translation_ar: "تصاميم إبداعية فريدة - فريقنا يقدّم تصاميم تعكس هويّة علامتك",
+            image: "/images/assets/ceb5d00e9ae441e330a7214178d83f97.jpg"
         }
     ],
     services_cards: [
@@ -76,23 +80,23 @@ export const homeContent = {
     },
     sectors: [
         {
-            name: "Praxis",
-            description: "Steigern Sie Ihre Sichtbarkeit und Patientenbindung!",
+            name: "Healthcare",
+            description: "Enhance your visibility and patient loyalty!",
             translation_ar: "عيادات طبية - زد من ظهور عيادتك وولاء المرضى"
         },
         {
-            name: "Gastronomi",
-            description: "Mehr Marketing mehr Gäste & mehr Erfolg für Ihr Restaurant!",
+            name: "Gastronomy",
+            description: "More marketing, more guests & more success for your restaurant!",
             translation_ar: "مطاعم - زد التسويق والزبائن ونجاح مطعمك"
         },
         {
-            name: "B2C Unternehmen",
-            description: "Steigere die Bekanntheit und gewinne neue kunden",
+            name: "B2C Business",
+            description: "Increase brand awareness and gain new customers.",
             translation_ar: "شركات B2C - ارفع الوعي واجذب عملاء جدد"
         },
         {
-            name: "B2B Unternehmen",
-            description: "Hier finden Sie Marketing, das Geschäftsinhaber erreicht.",
+            name: "B2B Business",
+            description: "Marketing solutions that directly reach business owners.",
             translation_ar: "شركات B2B - تسويق يصل لأصحاب الأعمال"
         }
     ],
@@ -123,6 +127,12 @@ export const homeContent = {
                 name: "Hamed Marouf",
                 translation_ar: "مصمم جرافيك",
                 image: "/images/assets/0b111045ad4efb85125feef5e1d3e17f.jpg"
+            },
+            {
+                role: "Web Developer",
+                name: "Aly Maher",
+                translation_ar: "مطور ويب",
+                image: "/images/assets/0669cd1a95abf8b46d8b3455b41f42b1.webp"
             }
         ]
     },

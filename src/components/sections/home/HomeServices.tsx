@@ -35,7 +35,12 @@ const services = [
     },
 ];
 
-export default function HomeServices() {
+interface HomeServicesProps {
+    title?: string;
+    description?: string;
+}
+
+export default function HomeServices({ title, description }: HomeServicesProps) {
     return (
         <section id="services" className="py-24 bg-slate-50 relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -57,8 +62,7 @@ export default function HomeServices() {
                             viewport={{ once: true }}
                             className="text-4xl md:text-7xl font-black text-slate-900 leading-none"
                         >
-                            Unsere <br />
-                            <span className="text-secondary">Meisterleistungen.</span>
+                            {title || <>Unsere <br /> <span className="text-secondary">Meisterleistungen.</span></>}
                         </motion.h2>
                     </div>
                     <motion.p
@@ -68,7 +72,7 @@ export default function HomeServices() {
                         transition={{ delay: 0.3 }}
                         className="text-slate-500 max-w-sm text-lg leading-relaxed font-light"
                     >
-                        Wir kombinieren traditionelle Qualität mit modernster Technologie für Ihren Erfolg im digitalen Zeitalter.
+                        {description || "Wir kombinieren traditionelle Qualität mit modernster Technologie für Ihren Erfolg im digitalen Zeitalter."}
                     </motion.p>
                 </div>
 

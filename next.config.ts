@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [
       {
         protocol: "https",
@@ -17,23 +19,54 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "cms.4d4dich.de", // WordPress subdomain
+        hostname: "cms.4d4dich.de",
+      },
+      {
+        protocol: "https",
+        hostname: "4d4diche.de",
+      },
+      {
+        protocol: "https",
+        hostname: "cms.4d4diche.de",
+      },
+      {
+        protocol: "http",
+        hostname: "cms.4d4dich.de",
+      },
+      {
+        protocol: "http",
+        hostname: "4d4dich.de",
       },
     ],
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   eslint: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
-  typescript: {
-    // !! WARN !!
-    // Dangerously allow production builds to successfully complete even if
-    // your project has type errors.
-    // !! WARN !!
-    ignoreBuildErrors: true,
+  async headers() {
+    return [
+      {
+        source: "/images/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/fonts/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+    ];
   },
 };
 
 export default nextConfig;
-

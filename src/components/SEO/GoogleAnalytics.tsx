@@ -1,0 +1,27 @@
+"use client";
+
+import Script from "next/script";
+
+export default function GoogleAnalytics({ gaId }: { gaId: string }) {
+    if (!gaId) return null;
+
+    return (
+        <>
+            <Script
+                strategy="lazyOnload"
+                src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+            />
+            <Script id="google-analytics" strategy="lazyOnload">
+                {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', '${gaId}', {
+                    page_path: window.location.pathname,
+                });
+                `}
+            </Script>
+        </>
+    );
+}

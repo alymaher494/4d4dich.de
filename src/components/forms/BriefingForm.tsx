@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronRight, ChevronLeft, Send, Sparkles, Rocket, Globe, Palette, Cog, Calendar } from "lucide-react";
 import LogoIcon from "@/components/ui/LogoIcon";
 import { cn } from "@/lib/utils";
+import { sendContactForm } from "@/lib/wordpress";
 
 const steps = [
     {
@@ -110,9 +111,38 @@ export default function BriefingForm() {
         }
     };
 
-    const handleSubmit = () => {
-        console.log("Briefing Data:", formData);
-        setIsSubmitted(true);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const handleSubmit = async () => {
+        setIsSubmitting(true);
+
+        // Prepare data for API
+        const formattedData = {
+            name: formData.companyName || "Anonym",
+            email: formData.contactEmail || "Keine Email",
+            message: `Briefing Details:\n` +
+                `Firma: ${formData.companyName}\n` +
+                `Tätigkeit: ${formData.businessActivity}\n` +
+                `Website: ${formData.existingWebsite}\n` +
+                `Ziel: ${formData.websiteGoal}\n` +
+                `Seiten: ${formData.pageCount}\n` +
+                `Status: ${formData.contentStatus}\n` +
+                `Funktionen: ${(formData.features || []).join(', ')}\n` +
+                `Design: ${formData.hasLogo}\n` +
+                `Beispiele: ${formData.examples}\n` +
+                `Hosting: ${formData.hostingStatus}\n` +
+                `Timeline: ${formData.timeline}`,
+            subject: "Neues Website-Briefing"
+        };
+
+        const success = await sendContactForm(formattedData);
+
+        setIsSubmitting(false);
+        if (success) {
+            setIsSubmitted(true);
+        } else {
+            alert("Fehler beim Senden. Bitte versuchen Sie es erneut.");
+        }
     };
 
     if (isSubmitted) {
@@ -271,10 +301,17 @@ export default function BriefingForm() {
 
                 <button
                     onClick={nextStep}
-                    className="w-full md:w-auto btn-primary py-5 px-12 flex items-center justify-center gap-3 group text-xl"
+                    disabled={isSubmitting}
+                    className="w-full md:w-auto btn-primary py-5 px-12 flex items-center justify-center gap-3 group text-xl disabled:opacity-50"
                 >
-                    {currentStep === steps.length - 1 ? "Angebot anfordern" : "Nächster Schritt"}
-                    {currentStep === steps.length - 1 ? <Send className="w-5 h-5" /> : <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />}
+                    {isSubmitting ? (
+                        <div className="w-5 h-5 rounded-full border-2 border-white/30 border-t-white animate-spin" />
+                    ) : (
+                        <>
+                            {currentStep === steps.length - 1 ? "Angebot anfordern" : "Nächster Schritt"}
+                            {currentStep === steps.length - 1 ? <Send className="w-5 h-5" /> : <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />}
+                        </>
+                    )}
                 </button>
             </div>
         </div>

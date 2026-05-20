@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowLeft, Calendar, User, Layers, TrendingUp } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Calendar, User, Layers, TrendingUp } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import ContactCTA from "@/components/sections/ContactCTA";
@@ -73,15 +73,30 @@ export default function ProjectClient({ project }: { project: any }) {
             <section className="py-24 px-6 md:px-12">
                 <div className="max-w-7xl mx-auto space-y-24">
 
+                    {/* Project Overview */}
+                    {project.description && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="max-w-4xl"
+                        >
+                            <h2 className="text-3xl font-black text-slate-900 mb-6">Projektübersicht</h2>
+                            <div className="text-xl text-slate-600 leading-relaxed prose prose-slate max-w-none">
+                                <div dangerouslySetInnerHTML={{ __html: String(project.description).replace(/\n/g, '<br />') }} />
+                            </div>
+                        </motion.div>
+                    )}
+
                     {/* Main Image */}
                     {project.images && project.images.length > 0 && (
                         <motion.div
                             initial={{ opacity: 0, y: 40 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="rounded-[3rem] overflow-hidden shadow-2xl relative aspect-video"
+                            className="rounded-[3rem] overflow-hidden shadow-2xl relative bg-slate-50 min-h-[400px]"
                         >
-                            <img src={project.images[0]} alt={project.title} className="w-full h-full object-cover" />
+                            <img src={project.images[0]} alt={project.title} className="w-full h-auto max-h-[800px] object-contain mx-auto" />
                         </motion.div>
                     )}
 
@@ -95,9 +110,9 @@ export default function ProjectClient({ project }: { project: any }) {
                                 className="bg-slate-50 p-10 rounded-[2.5rem] space-y-6"
                             >
                                 <h3 className="text-2xl font-bold text-slate-900">Die Herausforderung</h3>
-                                <p className="text-slate-600 leading-relaxed text-lg whitespace-pre-line">
-                                    {project.challenge}
-                                </p>
+                                <div className="text-slate-600 leading-relaxed text-lg prose prose-slate max-w-none">
+                                    <div dangerouslySetInnerHTML={{ __html: String(project.challenge).replace(/\n/g, '<br />') }} />
+                                </div>
                             </motion.div>
                         )}
                         {project.solution && (
@@ -110,8 +125,8 @@ export default function ProjectClient({ project }: { project: any }) {
                             >
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px]" />
                                 <h3 className="text-2xl font-bold text-white relative z-10">Unsere Lösung</h3>
-                                <div className="text-slate-300 leading-relaxed text-lg relative z-10 whitespace-pre-line prose prose-invert prose-p:text-slate-300">
-                                    <div dangerouslySetInnerHTML={{ __html: project.solution }} />
+                                <div className="text-slate-200 leading-relaxed text-lg relative z-10 prose prose-invert prose-p:text-slate-300 max-w-none">
+                                    <div dangerouslySetInnerHTML={{ __html: String(project.solution).replace(/\n/g, '<br />') }} />
                                 </div>
                             </motion.div>
                         )}
@@ -150,14 +165,44 @@ export default function ProjectClient({ project }: { project: any }) {
                                     initial={{ opacity: 0, scale: 0.95 }}
                                     whileInView={{ opacity: 1, scale: 1 }}
                                     viewport={{ once: true }}
-                                    className="rounded-[2.5rem] overflow-hidden shadow-lg h-96 relative group"
+                                    className="rounded-[2.5rem] overflow-hidden shadow-lg min-h-[300px] h-auto relative group bg-slate-50"
                                 >
-                                    <img src={img} alt={`Gallery ${idx}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                                    <img src={img} alt={`Gallery ${idx}`} className="w-full h-auto object-contain transition-transform duration-700 mx-auto" />
                                 </motion.div>
                             ))}
                         </div>
                     )}
 
+                    {/* Project Navigation */}
+                    <div className="pt-24 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-12">
+                        {project.navigation?.prev && (
+                            <Link
+                                href={`/portfolio/${project.navigation.prev.slug}`}
+                                className="group flex flex-col gap-2 transition-all p-8 rounded-3xl bg-slate-50 border border-transparent hover:border-primary/20 w-full md:w-auto"
+                            >
+                                <span className="text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2">
+                                    <ArrowLeft className="w-4 h-4" /> Vorheriges Projekt
+                                </span>
+                                <span className="text-xl font-black text-slate-900 group-hover:text-primary transition-colors">
+                                    {project.navigation.prev.title}
+                                </span>
+                            </Link>
+                        )}
+                        <div className="hidden md:block w-px h-12 bg-slate-200" />
+                        {project.navigation?.next && (
+                            <Link
+                                href={`/portfolio/${project.navigation.next.slug}`}
+                                className="group flex flex-col gap-2 text-right transition-all p-8 rounded-3xl bg-slate-50 border border-transparent hover:border-primary/20 w-full md:w-auto"
+                            >
+                                <span className="text-xs font-bold text-slate-400 uppercase tracking-widest flex items-center justify-end gap-2 text-slate-400">
+                                    Nächstes Projekt <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                                </span>
+                                <span className="text-xl font-black text-slate-900 group-hover:text-primary transition-colors">
+                                    {project.navigation.next.title}
+                                </span>
+                            </Link>
+                        )}
+                    </div>
                 </div>
             </section>
 

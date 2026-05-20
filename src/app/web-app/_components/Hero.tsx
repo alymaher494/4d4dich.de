@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Code2, Terminal, Cpu, Globe, Smartphone } from "lucide-react";
+import { ArrowRight, Code2, Smartphone } from "lucide-react";
 import Link from "next/link";
 
 import { WPPage } from "@/lib/wordpress";

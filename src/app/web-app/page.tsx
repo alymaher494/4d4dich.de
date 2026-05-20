@@ -1,8 +1,9 @@
-import { getPageBySlug } from "@/lib/wordpress";
+import { getPageBySlug, constructMetadata } from "@/lib/wordpress";
 import Hero from "./_components/Hero";
 import Features from "./_components/Features";
 import Ecommerce from "./_components/Ecommerce";
 import Process from "./_components/Process";
+import Pricing from "@/components/sections/Pricing";
 import BriefingForm from "@/components/forms/BriefingForm";
 import { Section } from "@/components/layout/Section";
 import { Container } from "@/components/layout/Container";
@@ -10,10 +11,12 @@ import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
     const pageData = await getPageBySlug('service-web-app');
-    return {
-        title: pageData?.acf?.seo_title || pageData?.title?.rendered || "Web-App Entwicklung",
-        description: pageData?.acf?.seo_description || "Individuelle Web-Apps und Softwarelösungen für Ihr Business.",
-    };
+    return constructMetadata(
+        pageData,
+        "Web & App Entwicklung | Individuelle Software & mobile Apps",
+        "Individuelle Web-Apps, Business Software und mobile Applikationen für modernste Anforderungen.",
+        "/web-app"
+    );
 }
 
 export default async function WebAppPage() {
@@ -41,6 +44,10 @@ export default async function WebAppPage() {
         <main className="min-h-screen bg-white overflow-x-hidden">
             <Hero initialData={pageData} />
             <Features />
+            <Pricing
+                items={pageData?.acf?.price_list}
+                title={pageData?.acf?.pricing_title}
+            />
             <Ecommerce />
 
             <Process steps={processSteps} title="Der Weg zur App" subtitle="Vom Konzept zum fertigen Produkt in 3 Schritten." />

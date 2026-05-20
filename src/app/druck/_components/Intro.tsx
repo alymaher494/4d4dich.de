@@ -1,17 +1,22 @@
-"use client";
-
 import { druckContent } from "@/data/website-text";
 import { ShoppingBag } from "lucide-react";
 import LogoIcon from "@/components/ui/LogoIcon";
 
-export default function DruckIntro() {
+interface IntroProps {
+    acf?: any;
+}
+
+export default function DruckIntro({ acf }: IntroProps) {
+    const title = acf?.intro_title || druckContent.what_modern_print.title;
+    const description = acf?.intro_description || druckContent.what_modern_print.description;
+
     return (
         <section className="py-24 bg-white">
             <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                 <div className="bg-slate-50 p-12 rounded-[3rem] border border-slate-100 relative group overflow-hidden">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-colors" />
                     <ShoppingBag className="w-20 h-20 text-slate-900 mb-6 relative z-10" />
-                    <h3 className="text-3xl font-black text-slate-900 mb-4 relative z-10">{druckContent.what_modern_print.title}</h3>
+                    <h3 className="text-3xl font-black text-slate-900 mb-4 relative z-10">{title}</h3>
                     <p className="text-lg text-slate-600 leading-relaxed relative z-10">
                         Wir drucken Ihre Visionen auf höchstem Niveau. Von der Visitenkarte bis zum Großformatbanner.
                     </p>
@@ -26,7 +31,7 @@ export default function DruckIntro() {
                         Nicht nur Tinte <br /> <span className="text-secondary">auf Papier.</span>
                     </h2>
                     <p className="text-lg text-slate-600 leading-relaxed">
-                        {druckContent.what_modern_print.description}
+                        {description}
                     </p>
                     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {druckContent.what_modern_print.expectations.map((item, idx) => (

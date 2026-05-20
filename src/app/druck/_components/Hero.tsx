@@ -33,7 +33,7 @@ export default function DruckHero({ initialData }: HeroProps) {
                         className="inline-flex items-center text-primary gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-cyan-400 text-xs font-bold uppercase tracking-wider"
                     >
                         <Printer className="w-4 h-4 text-primary" />
-                        Premium Print Services
+                        {initialData?.acf?.hero_badge || "Premium Print Services"}
                     </motion.div>
 
                     <motion.h1

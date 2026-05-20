@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { homeContent } from "@/data/website-text";
 import { User2 } from "lucide-react";
+import Image from "next/image";
 
 import { WPPost, getFeaturedImageUrl } from "@/lib/wordpress";
 
@@ -36,7 +37,7 @@ export default function TeamSection({ initialTeam = [] }: HomeTeamProps) {
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-12 pt-4 px-4 md:px-12 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden w-full max-w-[100vw]">
                 {members.map((member, index) => (
                     <motion.div
                         key={member.name}
@@ -44,13 +45,15 @@ export default function TeamSection({ initialTeam = [] }: HomeTeamProps) {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: index * 0.1 }}
-                        className="group"
+                        className="group flex-none w-[280px] md:w-[300px] snap-center"
                     >
                         <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-slate-100 mb-6 border border-slate-100 shadow-sm transition-all duration-500 group-hover:shadow-xl group-hover:shadow-primary/10">
-                            <img
+                            <Image
                                 src={member.image}
                                 alt={member.name}
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                fill
+                                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                sizes="(max-width: 768px) 280px, 300px"
                                 loading="lazy"
                             />
 

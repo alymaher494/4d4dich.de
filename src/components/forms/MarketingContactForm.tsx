@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Send } from "lucide-react";
 import LogoIcon from "@/components/ui/LogoIcon";
+import { sendContactForm } from "@/lib/wordpress";
 
 interface MarketingContactFormProps {
     serviceName: string;
@@ -10,12 +11,37 @@ interface MarketingContactFormProps {
 
 export default function MarketingContactForm({ serviceName }: MarketingContactFormProps) {
     const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        website: "",
+        budget: "",
+        message: ""
+    });
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setStatus("submitting");
-        // Simulate API call
-        setTimeout(() => setStatus("success"), 2000);
+
+        const success = await sendContactForm({
+            name: formData.name,
+            email: formData.email,
+            message: `Marketing Anfrage für: ${serviceName}\nWebsite: ${formData.website}\nBudget: ${formData.budget}\nZiele: ${formData.message}`,
+            subject: `Marketing Anfrage: ${serviceName}`,
+            service: serviceName
+        });
+
+        if (success) {
+            setStatus("success");
+        } else {
+            setStatus("error");
+            setTimeout(() => setStatus("idle"), 3000);
+        }
     };
 
     if (status === "success") {
@@ -32,6 +58,11 @@ export default function MarketingContactForm({ serviceName }: MarketingContactFo
 
     return (
         <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 md:p-10 rounded-[2.5rem] shadow-xl border border-slate-100">
+            {status === "error" && (
+                <div className="p-4 bg-red-50 border border-red-200 text-red-600 rounded-2xl text-center font-bold">
+                    Fehler beim Senden. Bitte versuchen Sie es erneut.
+                </div>
+            )}
             <div className="space-y-2 text-center md:text-left">
                 <h3 className="text-3xl font-black text-slate-900">Strategie anfordern</h3>
                 <p className="text-slate-500 font-medium">für {serviceName}</p>
@@ -40,22 +71,22 @@ export default function MarketingContactForm({ serviceName }: MarketingContactFo
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                     <label className="text-sm font-bold text-slate-900 ml-1">Name</label>
-                    <input required type="text" className="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium" placeholder="Max Mustermann" />
+                    <input required name="name" value={formData.name} onChange={handleInputChange} type="text" className="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium" placeholder="Max Mustermann" />
                 </div>
                 <div className="space-y-2">
                     <label className="text-sm font-bold text-slate-900 ml-1">Email</label>
-                    <input required type="email" className="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium" placeholder="max@beispiel.de" />
+                    <input required name="email" value={formData.email} onChange={handleInputChange} type="email" className="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium" placeholder="max@beispiel.de" />
                 </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                     <label className="text-sm font-bold text-slate-900 ml-1">Webseite (Optional)</label>
-                    <input type="url" className="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium" placeholder="https://ihre-website.de" />
+                    <input name="website" value={formData.website} onChange={handleInputChange} type="url" className="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium" placeholder="https://ihre-website.de" />
                 </div>
                 <div className="space-y-2">
                     <label className="text-sm font-bold text-slate-900 ml-1">Budget (Monatlich)</label>
-                    <select className="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium appearance-none">
+                    <select name="budget" value={formData.budget} onChange={handleInputChange} className="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium appearance-none">
                         <option value="">Bitte wählen...</option>
                         <option value="small">unter 1.000€</option>
                         <option value="medium">1.000€ - 5.000€</option>
@@ -67,7 +98,7 @@ export default function MarketingContactForm({ serviceName }: MarketingContactFo
 
             <div className="space-y-2">
                 <label className="text-sm font-bold text-slate-900 ml-1">Ziele & Herausforderungen</label>
-                <textarea required rows={4} className="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium resize-none" placeholder="Was möchten Sie erreichen? (z.B. Mehr Leads, Bekanntheit steigern, Umsatz erhöhen...)" />
+                <textarea required name="message" value={formData.message} onChange={handleInputChange} rows={4} className="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium resize-none" placeholder="Was möchten Sie erreichen? (z.B. Mehr Leads, Bekanntheit steigern, Umsatz erhöhen...)" />
             </div>
 
             <button disabled={status === "submitting"} type="submit" className="w-full btn-primary py-5 rounded-2xl text-lg flex items-center justify-center gap-3 group shadow-xl shadow-primary/20 hover:shadow-primary/30 active:scale-[0.98]">

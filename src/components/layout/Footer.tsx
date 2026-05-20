@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Instagram, Mail, Phone, ArrowUpRight, Facebook } from "lucide-react";
+import Image from "next/image";
 import { siteInfo } from "@/data/website-text";
 
 interface FooterProps {
@@ -7,14 +8,17 @@ interface FooterProps {
 }
 
 export default function Footer({ dynamicSettings }: FooterProps) {
+    // Determine the acf object if it exists
+    const acf = dynamicSettings?.acf || dynamicSettings || {};
+
     // Merge static siteInfo with dynamic settings if available
-    const email = dynamicSettings?.email || siteInfo.email;
-    const phone = dynamicSettings?.phone || siteInfo.phone;
-    const address = dynamicSettings?.address || siteInfo.address;
-    const location = dynamicSettings?.location || siteInfo.location;
-    const instagram = dynamicSettings?.instagram || siteInfo.social.instagram;
-    const facebook = dynamicSettings?.facebook || siteInfo.social.facebook || "https://www.facebook.com/share/18VLYAeXW8/";
-    const description = dynamicSettings?.footer_description || "Wir transformieren Visionen in digitale Realität. Kreativ, datengetrieben und immer einen Schritt voraus.";
+    const email = acf.global_email || acf.email || siteInfo.email;
+    const phone = acf.global_phone || acf.phone || siteInfo.phone;
+    const address = acf.global_address || acf.address || siteInfo.address;
+    const location = acf.location || siteInfo.location;
+    const instagram = acf.global_instagram || acf.instagram || siteInfo.social.instagram;
+    const facebook = acf.global_facebook || acf.facebook || siteInfo.social.facebook || "https://www.facebook.com/share/18VLYAeXW8/";
+    const description = acf.footer_description || "Wir transformieren Visionen in digitale Realität. Kreativ, datengetrieben und immer einen Schritt voraus.";
 
     return (
         <footer className="bg-slate-950 text-white pt-32 pb-12 overflow-hidden relative">
@@ -27,10 +31,12 @@ export default function Footer({ dynamicSettings }: FooterProps) {
                     {/* Brand Section */}
                     <div className="lg:col-span-5 space-y-10">
                         <Link href="/" className="inline-block transform transition-transform hover:scale-105 active:scale-95">
-                            <img
-                                src={siteInfo.logo}
+                            <Image
+                                src="/images/assets/4bf9d1cd2d37202c1683c052a2acce3e-white.png"
                                 alt={siteInfo.name}
-                                className="h-14 w-auto brightness-0 invert"
+                                width={200}
+                                height={56}
+                                className="h-14 w-auto object-contain"
                             />
                         </Link>
                         <p className="text-xl text-slate-400 font-light leading-relaxed max-w-md">
@@ -41,6 +47,7 @@ export default function Footer({ dynamicSettings }: FooterProps) {
                                 href={instagram}
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                aria-label="Instagram besuchen"
                                 className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:text-primary hover:border-primary transition-all bg-white/5"
                             >
                                 <Instagram className="w-5 h-5" />
@@ -49,18 +56,21 @@ export default function Footer({ dynamicSettings }: FooterProps) {
                                 href={facebook}
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                aria-label="Facebook besuchen"
                                 className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:text-primary hover:border-primary transition-all bg-white/5"
                             >
                                 <Facebook className="w-5 h-5" />
                             </a>
                             <a
                                 href={`mailto:${email}`}
+                                aria-label="E-Mail senden"
                                 className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:text-primary hover:border-primary transition-all bg-white/5"
                             >
                                 <Mail className="w-5 h-5" />
                             </a>
                             <a
                                 href={`tel:${phone.replace(/\s/g, '')}`}
+                                aria-label="Anrufen"
                                 className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:text-primary hover:border-primary transition-all bg-white/5"
                             >
                                 <Phone className="w-5 h-5" />
@@ -71,7 +81,7 @@ export default function Footer({ dynamicSettings }: FooterProps) {
                     {/* Links Grid */}
                     <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-12">
                         <div className="space-y-8">
-                            <h4 className="text-xs font-black uppercase tracking-[0.3em] text-white/40">Leistungen</h4>
+                            <h3 className="text-xs font-black uppercase tracking-[0.3em] text-white/40">Leistungen</h3>
                             <ul className="space-y-4">
                                 {[
                                     { label: "Druck", href: "/druck" },
@@ -90,7 +100,7 @@ export default function Footer({ dynamicSettings }: FooterProps) {
                         </div>
 
                         <div className="space-y-8">
-                            <h4 className="text-xs font-black uppercase tracking-[0.3em] text-white/40">Agentur</h4>
+                            <h3 className="text-xs font-black uppercase tracking-[0.3em] text-white/40">Agentur</h3>
                             <ul className="space-y-4">
                                 {[
                                     { label: "Über uns", href: "/ueber-uns" },
@@ -109,14 +119,17 @@ export default function Footer({ dynamicSettings }: FooterProps) {
                         </div>
 
                         <div className="space-y-8 col-span-2 md:col-span-1">
-                            <h4 className="text-xs font-black uppercase tracking-[0.3em] text-white/40">Kontakt</h4>
+                            <h3 className="text-xs font-black uppercase tracking-[0.3em] text-white/40">Kontakt</h3>
                             <div className="space-y-6 text-slate-400">
                                 <p className="leading-relaxed hover:text-white transition-colors cursor-pointer">
                                     {address}<br />
                                     {location}
                                 </p>
                                 <p className="hover:text-primary transition-colors cursor-pointer text-white font-bold">
-                                    {phone}
+                                    <a href={`tel:${phone.replace(/\s/g, '')}`}>{phone}</a>
+                                </p>
+                                <p className="hover:text-primary transition-colors cursor-pointer text-white font-bold">
+                                    <a href="tel:06106666">06106 666</a>
                                 </p>
                             </div>
                         </div>
@@ -125,10 +138,10 @@ export default function Footer({ dynamicSettings }: FooterProps) {
 
                 {/* Bottom Bar */}
                 <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
-                    <p className="text-xs font-bold uppercase tracking-widest text-slate-600">
-                        © {new Date().getFullYear()} 4D FÜR DICH. <span className="text-slate-800">CRAFTED IN GERMANY.</span>
+                    <p className="text-xs font-bold uppercase tracking-widest text-slate-400">
+                        © {new Date().getFullYear()} 4D FÜR DICH. <span className="text-slate-500">CRAFTED IN GERMANY.</span>
                     </p>
-                    <div className="flex gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600">
+                    <div className="flex gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
                         <Link href="/impressum" className="hover:text-white transition-colors">Impressum</Link>
                         <Link href="/datenschutz" className="hover:text-white transition-colors">Datenschutz</Link>
                         <Link href="/agb" className="hover:text-white transition-colors">AGB</Link>

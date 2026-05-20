@@ -5,6 +5,8 @@ import { Send, UploadCloud, FileType, CheckCircle, X } from "lucide-react";
 import LogoIcon from "@/components/ui/LogoIcon";
 import { cn } from "@/lib/utils";
 
+import { sendContactForm } from "@/lib/wordpress";
+
 interface ServiceContactFormProps {
     serviceName: string;
 }
@@ -14,12 +16,40 @@ export default function DruckContactForm({ serviceName }: ServiceContactFormProp
     const [file, setFile] = useState<File | null>(null);
     const [isDragging, setIsDragging] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        message: ""
+    });
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setStatus("submitting");
-        // Simulate API call
-        setTimeout(() => setStatus("success"), 2000);
+
+        const success = await sendContactForm({
+            name: formData.name,
+            email: formData.email,
+            message: `Druck-Anfrage für: ${serviceName}\nTelefon: ${formData.phone}\nNachricht: ${formData.message}`,
+            subject: `Druck Anfrage: ${serviceName}`,
+            service: serviceName,
+            phone: formData.phone,
+            file: file // <--- Restored this
+        });
+
+        if (success) {
+            setStatus("success");
+            setFile(null);
+        } else {
+            setStatus("error");
+            // Auto revert status after 3 seconds
+            setTimeout(() => setStatus("idle"), 3000);
+        }
     };
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,17 +105,17 @@ export default function DruckContactForm({ serviceName }: ServiceContactFormProp
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                     <label className="text-sm font-bold text-slate-900 ml-1">Name</label>
-                    <input required type="text" className="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium" placeholder="Max Mustermann" />
+                    <input required name="name" value={formData.name} onChange={handleInputChange} type="text" className="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium" placeholder="Max Mustermann" />
                 </div>
                 <div className="space-y-2">
                     <label className="text-sm font-bold text-slate-900 ml-1">Email</label>
-                    <input required type="email" className="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium" placeholder="max@beispiel.de" />
+                    <input required name="email" value={formData.email} onChange={handleInputChange} type="email" className="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium" placeholder="max@beispiel.de" />
                 </div>
             </div>
 
             <div className="space-y-2">
                 <label className="text-sm font-bold text-slate-900 ml-1">Telefon (Optional)</label>
-                <input type="tel" className="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium" placeholder="+49 123 456789" />
+                <input name="phone" value={formData.phone} onChange={handleInputChange} type="tel" className="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium" placeholder="+49 123 456789" />
             </div>
 
             {/* File Upload Area */}
@@ -147,7 +177,7 @@ export default function DruckContactForm({ serviceName }: ServiceContactFormProp
 
             <div className="space-y-2">
                 <label className="text-sm font-bold text-slate-900 ml-1">Nachricht / Spezifikationen</label>
-                <textarea required rows={4} className="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium resize-none" placeholder={`Bitte geben Sie Details an wie:\n- Gewünschte Auflage\n- Papiersorte\n- Format\n- Weiterverarbeitung...`} />
+                <textarea required name="message" value={formData.message} onChange={handleInputChange} rows={4} className="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all font-medium resize-none" placeholder={`Bitte geben Sie Details an wie:\n- Gewünschte Auflage\n- Papiersorte\n- Format\n- Weiterverarbeitung...`} />
             </div>
 
             <button disabled={status === "submitting"} type="submit" className="w-full btn-primary py-5 rounded-2xl text-lg flex items-center justify-center gap-3 group shadow-xl shadow-primary/20 hover:shadow-primary/30 active:scale-[0.98]">

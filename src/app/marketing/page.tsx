@@ -1,19 +1,21 @@
-import { getPageBySlug } from "@/lib/wordpress";
+import { getPageBySlug, constructMetadata } from "@/lib/wordpress";
 import Hero from "./_components/Hero";
 import Features from "./_components/Features";
 import Strategy from "./_components/Strategy";
+import Pricing from "@/components/sections/Pricing";
 import MarketingContactForm from "@/components/forms/MarketingContactForm";
 import { Section } from "@/components/layout/Section";
 import { Container } from "@/components/layout/Container";
-
 import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
     const pageData = await getPageBySlug('service-marketing');
-    return {
-        title: pageData?.acf?.seo_title || pageData?.title?.rendered || "Digital Marketing",
-        description: pageData?.acf?.seo_description || "Professionelles Digital Marketing für Ihr Unternehmen.",
-    };
+    return constructMetadata(
+        pageData,
+        "Digital Marketing Agentur | Online Erfolg für Ihr Business",
+        "Professionelles Digital Marketing, SEO und Social Media Management in Rodgau und Frankfurt.",
+        "/marketing"
+    );
 }
 
 export default async function MarketingPage() {
@@ -23,6 +25,10 @@ export default async function MarketingPage() {
         <main className="bg-white min-h-screen overflow-x-hidden">
             <Hero initialData={pageData} />
             <Features />
+            <Pricing
+                items={pageData?.acf?.price_list}
+                title={pageData?.acf?.pricing_title}
+            />
             <Strategy />
 
             {/* Contact Form Section */}

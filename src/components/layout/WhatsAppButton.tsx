@@ -3,13 +3,22 @@
 import { MessageCircle } from "lucide-react";
 import { siteInfo } from "@/data/website-text";
 
-export default function WhatsAppButton() {
-    const whatsappLink = `https://wa.me/${siteInfo.social.whatsapp.replace(/\+/g, '')}`;
+interface WhatsAppButtonProps {
+    dynamicSettings?: any;
+}
+
+export default function WhatsAppButton({ dynamicSettings }: WhatsAppButtonProps) {
+    const acf = dynamicSettings?.acf || dynamicSettings || {};
+    const whatsappNumber = acf.global_whatsapp || siteInfo.social.whatsapp;
+
+    // Cleanup the number for WhatsApp link
+    const cleanNumber = whatsappNumber.replace(/[\s\+]/g, '');
+    const whatsappLink = `https://wa.me/${cleanNumber}`;
 
     return (
         <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3">
             <div className="bg-white text-slate-800 text-sm font-bold py-2 px-4 rounded-2xl rounded-br-none shadow-lg border border-slate-100 flex items-center gap-2">
-                Schreiben Sie uns
+                Jetzt starten
                 <span className="text-xl">👋</span>
             </div>
             <a

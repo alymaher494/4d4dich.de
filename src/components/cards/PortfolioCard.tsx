@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { getImageUrl } from "@/lib/wordpress";
 
 interface PortfolioCardProps {
     project: {
@@ -32,7 +33,7 @@ export default function PortfolioCard({ project, index = 0 }: PortfolioCardProps
                 <div className="bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all border border-slate-100 h-full flex flex-col">
                     <div className="relative h-72 overflow-hidden">
                         <Image
-                            src={project.image}
+                            src={getImageUrl(project.image)}
                             alt={project.title}
                             fill
                             className="object-cover group-hover:scale-110 transition-transform duration-700"

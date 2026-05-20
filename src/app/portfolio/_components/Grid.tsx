@@ -4,32 +4,56 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { portfolioContent } from "@/data/website-text";
 import PortfolioCard from "@/components/cards/PortfolioCard";
-import { WPPortfolio, getFeaturedImageUrl, stripHtml } from "@/lib/wordpress";
+import { WPPortfolio, WPCategory, getFeaturedImageUrl, getImageUrl, stripHtml, FALLBACK_IMAGE } from "@/lib/wordpress";
 
 interface PortfolioGridProps {
     initialProjects?: WPPortfolio[];
+    initialCategories?: WPCategory[];
 }
 
-export default function PortfolioGrid({ initialProjects = [] }: PortfolioGridProps) {
+export default function PortfolioGrid({ initialProjects = [], initialCategories = [] }: PortfolioGridProps) {
     const [activeCategory, setActiveCategory] = useState("all");
-    const { categories, projects: staticProjects } = portfolioContent;
+    const { categories: staticCategories, projects: staticProjects } = portfolioContent;
+
+    // Use dynamic categories if available, otherwise fallback to static
+    const categories = initialCategories.length > 0
+        ? [{ id: "all", label: "Alle Projekte" }, ...initialCategories.map(c => ({ id: c.slug, label: c.name }))]
+        : staticCategories;
 
     // Map WordPress projects to the format expected by PortfolioCard
-    const wpMappedProjects = initialProjects.map(project => ({
-        id: project.slug,
-        title: project.title.rendered,
-        category: (project.acf?.category as string) || "Design",
-        image: getFeaturedImageUrl(project) || "/images/portfolio/fallback.jpg",
-        client: (project.acf?.client as string) || stripHtml(project.excerpt.rendered).substring(0, 50),
-        year: (project.acf?.year as string) || new Date().getFullYear().toString(),
-    }));
+    const wpMappedProjects = initialProjects.map(project => {
+        let mainCategory = "Design";
+        const terms = project._embedded?.['wp:term'] || [];
+
+        // Find the portfolio_category taxonomy in terms
+        const categoryTerm = terms.find(t => t[0]?.taxonomy === 'portfolio_category');
+        if (categoryTerm && categoryTerm[0]) {
+            mainCategory = categoryTerm[0].name;
+        } else if (terms[0] && terms[0][0]) {
+            // Fallback to first term if not explicitly found
+            mainCategory = terms[0][0].name;
+        }
+
+        return {
+            id: project.slug,
+            title: project.title.rendered,
+            category: mainCategory,
+            categorySlug: categoryTerm?.[0]?.slug || terms[0]?.[0]?.slug || "design",
+            image: getFeaturedImageUrl(project),
+            client: stripHtml(project.excerpt.rendered).substring(0, 100),
+            year: (project.acf?.project_year as string) || (project.date ? new Date(project.date).getFullYear().toString() : new Date().getFullYear().toString()),
+        };
+    });
 
     // Combine or choose between dynamic and static data
     const projects = initialProjects.length > 0 ? wpMappedProjects : staticProjects;
 
     const filteredProjects = activeCategory === "all"
         ? projects
-        : projects.filter(p => p.category.toLowerCase() === activeCategory.toLowerCase());
+        : projects.filter(p => {
+            const projectCat = (p as any).categorySlug || p.category;
+            return projectCat.toLowerCase() === activeCategory.toLowerCase();
+        });
 
     return (
         <section className="py-24 px-6 md:px-12 bg-slate-50">

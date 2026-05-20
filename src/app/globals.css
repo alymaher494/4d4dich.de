@@ -59,6 +59,64 @@
     .section-padding {
         @apply py-24 px-6 md:px-12 max-w-7xl mx-auto;
     }
+
+    /* Basic typography for WordPress content */
+    .prose {
+        @apply max-w-none text-slate-600;
+    }
+
+    .prose p {
+        @apply mb-4 leading-relaxed;
+    }
+
+    .prose p:last-child {
+        @apply mb-0;
+    }
+
+    .prose ul {
+        @apply list-disc pl-6 mb-4 marker:text-primary;
+    }
+
+    .prose ol {
+        @apply list-decimal pl-6 mb-4 marker:text-primary;
+    }
+
+    .prose li {
+        @apply mb-2 pl-1;
+    }
+
+    .prose h2,
+    .prose h3,
+    .prose h4 {
+        @apply font-bold text-slate-900 mt-8 mb-4;
+    }
+
+    .prose h2 {
+        @apply text-2xl;
+    }
+
+    .prose h3 {
+        @apply text-xl;
+    }
+
+    .prose h4 {
+        @apply text-lg;
+    }
+
+    .prose-invert {
+        @apply text-slate-300;
+    }
+
+    .prose-invert h2,
+    .prose-invert h3,
+    .prose-invert h4 {
+        @apply text-white;
+    }
+
+    .prose-invert ul,
+    .prose-invert ol {
+        @apply marker:text-primary-light;
+    }
 }
 
 @layer utilities {
@@ -119,13 +177,13 @@
     }
 
     100% {
-        transform: translateX(-33.333%);
+        transform: translateX(-50%);
     }
 }
 
 @keyframes marquee-right {
     0% {
-        transform: translateX(-33.333%);
+        transform: translateX(-50%);
     }
 
     100% {
@@ -134,11 +192,13 @@
 }
 
 .animate-marquee-left {
-    animation: marquee-left 30s linear infinite;
+    animation: marquee-left 40s linear infinite;
+    will-change: transform;
 }
 
 .animate-marquee-right {
-    animation: marquee-right 30s linear infinite;
+    animation: marquee-right 40s linear infinite;
+    will-change: transform;
 }
 
 /* Vertical Slider Animations */
@@ -164,10 +224,12 @@
 
 .animate-slide-up {
     animation: slide-up 40s linear infinite;
+    will-change: transform;
 }
 
 .animate-slide-down {
     animation: slide-down 40s linear infinite;
+    will-change: transform;
 }
 
 /* Solid Animated Buttons */

@@ -2,65 +2,68 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Printer, Palette, MonitorSmartphone, TrendingUp } from "lucide-react";
+import { ArrowRight, Printer, Palette, MonitorSmartphone, TrendingUp, HelpCircle } from "lucide-react";
 import { fadeInUp } from "@/lib/animations";
+import { WPPage, stripHtml } from "@/lib/wordpress";
 
-const services = [
-    {
-        id: "druck",
-        title: "Druck & Werbetechnik",
-        description: "Hochwertige Printerzeugnisse für Ihren professionellen Auftritt.",
-        icon: Printer,
-        link: "/druck",
-        prices: [
-            { name: "500 Visitenkarten", price: "ab 49€" },
-            { name: "1000 Flyer (DIN A5)", price: "ab 89€" },
-            { name: "Roll-up Banner", price: "ab 79€" },
-            { name: "Fahrzeugbeschriftung", price: "auf Anfrage" },
-        ]
-    },
-    {
-        id: "design",
-        title: "Grafik & Branding",
-        description: "Einzigartige Designs, die im Gedächtnis bleiben.",
-        icon: Palette,
-        link: "/grafik-design",
-        prices: [
-            { name: "Logo Design Paket", price: "ab 299€" },
-            { name: "Corporate Identity", price: "ab 899€" },
-            { name: "Social Media Templates", price: "ab 149€" },
-            { name: "Broschüren Design", price: "ab 199€" },
-        ]
-    },
-    {
-        id: "web",
-        title: "Web & App Entwicklung",
-        description: "Moderne Webseiten und Apps für Ihr Business.",
-        icon: MonitorSmartphone,
-        link: "/web-app",
-        prices: [
-            { name: "Landing Page", price: "ab 499€" },
-            { name: "Unternehmens-Website", price: "ab 1.499€" },
-            { name: "E-Commerce Shop", price: "ab 2.499€" },
-            { name: "Wartung & Hosting", price: "ab 49€ / Monat" },
-        ]
-    },
-    {
-        id: "marketing",
-        title: "Digital Marketing",
-        description: "Mehr Reichweite und Umsatz durch gezielte Kampagnen.",
-        icon: TrendingUp,
-        link: "/marketing",
-        prices: [
-            { name: "SEO Audit", price: "Kostenlos" },
-            { name: "Google Ads Setup", price: "ab 299€" },
-            { name: "Social Media Betreuung", price: "ab 450€ / Monat" },
-            { name: "Content Erstellung", price: "auf Anfrage" },
-        ]
+interface ServicesListProps {
+    dynamicServices?: WPPage[];
+}
+
+const iconMap: Record<string, any> = {
+    'druck': Printer,
+    'grafik': Palette,
+    'branding': Palette,
+    'web': MonitorSmartphone,
+    'app': MonitorSmartphone,
+    'marketing': TrendingUp,
+};
+
+function getIconForService(slug: string, title: string) {
+    const s = slug.toLowerCase();
+    const t = title.toLowerCase();
+
+    if (s.includes('druck') || t.includes('druck')) return Printer;
+    if (s.includes('grafik') || s.includes('branding') || t.includes('design')) return Palette;
+    if (s.includes('web') || s.includes('app') || t.includes('web')) return MonitorSmartphone;
+    if (s.includes('marketing') || t.includes('marketing')) return TrendingUp;
+
+    return HelpCircle;
+}
+
+export default function ServicesList({ dynamicServices = [] }: ServicesListProps) {
+    const services = dynamicServices.length > 0
+        ? dynamicServices.map(page => {
+            const Icon = getIconForService(page.slug, page.title.rendered);
+
+            // Extract pricing from ACF repeaters if they exist
+            let prices = (page.acf?.price_list as any[]) || [];
+
+            // If no pricing found, use a default placeholder or fallback
+            if (prices.length === 0) {
+                prices = [
+                    { name: "Basis Paket", price: "ab 499€" },
+                    { name: "Premium Paket", price: "ab 999€" },
+                    { name: "Individuell", price: "auf Anfrage" }
+                ];
+            }
+
+            return {
+                id: page.slug,
+                title: page.title.rendered,
+                description: page.acf?.hero_description || stripHtml(page.excerpt?.rendered || "").substring(0, 100) + '...',
+                icon: Icon,
+                link: `/services/${page.slug}`,
+                prices: prices
+            };
+        })
+        : [];
+
+    // Fallback to static if no dynamic ones (just in case)
+    if (services.length === 0) {
+        return <div className="py-24 text-center text-slate-400">Keine Dienstleistungen gefunden.</div>;
     }
-];
 
-export default function ServicesList() {
     return (
         <section className="py-24 px-6 md:px-12 bg-slate-50">
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -89,11 +92,11 @@ export default function ServicesList() {
                             <div className="space-y-3">
                                 {service.prices.map((price, pIdx) => (
                                     <div key={pIdx} className="flex justify-between items-center p-3 rounded-xl hover:bg-white transition-colors">
-                                        <span className="text-slate-600 flex items-center gap-2">
+                                        <span className="text-slate-600 flex items-center gap-2 text-sm md:text-base">
                                             <div className="w-1.5 h-1.5 rounded-full bg-primary/50" />
                                             {price.name}
                                         </span>
-                                        <span className="font-bold text-slate-900">{price.price}</span>
+                                        <span className="font-bold text-slate-900 whitespace-nowrap">{price.price}</span>
                                     </div>
                                 ))}
                             </div>

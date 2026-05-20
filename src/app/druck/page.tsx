@@ -1,8 +1,9 @@
-import { getPageBySlug } from "@/lib/wordpress";
+import { getPageBySlug, constructMetadata } from "@/lib/wordpress";
 import Hero from "./_components/Hero";
 import Intro from "./_components/Intro";
 import Portfolio from "./_components/Portfolio";
 import Benefits from "./_components/Benefits";
+import Pricing from "@/components/sections/Pricing";
 import DruckContactForm from "@/components/forms/DruckContactForm";
 import { Section } from "@/components/layout/Section";
 import { Container } from "@/components/layout/Container";
@@ -10,10 +11,12 @@ import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
     const pageData = await getPageBySlug('service-druck');
-    return {
-        title: pageData?.acf?.seo_title || pageData?.title?.rendered || "Druck & Werbetechnik",
-        description: pageData?.acf?.seo_description || "Premium Druckservice und Werbetechnik für höchste Ansprüche.",
-    };
+    return constructMetadata(
+        pageData,
+        "Druckerei Rodgau | Premium Druck & Werbetechnik",
+        "Ihr lokaler Partner für hochwertigen Druck, Werbetechnik und Printmedien in Rodgau und Umgebung.",
+        "/druck"
+    );
 }
 
 export default async function DruckPage() {
@@ -22,9 +25,26 @@ export default async function DruckPage() {
     return (
         <main className="bg-white min-h-screen overflow-x-hidden">
             <Hero initialData={pageData} />
-            <Intro />
+            <Intro acf={pageData?.acf} />
+
+            {/* Dynamic Main Content if exists */}
+            {pageData?.acf?.main_content && (
+                <Section>
+                    <Container>
+                        <div
+                            className="prose prose-xl max-w-4xl mx-auto py-12 text-slate-600 prose-headings:text-slate-900 prose-strong:text-slate-900 prose-headings:font-black"
+                            dangerouslySetInnerHTML={{ __html: pageData.acf.main_content }}
+                        />
+                    </Container>
+                </Section>
+            )}
+
             <Portfolio />
-            <Benefits />
+            <Pricing
+                items={pageData?.acf?.price_list}
+                title={pageData?.acf?.pricing_title}
+            />
+            <Benefits acf={pageData?.acf} />
 
             {/* Contact Form Section */}
             <Section background="slate">

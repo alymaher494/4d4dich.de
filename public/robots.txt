@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://4d4dich.de/sitemap.xml

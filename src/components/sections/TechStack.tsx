@@ -10,8 +10,8 @@ const techStack = [
     { name: "Tailwind CSS", logo: "https://cdn.worldvectorlogo.com/logos/tailwindcss.svg" },
     { name: "Framer Motion", logo: "https://cdn.worldvectorlogo.com/logos/framer-motion.svg" },
     { name: "WordPress", logo: "https://cdn.worldvectorlogo.com/logos/wordpress-icon.svg" },
-    { name: "Figma", logo: "https://cdn.worldvectorlogo.com/logos/figma-1.svg" },
-    { name: "Adobe Creative Cloud", logo: "https://cdn.worldvectorlogo.com/logos/adobe-creative-cloud-2.svg" },
+    { name: "Canva", logo: "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/canva-icon.svg" },
+    { name: "Meta Ads", logo: "https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg" },
 ];
 
 export default function TechStack() {
@@ -40,6 +40,7 @@ export default function TechStack() {
                                     alt={tech.name}
                                     fill
                                     className="object-contain"
+                                    unoptimized
                                 />
                             </div>
                             <span className="font-bold text-slate-900 group-hover:text-primary transition-colors">{tech.name}</span>

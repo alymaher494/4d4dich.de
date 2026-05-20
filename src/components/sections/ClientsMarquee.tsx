@@ -1,4 +1,5 @@
-import { WPClient, getFeaturedImageUrl } from "@/lib/wordpress";
+import { WPClient, getFeaturedImageUrl, getImageUrl } from "@/lib/wordpress";
+import Image from "next/image";
 
 interface ClientsMarqueeProps {
     initialClients?: WPClient[];
@@ -24,12 +25,15 @@ function ClientLogo({ name, logo }: { name: string; logo: string }) {
     return (
         <div className="client-logo group flex-shrink-0 w-[180px] h-[100px] flex items-center justify-center mx-4 bg-white/5 border border-primary/10 rounded-2xl backdrop-blur-sm transition-all duration-300 relative overflow-hidden hover:bg-white/10 hover:border-primary/30 hover:scale-105 hover:shadow-lg hover:shadow-primary/15">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-            <img
-                src={logo}
-                alt={name}
-                className="w-auto h-16 md:h-20 object-contain p-2 opacity-70 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0 duration-300"
-                loading="lazy"
-            />
+            <div className="relative w-full h-full p-6">
+                <Image
+                    src={getImageUrl(logo)}
+                    alt={name}
+                    fill
+                    className="object-contain p-4 opacity-70 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0 duration-300"
+                    sizes="180px"
+                />
+            </div>
         </div>
     );
 }
@@ -52,8 +56,8 @@ export default function ClientsMarquee({ initialClients = [] }: ClientsMarqueePr
     }
 
     // Ensure we have enough items for marquee by duplicating
-    const duplicatedRow1 = row1.length > 0 ? [...row1, ...row1, ...row1, ...row1] : [];
-    const duplicatedRow2 = row2.length > 0 ? [...row2, ...row2, ...row2, ...row2] : [];
+    const duplicatedRow1 = [...row1, ...row1, ...row1];
+    const duplicatedRow2 = [...row2, ...row2, ...row2];
 
     return (
         <section className="clients-section w-full py-20 md:py-28 bg-gradient-to-b from-white to-slate-50 overflow-hidden" id="clients">

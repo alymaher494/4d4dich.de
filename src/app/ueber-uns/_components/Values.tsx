@@ -4,37 +4,43 @@ import { motion } from "framer-motion";
 import { ShieldCheck, Heart, Zap } from "lucide-react";
 import { fadeInUp } from "@/lib/animations";
 
-const values = [
-    {
-        title: "Transparenz",
-        desc: "Keine versteckten Kosten. Offene Kommunikation ist unser Fundament.",
-        icon: ShieldCheck,
-        color: "text-primary",
-        bg: "bg-primary/10"
-    },
-    {
-        title: "Qualität",
-        desc: "Perfektion im Detail. Ob Druck oder Pixel – wir liefern Exzellenz.",
-        icon: Heart,
-        color: "text-secondary",
-        bg: "bg-secondary/10"
-    },
-    {
-        title: "Schnelligkeit",
-        desc: "Ihre Zeit ist wertvoll. Wir halten Deadlines strikt ein.",
-        icon: Zap,
-        color: "text-primary",
-        bg: "bg-primary/10"
-    }
-];
+interface ValuesProps {
+    acf?: any;
+    title?: string;
+}
 
-export default function AboutValues() {
+export default function AboutValues({ acf, title }: ValuesProps) {
+    const values = [
+        {
+            title: acf?.about_value_1_title || "Transparenz",
+            desc: acf?.about_value_1_desc || "Keine versteckten Kosten. Offene Kommunikation ist unser Fundament.",
+            icon: ShieldCheck,
+            color: "text-primary",
+            bg: "bg-primary/10"
+        },
+        {
+            title: acf?.about_value_2_title || "Qualität",
+            desc: acf?.about_value_2_desc || "Perfektion im Detail. Ob Druck oder Pixel – wir liefern Exzellenz.",
+            icon: Heart,
+            color: "text-secondary",
+            bg: "bg-secondary/10"
+        },
+        {
+            title: acf?.about_value_3_title || "Schnelligkeit",
+            desc: acf?.about_value_3_desc || "Ihre Zeit ist wertvoll. Wir halten Deadlines strikt ein.",
+            icon: Zap,
+            color: "text-primary",
+            bg: "bg-primary/10"
+        }
+    ];
     return (
-        <section className="py-24 px-6 md:px-12 bg-slate-50">
-            <div className="max-w-7xl mx-auto">
-                <div className="text-center max-w-3xl mx-auto mb-16">
-                    <h2 className="text-4xl font-black text-slate-900 mb-6">Unsere Werte</h2>
-                    <p className="text-lg text-slate-600">Was uns antreibt und wie wir arbeiten.</p>
+        <section className="py-24 bg-white overflow-hidden">
+            <div className="max-w-7xl mx-auto px-6 md:px-12">
+                <div className="text-center mb-20">
+                    <span className="text-primary font-black uppercase tracking-widest text-sm">Unsere Werte</span>
+                    <h2 className="text-4xl md:text-6xl font-black text-slate-900 mt-4 leading-tight">
+                        {title || <>Menschlich. <span className="text-secondary">Kreativ.</span> Exzellent.</>}
+                    </h2>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

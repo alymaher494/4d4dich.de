@@ -10,74 +10,37 @@ interface BriefingModalProps {
     onClose: () => void;
 }
 
-const steps = [
+const steps: any[] = [
+    {
+        id: "service",
+        title: "Gewünschte Dienstleistung",
+        icon: Rocket,
+        questions: [
+            {
+                id: "selectedService",
+                label: "Für welchen Bereich interessieren Sie sich?",
+                type: "options",
+                options: ["Druck", "Grafik Design", "Web & App Design", "Digital Marketing", "Mehrere / Andere"]
+            }
+        ]
+    },
     {
         id: "basics",
         title: "Grundlagen",
         icon: Globe,
         questions: [
             { id: "companyName", label: "Wie heißt Ihre Firma / Marke?", type: "text", placeholder: "Musterfirma GmbH" },
-            { id: "businessActivity", label: "Was macht Ihr Unternehmen genau?", type: "textarea", placeholder: "Beschreiben Sie kurz Ihr Angebot..." },
-            { id: "existingWebsite", label: "Gibt es schon eine bestehende Website?", type: "text", placeholder: "www.beispiel.de (falls vorhanden)" },
+            { id: "message", label: "Wie können wir Ihnen helfen?", type: "textarea", placeholder: "Beschreiben Sie kurz Ihr Anliegen..." }
         ]
     },
     {
-        id: "goals",
-        title: "Ihre Ziele",
-        icon: Rocket,
-        questions: [
-            {
-                id: "websiteGoal",
-                label: "Was ist das Hauptziel der Website?",
-                type: "options",
-                options: ["Mehr Kundenanfragen", "Online verkaufen (Shop)", "Termine buchen lassen", "Reine Information"]
-            }
-        ]
-    },
-    {
-        id: "content",
-        title: "Inhalte",
-        icon: Palette,
-        questions: [
-            { id: "pageCount", label: "Wie viele Seiten werden ca. benötigt?", type: "text", placeholder: "z.B. 5-10 Seiten" },
-            {
-                id: "contentStatus",
-                label: "Sind Texte und Bilder bereits vorhanden?",
-                type: "options",
-                options: ["Alles vorhanden", "Texte fehlen noch", "Bilder fehlen noch", "Muss alles erstellt werden"]
-            }
-        ]
-    },
-    {
-        id: "functions",
-        title: "Funktionen",
-        icon: Cog,
-        questions: [
-            {
-                id: "features",
-                label: "Welche Funktionen werden benötigt?",
-                type: "multi-select",
-                options: ["Kontaktformular", "Online-Buchung", "WhatsApp-Button", "Mehrsprachigkeit", "Google Maps", "Bewertungen", "Online-Shop"]
-            }
-        ]
-    },
-    {
-        id: "design",
-        title: "Design & Stil",
-        icon: Sparkles,
-        questions: [
-            { id: "hasLogo", label: "Gibt es bereits ein Logo und Firmenfarben?", type: "options", options: ["Ja, alles vorhanden", "Nur Logo vorhanden", "Nein, muss erstellt werden"] },
-            { id: "examples", label: "Gibt es Websites, die Ihnen besonders gefallen?", type: "text", placeholder: "Links zu Beispiel-Websites" },
-        ]
-    },
-    {
-        id: "tech-time",
-        title: "Technik & Zeit",
+        id: "contact",
+        title: "Kontaktdaten",
         icon: Calendar,
         questions: [
-            { id: "hostingStatus", label: "Haben Sie bereits Hosting oder eine Domain?", type: "options", options: ["Ja, beides vorhanden", "Nur Domain vorhanden", "Nein, brauche Hilfe dabei"] },
-            { id: "timeline", label: "Wann soll das Projekt fertig sein?", type: "text", placeholder: "z.B. In 4 Wochen" },
-            { id: "contactEmail", label: "Ihre E-Mail für das Angebot", type: "email", placeholder: "name@beispiel.de" },
+            { id: "contactName", label: "Ihr Name", type: "text", placeholder: "Max Mustermann" },
+            { id: "contactEmail", label: "Ihre E-Mail-Adresse", type: "email", placeholder: "name@beispiel.de" },
+            { id: "contactPhone", label: "Ihre Telefonnummer (optional)", type: "text", placeholder: "+49 123 456789" },
         ]
     }
 ];
@@ -219,7 +182,7 @@ export default function BriefingModal({ isOpen: initialIsOpen, onClose }: Briefi
                                             transition={{ duration: 0.25 }}
                                             className="space-y-6"
                                         >
-                                            {steps[currentStep].questions.map((q) => (
+                                            {steps[currentStep].questions.map((q: any) => (
                                                 <div key={q.id} className="space-y-3">
                                                     <label className="block text-sm md:text-base font-bold text-slate-800">{q.label}</label>
 
@@ -242,7 +205,7 @@ export default function BriefingModal({ isOpen: initialIsOpen, onClose }: Briefi
                                                         />
                                                     ) : q.type === "options" ? (
                                                         <div className="grid grid-cols-1 gap-3">
-                                                            {q.options?.map((opt) => (
+                                                            {q.options?.map((opt: string) => (
                                                                 <button
                                                                     key={opt}
                                                                     onClick={() => handleInputChange(q.id, opt)}
@@ -265,7 +228,7 @@ export default function BriefingModal({ isOpen: initialIsOpen, onClose }: Briefi
                                                         </div>
                                                     ) : q.type === "multi-select" ? (
                                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                                            {q.options?.map((opt) => (
+                                                            {q.options?.map((opt: string) => (
                                                                 <button
                                                                     key={opt}
                                                                     onClick={() => handleMultiSelect(q.id, opt)}
