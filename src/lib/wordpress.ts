@@ -626,8 +626,13 @@ export function constructMetadata(pageData: any, defaultTitle: string, defaultDe
     const fallbackTitle = "4D FÜR DICH | Premium Design & Digital Marketing Agentur Frankfurt/Rodgau";
     const fallbackDesc = "Passionate experts for your brand. We offer premium print, web development, and digital marketing services in Rodgau and Frankfurt. Let's transform your vision today.";
 
-    const title = rm?.title || acf?.seo_title || defaultTitle || fallbackTitle;
-    const description = rm?.description || acf?.seo_description || defaultDesc || fallbackDesc;
+    // Filter out generic/empty SEO titles from ACF (like "Home" which is just the WP page title)
+    const genericTitles = ['home', 'startseite', 'homepage', ''];
+    const acfTitle = acf?.seo_title && !genericTitles.includes(acf.seo_title.toLowerCase().trim()) ? acf.seo_title : null;
+    const acfDesc = acf?.seo_description && acf.seo_description.trim() ? acf.seo_description : null;
+
+    const title = rm?.title || acfTitle || defaultTitle || fallbackTitle;
+    const description = rm?.description || acfDesc || defaultDesc || fallbackDesc;
     const canonical = rm?.canonical || `${siteUrl}${path}`;
 
     return {
